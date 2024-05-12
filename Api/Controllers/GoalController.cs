@@ -31,7 +31,7 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ResponseCache(Duration = 10)]
-        public async Task<ActionResult<ApiResponse>> GetGoals(int pageSize = 0, int pageNumber = 1)
+        public async Task<ActionResult<ApiResponse>> GetGoals(int pageSize = 10, int pageNumber = 1)
         {
             try
             {
@@ -41,18 +41,14 @@ namespace Api.Controllers
                 //Pagination pagination = new() { PageNumber = pageNumber, PageSize = pageSize };
 
                 //Response.Headers["X-Pagination"] = JsonSerializer.Serialize(pagination);
-                //_response.Result = _mapper.Map<List<GoalDto>>(GoalList);
-                _response.StatusCode = HttpStatusCode.OK;
-                return Ok(_response);
+                var result = _mapper.Map<List<GoalDto>>(GoalList);
+
+                return Ok(_response.OkResponse(result));
             }
             catch (Exception ex)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages
-                     = new List<string>() { ex.ToString() };
+                return BadRequest(_response.BadRequestResponse(ex.Message));
             }
-            return _response;
-
         }
 
 
@@ -60,27 +56,21 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ResponseCache(Duration = 60)]
+        [ResponseCache(Duration = 10)]
         public async Task<ActionResult<ApiResponse>> GetGoal(int id)
         {
             if (id == 0)
             {
-                _response.StatusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                return BadRequest(_response);
+                return BadRequest(_response.BadRequestResponse("Id is required"));
             }
 
             var goal = await _goalRepository.GetAsync(G => G.Id == id);
 
             if (goal == null)
             {
-                _response.StatusCode = HttpStatusCode.NotFound;
-                _response.IsSuccess = false;
-                return NotFound(_response);
+                return NotFound(_response.NotFoundResponse("Goal not found"));
             }
-            _response.Result = _mapper.Map<GoalDto>(goal);
-            _response.StatusCode = HttpStatusCode.OK;
-            return Ok(_response);
+            return Ok(_response.OkResponse(_mapper.Map<GoalDto>(goal)));
         }
 
         [HttpPost("CreateGoal", Name ="CreateGoal")]
@@ -93,39 +83,27 @@ namespace Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _response.StatusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add("Error");
-                return BadRequest(_response);
+                return BadRequest(_response.BadRequestResponse(""));
             }
             if (createGoalDto == null)
             {
-                _response.StatusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add("Error No goal was given");
-                return BadRequest(_response);
+                return BadRequest(_response.BadRequestResponse("Invalid request body"));
             }
             if (await _goalRepository.GetAsync(u => u.Name.ToLower() == createGoalDto.Name.ToLower()) != null)
             {
-                //ModelState.AddModelError("CustomError", "Villa already Exists!");
-                _response.StatusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add("Goal already exists");
-                return BadRequest(_response);
+                return BadRequest(_response.BadRequestResponse("Goal already exists"));
             }
 
             Goal goal = _mapper.Map<Goal>(createGoalDto);
 
 
             await _goalRepository.CreateAsync(goal);
-            _response.Result = _mapper.Map<CreateGoalDto>(goal);
-            _response.StatusCode = HttpStatusCode.Created;
 
-            return CreatedAtRoute("GetGoal", new { id = goal.Id }, _response);
+            return Ok(_response.OkResponse(_mapper.Map<GoalDto>(goal)));
         }
 
         [HttpDelete("DeleteGoal {id:int}", Name = "DeleteGoal")]
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -135,15 +113,11 @@ namespace Api.Controllers
             var goal = await _goalRepository.GetAsync(u => u.Id == id);
             if (goal == null)
             {
-                _response.StatusCode = HttpStatusCode.NotFound;
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add("Error this goal doesnt exists");
-                return BadRequest(_response);
+                return NotFound(_response.NotFoundResponse("Goal not found"));  
             }
             await _goalRepository.DeleteAsync(goal);
-            _response.StatusCode = HttpStatusCode.NoContent;
-            _response.IsSuccess = true;
-            return Ok(_response);
+
+            return Ok(_response.OkResponse("Goal deleted successfully"));   
         }
 
         [HttpPut("UpdateGoal {id:int}", Name = "UpdateGoal")]
@@ -152,33 +126,31 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateGoal(int id, [FromBody] GoalDto goalDto)
         {
-            var b = await _goalRepository.DoesExistAsync(V => V.Id == id);
-            if (!b)
-            {
-                _response.StatusCode = HttpStatusCode.NotFound;
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add("Error this goal doesnt exists");
-                return BadRequest(_response);
-            }
+            try {
+                var b = await _goalRepository.DoesExistAsync(V => V.Id == id);
+                if (!b)
+                {
+                    return NotFound(_response.NotFoundResponse("Goal not found"));
+                }
 
-
-            {
                 if (goalDto == null || id != goalDto.Id)
                 {
-                    _response.StatusCode = HttpStatusCode.NotFound;
-                    _response.IsSuccess = false;
-                    _response.ErrorMessages.Add("Error this goal doesnt exists");
-                    return BadRequest(_response);
+                    return BadRequest(_response.BadRequestResponse("Invalid request body"));
                 }
 
                 Goal goal = _mapper.Map<Goal>(goalDto);
 
                 await _goalRepository.UpdateAsync(goal);
-                _response.StatusCode = HttpStatusCode.NoContent;
-                _response.IsSuccess = true;
-                return Ok(_response);
 
+                return Ok(_response.OkResponse("Goal updated successfully"));
             }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+
+
+            
         }
 
     }
