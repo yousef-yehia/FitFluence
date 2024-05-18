@@ -37,7 +37,7 @@ namespace Infrastructure.Repository
             if (!string.IsNullOrEmpty(orderBy))
             {
                switch (orderBy)
-                {
+               {
                     case "name":
                         foods = foods.OrderBy(f => f.Name).ToList();
                         break;
@@ -47,7 +47,7 @@ namespace Infrastructure.Repository
                     case "calories":
                         foods = foods.OrderBy(f => f.Calories).ToList();
                         break;
-                }
+               }
             }   
 
             return foods;

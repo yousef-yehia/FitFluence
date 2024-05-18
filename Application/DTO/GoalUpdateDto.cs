@@ -1,10 +1,8 @@
-﻿namespace Api.DTO
+﻿namespace Application.DTO
 {
-    public class FoodDto
+    public class GoalUpdateDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Serving { get; set; }
-
     }
 }
