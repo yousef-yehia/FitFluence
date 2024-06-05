@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.DTO.FoodDto;
 using AutoMapper;
-using Core.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Core.Models;
 using Application.Exceptions;
+using Infrastructure.Data;
 
 namespace Application.Foods.GetById
 {
     internal class GetFoodByIdQueryHandler : IRequestHandler<GetFoodByIdQuery, FoodDto>
     {
-        private readonly IAppDbContext _appDbContext;
+        private readonly AppDbContext _appDbContext;
         private readonly IMapper _mapper;
 
-        public GetFoodByIdQueryHandler(IAppDbContext appDbContext, IMapper mapper)
+        public GetFoodByIdQueryHandler(AppDbContext appDbContext, IMapper mapper)
         {
             _appDbContext = appDbContext;
             _mapper = mapper;

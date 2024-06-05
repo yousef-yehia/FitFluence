@@ -213,43 +213,6 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost("AddFavouriteFood", Name = "AddFavouriteFood")]
-        [Authorize]
-        public async Task<ActionResult<ApiResponse>> AddFavouriteFood(int foodId)
-        {
-            var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
-
-            if (user == null)
-            {
-                _response.StatusCode = HttpStatusCode.NotFound;
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add("User id is incorrect");
-                return _response;
-            }
-
-            // Check and initialize the UserGoals collection if it's null
-            if (user.UserFoods == null)
-            {
-                user.UserFoods = new List<UserFoods>();
-            }
-
-            try
-            {
-                await _userRepository.AddFavouriteFoodAsync(user, foodId);
-                _response.StatusCode = HttpStatusCode.OK;
-                _response.IsSuccess = true;
-                _response.Result = "Favourite food added to user successfully";
-                return (_response);
-            }
-            catch (Exception ex)
-            {
-                _response.StatusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add(ex.Message);
-                return (_response);
-            }
-        }
-
         [HttpGet("GetAllUserGoals", Name = "GetAllUserGoals")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -284,37 +247,7 @@ namespace Api.Controllers
             return _response;
         }
 
-        [HttpGet("GetAllUserFoods", Name = "GetAllUserFoods")]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ResponseCache(Duration = 60)]
-        [Authorize]
 
-        public async Task<ActionResult<ApiResponse>> GetAllUserFoods(int pageSize = 0, int pageNumber = 1)
-        {
-            try
-            {
-                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
-
-
-                var AppUserList = await _userRepository.GetAllFavouriteFoodsAsync(user, pageSize: pageSize, pageNumber: pageNumber);
-                //Pagination pagination = new() { PageNumber = pageNumber, PageSize = pageSize };
-
-                //Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagination));
-                _response.Result = AppUserList;
-                _response.StatusCode = HttpStatusCode.OK;
-                return Ok(_response);
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages
-                     = new List<string>() { ex.ToString() };
-            }
-            return _response;
-        }
 
         [HttpDelete("DeleteUserGoal", Name = "DeleteUserGoal")]
         [Authorize]
@@ -358,46 +291,7 @@ namespace Api.Controllers
             }
         }
 
-        [HttpDelete("DeleteUserFavouriteFood", Name = "DeleteUserFavouriteFood")]
-        [Authorize]
-        public async Task<ActionResult<ApiResponse>> DeleteUserFavouriteFood(int foadId)
-        {
-            var userIdClaim = (HttpContext.User.Identity as ClaimsIdentity)?.Claims.FirstOrDefault(c => c.Type == "uid");
-            var userId = userIdClaim.Value;
 
-            var user = await _userRepository.GetAsync(u => u.Id == userId);
-            var food = await _foodRepository.GetAsync(u => u.Id == foadId);
-
-            if (user == null)
-            {
-                _response.StatusCode = HttpStatusCode.NotFound;
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add("User ID is incorrect");
-                return _response;
-            }
-            if (food == null)
-            {
-                _response.StatusCode = HttpStatusCode.NotFound;
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add("Food ID is incorrect");
-                return _response;
-            }
-            try
-            {
-                await _userRepository.DeleteFavouriteFoodAsync(user, food);
-                _response.StatusCode = HttpStatusCode.OK;
-                _response.IsSuccess = true;
-                _response.Result = "Deleted";
-                return (_response);
-            }
-            catch (Exception ex)
-            {
-                _response.StatusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add(ex.Message);
-                return (_response);
-            }
-        }
 
         [HttpPut("UpdateClient {id}", Name = "UpdateClient")]
         //[Authorize(Roles = "admin")]
@@ -500,5 +394,116 @@ namespace Api.Controllers
             return Ok(_response);
         }
 
+
+
+        //[HttpPost("AddFavouriteFood", Name = "AddFavouriteFood")]
+        //[Authorize]
+        //public async Task<ActionResult<ApiResponse>> AddFavouriteFood(int foodId)
+        //{
+        //    var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
+        //    if (user == null)
+        //    {
+        //        _response.StatusCode = HttpStatusCode.NotFound;
+        //        _response.IsSuccess = false;
+        //        _response.ErrorMessages.Add("User id is incorrect");
+        //        return _response;
+        //    }
+
+        //    // Check and initialize the UserGoals collection if it's null
+        //    if (user.UserFoods == null)
+        //    {
+        //        user.UserFoods = new List<UserFoods>();
+        //    }
+
+        //    try
+        //    {
+        //        await _userRepository.AddFavouriteFoodAsync(user, foodId);
+        //        _response.StatusCode = HttpStatusCode.OK;
+        //        _response.IsSuccess = true;
+        //        _response.Result = "Favourite food added to user successfully";
+        //        return (_response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _response.StatusCode = HttpStatusCode.BadRequest;
+        //        _response.IsSuccess = false;
+        //        _response.ErrorMessages.Add(ex.Message);
+        //        return (_response);
+        //    }
+        //}
+
+        //[HttpGet("GetAllUserFoods", Name = "GetAllUserFoods")]
+        //[ProducesResponseType(StatusCodes.Status403Forbidden)]
+        //[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ResponseCache(Duration = 60)]
+        //[Authorize]
+
+        //public async Task<ActionResult<ApiResponse>> GetAllUserFoods(int pageSize = 0, int pageNumber = 1)
+        //{
+        //    try
+        //    {
+        //        var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
+
+        //        var AppUserList = await _userRepository.GetAllFavouriteFoodsAsync(user, pageSize: pageSize, pageNumber: pageNumber);
+        //        //Pagination pagination = new() { PageNumber = pageNumber, PageSize = pageSize };
+
+        //        //Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagination));
+        //        _response.Result = AppUserList;
+        //        _response.StatusCode = HttpStatusCode.OK;
+        //        return Ok(_response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _response.IsSuccess = false;
+        //        _response.ErrorMessages
+        //             = new List<string>() { ex.ToString() };
+        //    }
+        //    return _response;
+        //}
+
+        //[HttpDelete("DeleteUserFavouriteFood", Name = "DeleteUserFavouriteFood")]
+        //[Authorize]
+        //public async Task<ActionResult<ApiResponse>> DeleteUserFavouriteFood(int foadId)
+        //{
+        //    var userIdClaim = (HttpContext.User.Identity as ClaimsIdentity)?.Claims.FirstOrDefault(c => c.Type == "uid");
+        //    var userId = userIdClaim.Value;
+
+        //    var user = await _userRepository.GetAsync(u => u.Id == userId);
+        //    var food = await _foodRepository.GetAsync(u => u.Id == foadId);
+
+        //    if (user == null)
+        //    {
+        //        _response.StatusCode = HttpStatusCode.NotFound;
+        //        _response.IsSuccess = false;
+        //        _response.ErrorMessages.Add("User ID is incorrect");
+        //        return _response;
+        //    }
+        //    if (food == null)
+        //    {
+        //        _response.StatusCode = HttpStatusCode.NotFound;
+        //        _response.IsSuccess = false;
+        //        _response.ErrorMessages.Add("Food ID is incorrect");
+        //        return _response;
+        //    }
+        //    try
+        //    {
+        //        await _userRepository.DeleteFavouriteFoodAsync(user, food);
+        //        _response.StatusCode = HttpStatusCode.OK;
+        //        _response.IsSuccess = true;
+        //        _response.Result = "Deleted";
+        //        return (_response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _response.StatusCode = HttpStatusCode.BadRequest;
+        //        _response.IsSuccess = false;
+        //        _response.ErrorMessages.Add(ex.Message);
+        //        return (_response);
+        //    }
+        //}
     }
 }

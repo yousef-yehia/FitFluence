@@ -13,15 +13,16 @@ using Core.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Core.Models;
+using Infrastructure.Data;
 
 namespace Application.Foods.GetAll
 {
     internal class GetAllFoodQueryHandler : IRequestHandler<GetAllFoodQuery, Pagination<FoodDto>>
     {
-        private readonly IAppDbContext _appDbContext;
+        private readonly AppDbContext _appDbContext;
         private readonly IMapper _mapper;
 
-        public GetAllFoodQueryHandler(IAppDbContext appDbContext, IMapper mapper)
+        public GetAllFoodQueryHandler(AppDbContext appDbContext, IMapper mapper)
         {
             _appDbContext = appDbContext;
             _mapper = mapper;

@@ -123,50 +123,50 @@ namespace Infrastructure.Repository
 
             await _appDbContext.SaveChangesAsync();
         }
-        public async Task AddFavouriteFoodAsync(AppUser user, int foodId)
-        {
+        //public async Task AddFavouriteFoodAsync(AppUser user, int foodId)
+        //{
 
-            var food = await _appDbContext.Foods.FindAsync(foodId);
+        //    var food = await _appDbContext.Foods.FindAsync(foodId);
 
-            if (food != null)
-            {
-                user.UserFoods.Add(new UserFoods { AppUserId = user.Id, FoodId = foodId });
-            }
+        //    if (food != null)
+        //    {
+        //        user.UserFoods.Add(new UserFoods { AppUserId = user.Id, FoodId = foodId });
+        //    }
 
 
-            await _appDbContext.SaveChangesAsync();
-        }
+        //    await _appDbContext.SaveChangesAsync();
+        //}
 
-        public async Task DeleteFavouriteFoodAsync(AppUser appUser, Food food)
-        {
-            var user = await _appDbContext.Users
-                .Include(u => u.UserFoods)
-                .ThenInclude(ug => ug.Food)
-                .FirstOrDefaultAsync(u => u.Id == appUser.Id);
+        //public async Task DeleteFavouriteFoodAsync(AppUser appUser, Food food)
+        //{
+        //    var user = await _appDbContext.Users
+        //        .Include(u => u.UserFoods)
+        //        .ThenInclude(ug => ug.Food)
+        //        .FirstOrDefaultAsync(u => u.Id == appUser.Id);
 
-            var userFood = user.UserFoods.FirstOrDefault( a => a.AppUserId == user.Id && a.FoodId == food.Id);
+        //    var userFood = user.UserFoods.FirstOrDefault( a => a.AppUserId == user.Id && a.FoodId == food.Id);
 
-            user.UserFoods.Remove(userFood);
+        //    user.UserFoods.Remove(userFood);
 
-            await _appDbContext.SaveChangesAsync();
-        }
+        //    await _appDbContext.SaveChangesAsync();
+        //}
 
-        public async Task<List<Food>> GetAllFavouriteFoodsAsync(AppUser appUser, int pageSize = 10, int pageNumber = 1)
-        {
+        //public async Task<List<Food>> GetAllFavouriteFoodsAsync(AppUser appUser, int pageSize = 10, int pageNumber = 1)
+        //{
 
-            var userFoods = await _appDbContext.UserFoods.Where(u => u.AppUserId == appUser.Id).Select(x => x.Food).ToListAsync();
-            // Apply pagination if needed
-            if (pageSize > 0)
-            {
-                if (pageSize > 100)
-                {
-                    pageSize = 100;
-                }
-                userFoods = userFoods.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
-            }
+        //    var userFoods = await _appDbContext.UserFoods.Where(u => u.AppUserId == appUser.Id).Select(x => x.Food).ToListAsync();
+        //    // Apply pagination if needed
+        //    if (pageSize > 0)
+        //    {
+        //        if (pageSize > 100)
+        //        {
+        //            pageSize = 100;
+        //        }
+        //        userFoods = userFoods.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+        //    }
 
-            return userFoods;
-        }
+        //    return userFoods;
+        //}
 
         public async Task DeleteUserGoalAsync(AppUser appUser, Goal goal)
         {

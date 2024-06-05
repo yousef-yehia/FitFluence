@@ -13,10 +13,10 @@ namespace Core.Interfaces
         //public void Detach(AppUser entity);
         public Task DeleteUserAsync(AppUser user);
         public Task AddGoalToUserAsync(AppUser user, List<int> goalIds);
-        public Task DeleteFavouriteFoodAsync(AppUser user, Food food);
+        //public Task DeleteFavouriteFoodAsync(AppUser user, Food food);
         public Task DeleteUserGoalAsync(AppUser user, Goal goal);
-        public Task AddFavouriteFoodAsync(AppUser user, int foodId);
-        public Task<List<Food>> GetAllFavouriteFoodsAsync(AppUser appUser, int pageSize = 10, int pageNumber = 1);
+        //public Task AddFavouriteFoodAsync(AppUser user, int foodId);
+        //public Task<List<Food>> GetAllFavouriteFoodsAsync(AppUser appUser, int pageSize = 10, int pageNumber = 1);
         public Task<List<Goal>> GetAllUserGoalsAsync(AppUser appUser, int pageSize = 10, int pageNumber = 1);
 
     }

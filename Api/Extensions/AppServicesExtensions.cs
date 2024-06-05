@@ -65,7 +65,7 @@ namespace Api.Extensions
                 config.RegisterServicesFromAssemblyContaining<ApplicationAssemblyReference>();
             });
 
-            services.AddScoped<IAppDbContext>(sp =>sp.GetRequiredService<AppDbContext>());
+            //services.AddScoped<IAppDbContext>(sp =>sp.GetRequiredService<AppDbContext>());
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
@@ -83,6 +83,7 @@ namespace Api.Extensions
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<ICoachRepository, CoachRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IFavouriteFoodRepository, FavouriteFoodRepository>();
             services.AddScoped<ITokenService, TokenService>();
 
             services.AddScoped<ApiResponse>();
@@ -126,16 +127,16 @@ namespace Api.Extensions
                 };
             });
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = FacebookDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
-            })
-            .AddFacebook(options =>
-            {
-                options.AppId = config["Facebook:AppId"];
-                options.AppSecret = config["Facebook:Secret"];
-            });
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = FacebookDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
+            //})
+            //.AddFacebook(options =>
+            //{
+            //    options.AppId = config["Facebook:AppId"];
+            //    options.AppSecret = config["Facebook:Secret"];
+            //});
 
             services.AddCors();
 
