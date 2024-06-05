@@ -3,19 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using System.Text.Json;
 using Core.Interfaces;
-using Application.DTO;
+using Api.DTO;
 using Core.Models;
 using Api.Helper;
 using Microsoft.AspNetCore.Authorization;
-using Application.Exceptions;
-using Application.Foods.Create;
-using MediatR;
-using Api.DTO;
-using Application.DTO.FoodDto;
-using Application.Foods.GetAll;
-using Application.Foods.GetById;
-using Application.Foods.Delete;
-using Application.Foods.Update;
 
 namespace Api.Controllers
 {
@@ -23,17 +14,15 @@ namespace Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
-        //private readonly IFoodRepository _foodRepository;
-        //private readonly IMapper _mapper;
+        private readonly IFoodRepository _foodRepository;
+        private readonly IMapper _mapper;
         protected ApiResponse _response;
-        private readonly ISender _sender;
 
-
-        public FoodController(ApiResponse response, ISender sender)
+        public FoodController(IFoodRepository foodRepository, IMapper mapper, ApiResponse response)
         {
-
+            _foodRepository = foodRepository;
+            _mapper = mapper;
             _response = response;
-            _sender = sender;
         }
 
         [HttpGet("GetAllFoods", Name = "GetAllFoods")]
@@ -42,21 +31,60 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ResponseCache(Duration = 10)]
-        public async Task<ActionResult<ApiResponse>> GetAllFoods(string? search, string? order, int pageSize = 0, int pageNumber = 1)
+        public async Task<ActionResult<ApiResponse>> GetAllFoods(string? search, string? order, int pageSize = 10, int pageNumber = 1)
         {
             try
             {
-                var command = new GetAllFoodQuery(search, order, pageSize , pageNumber );
-                var result = await _sender.Send(command);
+                IEnumerable<Food> foodList;
 
-                return Ok(_response.OkResponse(result));
+                foodList = await _foodRepository.GetAllFoodsAsync(search, order);
+                var foodListToReturn = _mapper.Map<List<FoodDto>>(foodList);
+                var PaginatedFoodsResponse = Pagination<FoodDto>.Paginate(foodListToReturn, pageNumber, pageSize);
+
+                return Ok(_response.OkResponse(PaginatedFoodsResponse));
             }
             catch (Exception ex)
             {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
+                _response.StatusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                _response.ErrorMessages
+                     = new List<string>() { ex.ToString() };
             }
+            return _response;
+
         }
 
+        //[HttpGet("SearchForFood", Name = "SearchForFood")]
+        //[ProducesResponseType(StatusCodes.Status403Forbidden)]
+        //[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ResponseCache(Duration = 30)]
+        //public async Task<ActionResult<ApiResponse>> SearchForFood(string name, int pageSize = 0, int pageNumber = 1)
+        //{
+        //    try
+        //    {
+        //        IEnumerable<Food> foodList;
+
+        //        foodList = await _foodRepository.SearchAsync(name,pageSize: pageSize, pageNumber: pageNumber);
+
+        //        //Pagination pagination = new() { PageNumber = pageNumber, PageSize = pageSize };
+        //        //Response.Headers["X-Pagination"] = JsonSerializer.Serialize(pagination);
+
+        //        _response.Result = _mapper.Map<List<FoodDto>>(foodList);
+        //        _response.StatusCode = HttpStatusCode.OK;
+        //        return Ok(_response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _response.StatusCode=HttpStatusCode.BadRequest;
+        //        _response.IsSuccess = false;
+        //        _response.ErrorMessages
+        //             = new List<string>() { ex.ToString() };
+        //    }
+        //    return _response;
+
+        //}
 
 
         [HttpGet("GetFood {id:int}", Name = "GetFood")]
@@ -66,27 +94,19 @@ namespace Api.Controllers
         [ResponseCache(Duration = 10)]
         public async Task<ActionResult<ApiResponse>> GetFood(int id)
         {
-            try 
+            if (id == 0)
             {
-                if (id == 0)
-                {
-                    return BadRequest(_response.BadRequestResponse("Id is required"));
-                }
-
-                var command = new GetFoodByIdQuery(id);
-                var result = await _sender.Send(command);
-                return Ok(_response.OkResponse(result));
-
-            }
-            catch (NotFoundExeption ex)
-            {
-                return NotFound(_response.NotFoundResponse(ex.Message));
-            }
-            catch (Exception ex) 
-            {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
+                return BadRequest(_response.BadRequestResponse("Id is required"));
             }
 
+            var food = await _foodRepository.GetAsync(G => G.Id == id);
+
+            if (food == null)
+            {
+                return NotFound(_response.NotFoundResponse("No food found"));
+            }
+            var result = _mapper.Map<FoodDto>(food);
+            return Ok(_response.OkResponse(result));
         }
 
         [HttpPost("CreateFood", Name = "CreateFood")]
@@ -95,94 +115,86 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status201Created)]
 
-        public async Task<ActionResult<ApiResponse>> CreateFood([FromBody] CreateFoodDto createFoodDto)
+        public async Task<ActionResult<ApiResponse>> CreateFood([FromBody] FoodDto foodDto)
         {
-            try 
+            if (!ModelState.IsValid)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(_response.BadRequestResponse(""));
-                }
-                if (createFoodDto == null)
-                {
-                    return BadRequest(_response.BadRequestResponse("Food is required"));
-                }
-
-                var command = new CreateFoodCommand(createFoodDto);
-                var result = await _sender.Send(command);
-
-                return Ok(_response.OkResponse(result));
+                return BadRequest(_response.BadRequestResponse(""));
             }
-            catch(AlreadyExistsException ex)
+            if (foodDto == null)
             {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
+                return BadRequest(_response.BadRequestResponse("Food is required"));
             }
-            catch (Exception ex) 
+            if (await _foodRepository.GetAsync(u => u.Name.ToLower() == foodDto.Name.ToLower()) != null)
             {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
+                return BadRequest(_response.BadRequestResponse("Food already exists"));
             }
+            var food = _mapper.Map<Food>(foodDto);
 
+
+            await _foodRepository.CreateAsync(food);
+
+            var result = _mapper.Map<FoodDto>(food);
+
+            return Ok(_response.OkResponse(result));
         }
 
         [HttpDelete("DeleteFood {id:int}", Name = "DeleteFood")]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
 
         public async Task<ActionResult<ApiResponse>> DeleteFood(int id)
         {
-            try
+            var food = await _foodRepository.GetAsync(u => u.Id == id);
+            if (food == null)
             {
-                var command = new DeleteFoodCommand(id);
-                await _sender.Send(command);
-                return Ok(_response.OkResponse("Food Deleted Success"));
+                return NotFound(_response.NotFoundResponse("No food found"));
             }
-            catch (NotFoundExeption ex)
-            {
-                return NotFound(_response.NotFoundResponse(ex.Message));    
-            }
-            catch (Exception ex) 
-            {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
-            }
+            await _foodRepository.DeleteAsync(food);
+
+            return Ok(_response.OkResponse("Food deleted"));
         }
 
-        //        [HttpDelete("DeleteAllFood", Name = "DeleteAllFood")]
-        //        [Authorize(Roles = "admin")]
-        //        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        //        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        //        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpDelete("DeleteAllFood", Name = "DeleteAllFood")]
+        [Authorize(Roles = "admin")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
 
-        //        public async Task<ActionResult<ApiResponse>> DeleteAllFood()
-        //        {
+        public async Task<ActionResult<ApiResponse>> DeleteAllFood()
+        {
 
-        //            await _foodRepository.DeleteAllFoods();
-        //            _response.StatusCode = HttpStatusCode.NoContent;
-        //            _response.IsSuccess = true;
-        //            return Ok(_response);
-        //        }
+            await _foodRepository.DeleteAllFoods();
+            _response.StatusCode = HttpStatusCode.NoContent;
+            _response.IsSuccess = true;
+            return Ok(_response);
+        }
 
         [HttpPut("UpdateFood {id:int}", Name = "UpdateFood")]
         //[Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateFood(int id, [FromBody] CreateFoodDto foodDto)
+        public async Task<IActionResult> UpdateFood(int id, [FromBody] FoodDto foodDto)
         {
-            try
+            var b = await _foodRepository.DoesExistAsync(V => V.Id == id);
+            if (!b)
             {
-                var command = new UpdateFoodCommand(id, foodDto);
-                var food = await _sender.Send(command);
-                return Ok(_response.OkResponse(food));
+                return NotFound(_response.NotFoundResponse("No food found"));
             }
-            catch(NotFoundExeption ex)
+
+            if (foodDto == null || id != foodDto.Id)
             {
-                return NotFound(_response.NotFoundResponse(ex.Message));
+                return BadRequest(_response.BadRequestResponse("Food is required"));
             }
-            catch (Exception ex)
-            {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
-            }
+            var food = _mapper.Map<Food>(foodDto);
+
+            await _foodRepository.UpdateAsync(food);
+
+            return Ok(_response.OkResponse(food));
+
+
         }
     }
 }
