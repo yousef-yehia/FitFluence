@@ -1,8 +1,6 @@
 ﻿using System.Text;
 using Api.DTO;
 using Api.Helper;
-using Application;
-using Application.Helper;
 using Core.Interfaces;
 using Core.Models;
 using FitFluence.Repository;
@@ -60,12 +58,6 @@ namespace Api.Extensions
                 });
             });
 
-            services.AddMediatR(config =>
-            {
-                config.RegisterServicesFromAssemblyContaining<ApplicationAssemblyReference>();
-            });
-
-            services.AddScoped<IAppDbContext>(sp =>sp.GetRequiredService<AppDbContext>());
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection"));

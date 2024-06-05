@@ -125,7 +125,7 @@ namespace Infrastructure.Data.Migrations
                     b.HasIndex("AppUserId")
                         .IsUnique();
 
-                    b.ToTable("Clients", (string)null);
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("Core.Models.Coach", b =>
@@ -157,7 +157,7 @@ namespace Infrastructure.Data.Migrations
                     b.HasIndex("AppUserId")
                         .IsUnique();
 
-                    b.ToTable("Coachs", (string)null);
+                    b.ToTable("Coachs");
                 });
 
             modelBuilder.Entity("Core.Models.Food", b =>
@@ -196,7 +196,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Foods", (string)null);
+                    b.ToTable("Foods");
                 });
 
             modelBuilder.Entity("Core.Models.Goal", b =>
@@ -213,7 +213,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Goals", (string)null);
+                    b.ToTable("Goals");
                 });
 
             modelBuilder.Entity("Core.Models.UserFoods", b =>
@@ -228,7 +228,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("FoodId");
 
-                    b.ToTable("UserFoods", (string)null);
+                    b.ToTable("UserFoods");
                 });
 
             modelBuilder.Entity("Core.Models.UserGoals", b =>
@@ -243,7 +243,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("GoalId");
 
-                    b.ToTable("UserGoals", (string)null);
+                    b.ToTable("UserGoals");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
