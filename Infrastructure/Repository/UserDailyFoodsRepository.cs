@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 using Core.Interfaces;
 using Core.Models;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Infrastructure.Repository
 {
@@ -18,39 +17,58 @@ namespace Infrastructure.Repository
         {
             _cache = cache;
         }
+        private TimeSpan GetTimeUntilMidnight()
+        {
+            var now = DateTime.Now;
+            var midnight = DateTime.Today.AddDays(1);
+            return midnight - now;
+        }
+        public async Task AddFoodSelectionAsync(string userId, Food food)
+        {
+            var cacheKey = $"{UserFoodKeyPrefix}{userId}";
 
-        public void AddFoodSelection(string userId, Food food)
+            if (!_cache.TryGetValue(cacheKey, out List<Food> userFoods))
+            {
+                userFoods = new List<Food>();
+            }
+
+            userFoods.Add(food);
+            var timeSpan = GetTimeUntilMidnight();
+            await Task.Run(() => _cache.Set(cacheKey, userFoods, timeSpan));
+        }
+
+        public UserDailyFoods GetFoodSelections(string userId)
         {
             var cacheKey = $"{UserFoodKeyPrefix}{userId}";
             if (!_cache.TryGetValue(cacheKey, out List<Food> userFoods))
             {
                 userFoods = new List<Food>();
             }
-            userFoods.Add(food);
-            _cache.Set(cacheKey, userFoods);
+            var result = new UserDailyFoods 
+            {
+                Foods = userFoods,
+                Calories = GetTotalCaloriesAsync(userFoods),
+                Protien =  GetTotalProtienAsync(userFoods)
+            };
+            return result;
         }
 
-        public List<Food> GetFoodSelections(string userId)
-        {
-            //var cacheKey = $"{UserFoodKeyPrefix}{userId}";
-            //if (_cache.TryGetValue(cacheKey, out List<Food> userFoods))
-            //{
-            //    return userFoods;
-            //}
-            //return new List<Food>();
-            var cacheKey = $"{UserFoodKeyPrefix}{userId}";
-            var cachedUserFoods = _cache.Get(cacheKey) as List<Food>;
-            return cachedUserFoods ?? new List<Food>();
-        }
-
-        public double GetTotalCalories(string userId)
+        public async Task<double> GetTotalCaloriesAsync(string userId)
         {
             var cacheKey = $"{UserFoodKeyPrefix}{userId}";
             if (_cache.TryGetValue(cacheKey, out List<Food> userFoods))
             {
-                return userFoods.Sum(food => food.Calories);
+                return await Task.Run(() => userFoods.Sum(food => food.Calories));
             }
-            return 0;
+            return await Task.FromResult(0d);
+        } 
+        public double GetTotalCaloriesAsync(List<Food> userFoods)
+        {
+            return userFoods.Sum(food => food.Calories);
+        }
+        public double GetTotalProtienAsync(List<Food> userFoods)
+        {
+            return userFoods.Sum(food => food.Protein);
         }
     }
 }
