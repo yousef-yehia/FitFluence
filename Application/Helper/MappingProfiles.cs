@@ -54,6 +54,7 @@ namespace Application.Helper
             CreateMap<GoalDto, Goal>().ReverseMap();
             CreateMap<FoodDto, Food>().ReverseMap();
             CreateMap<CreateFoodDto, Food>().ReverseMap();
+            CreateMap<CreateFoodDto, Food>().ReverseMap();
 
         }
     }

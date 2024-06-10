@@ -19,22 +19,36 @@ namespace Infrastructure.Repository
             _appDbContext = appDbContext;
         }
 
-        public async Task AddFavouriteFoodAsync(AppUser user, Food food, CancellationToken cancellationToken)
+        public async Task AddFavouriteFoodAsync(AppUser user, Food food)
         {
             user.UserFoods.Add(new UserFoods { AppUserId = user.Id, FoodId = food.Id });
-            await _appDbContext.SaveChangesAsync(cancellationToken);
+            await _appDbContext.SaveChangesAsync();
+        }
+        public async Task AddFavouriteFoodAsync(AppUser user, int foodId)
+        {
+            user.UserFoods.Add(new UserFoods { AppUserId = user.Id, FoodId = foodId });
+            await _appDbContext.SaveChangesAsync();
         }
 
-        public async Task RemoveFavouriteFoodAsync(AppUser appUser, Food food)
+        //public async Task RemoveFavouriteFoodAsync(AppUser appUser, Food food)
+        //{
+        //    var user = await _appDbContext.Users
+        //        .Include(u => u.UserFoods)
+        //        .ThenInclude(ug => ug.Food)
+        //        .FirstOrDefaultAsync(u => u.Id == appUser.Id);
+
+        //    var userFood = user.UserFoods.FirstOrDefault(a => a.AppUserId == user.Id && a.FoodId == food.Id);
+
+        //    user.UserFoods.Remove(userFood);
+
+        //    await _appDbContext.SaveChangesAsync();
+        //}
+        public async Task RemoveFavouriteFoodAsync(AppUser appUser, int foodId)
         {
-            var user = await _appDbContext.Users
-                .Include(u => u.UserFoods)
-                .ThenInclude(ug => ug.Food)
-                .FirstOrDefaultAsync(u => u.Id == appUser.Id);
 
-            var userFood = user.UserFoods.FirstOrDefault(a => a.AppUserId == user.Id && a.FoodId == food.Id);
+            var userFood = appUser.UserFoods.FirstOrDefault(a => a.AppUserId == appUser.Id && a.FoodId == foodId);
 
-            user.UserFoods.Remove(userFood);
+            appUser.UserFoods.Remove(userFood);
 
             await _appDbContext.SaveChangesAsync();
         }
@@ -49,5 +63,7 @@ namespace Infrastructure.Repository
         {
             return (appUser.UserFoods.Any(uf => uf.FoodId == foodId));
         }
+
+
     }
 }

@@ -25,7 +25,7 @@ namespace Infrastructure.Repository
             await _appDbContext.SaveChangesAsync();
         }
 
-        public async Task<List<Food>> GetAllFoodsAsync(string? search = null, string? orderBy = null)
+        public async Task<List<Food>> GetAllAsync(string? search = null, string? orderBy = null)
         {
             var foods = await _appDbContext.Foods.ToListAsync();
 

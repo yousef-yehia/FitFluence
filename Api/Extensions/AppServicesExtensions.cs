@@ -1,8 +1,6 @@
 ﻿using System.Text;
-using Api.DTO;
+using Api.ApiResponses;
 using Api.Helper;
-using Application;
-using Application.Helper;
 using Core.Interfaces;
 using Core.Models;
 using FitFluence.Repository;
@@ -27,6 +25,7 @@ namespace Api.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services,
             IConfiguration config)
         {
+            services.AddMemoryCache();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
@@ -60,11 +59,6 @@ namespace Api.Extensions
                 });
             });
 
-            services.AddMediatR(config =>
-            {
-                config.RegisterServicesFromAssemblyContaining<ApplicationAssemblyReference>();
-            });
-
             //services.AddScoped<IAppDbContext>(sp =>sp.GetRequiredService<AppDbContext>());
             services.AddDbContext<AppDbContext>(options =>
             {
@@ -85,6 +79,7 @@ namespace Api.Extensions
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IFavouriteFoodRepository, FavouriteFoodRepository>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserDailyFoodsRepository, UserDailyFoodsRepository>();
 
             services.AddScoped<ApiResponse>();
 

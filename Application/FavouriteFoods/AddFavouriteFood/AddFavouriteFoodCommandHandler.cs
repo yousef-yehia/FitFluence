@@ -13,26 +13,23 @@ namespace Application.FavouriteFoods.AddFavouriteFood
 {
     internal class AddFavouriteFoodCommandHandler : IRequestHandler<AddFavouriteFoodCommand>
     {
-        private readonly IFoodRepository _foodRepository;
         private readonly IFavouriteFoodRepository _favouriteFoodRepository;
 
-        public AddFavouriteFoodCommandHandler(IFavouriteFoodRepository favouriteFoodRepository, IFoodRepository foodRepository)
+        public AddFavouriteFoodCommandHandler(IFavouriteFoodRepository favouriteFoodRepository)
         {
             _favouriteFoodRepository = favouriteFoodRepository;
-            _foodRepository = foodRepository;
         }
 
         public async Task Handle(AddFavouriteFoodCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var food = await _foodRepository.GetAsync(f => f.Id == request.FoodId);
-
-                if (food == null)
+                if(_favouriteFoodRepository.IsFoodInFavouriteFoods(request.User, request.FoodId))
                 {
-                    throw new NotFoundExeption("this food id does not exist");
+                    throw new Exception("already exists");
                 }
-                await _favouriteFoodRepository.AddFavouriteFoodAsync(request.User, food, cancellationToken);
+
+                await _favouriteFoodRepository.AddFavouriteFoodAsync(request.User, request.FoodId);
             }
             catch (Exception ex)
             {

@@ -34,7 +34,7 @@ namespace Infrastructure.Repository
         public async Task<bool> DoesExistAsync(Expression<Func<T, bool>>? filter = null)
         {
             IQueryable<T> query = dbSet;
-            return await query.AnyAsync();
+            return await query.AnyAsync(filter);
         }
 
         public async Task<T> GetAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true, string? includeProperties = null)

@@ -1,21 +1,12 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
-using System.Text.Json;
 using Core.Interfaces;
-using Application.DTO;
 using Core.Models;
 using Api.Helper;
-using Microsoft.AspNetCore.Authorization;
-using Application.Exceptions;
-using Application.Foods.Create;
-using MediatR;
-using Api.DTO;
-using Application.DTO.FoodDto;
-using Application.Foods.GetAll;
-using Application.Foods.GetById;
-using Application.Foods.Delete;
-using Application.Foods.Update;
+using Api.ApiResponses;
+using Api.DTO.FoodDto;
+
 
 namespace Api.Controllers
 {
@@ -23,17 +14,17 @@ namespace Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
-        //private readonly IFoodRepository _foodRepository;
-        //private readonly IMapper _mapper;
+        private readonly IFoodRepository _foodRepository;
+        private readonly IMapper _mapper;
         protected ApiResponse _response;
-        private readonly ISender _sender;
 
 
-        public FoodController(ApiResponse response, ISender sender)
+        public FoodController(ApiResponse response, IMapper mapper, IFoodRepository foodRepository)
         {
 
             _response = response;
-            _sender = sender;
+            _mapper = mapper;
+            _foodRepository = foodRepository;
         }
 
         [HttpGet("GetAllFoods", Name = "GetAllFoods")]
@@ -46,10 +37,11 @@ namespace Api.Controllers
         {
             try
             {
-                var command = new GetAllFoodQuery(search, order, pageSize , pageNumber );
-                var result = await _sender.Send(command);
+                var foods = await _foodRepository.GetAllAsync(search, order);
+                var foodsResponse = _mapper.Map<List<FoodDto>>(foods);
+                var paginatedFoods = Pagination<FoodDto>.Paginate(foodsResponse, pageNumber, pageSize);
 
-                return Ok(_response.OkResponse(result));
+                return Ok(_response.OkResponse(paginatedFoods));
             }
             catch (Exception ex)
             {
@@ -73,14 +65,14 @@ namespace Api.Controllers
                     return BadRequest(_response.BadRequestResponse("Id is required"));
                 }
 
-                var command = new GetFoodByIdQuery(id);
-                var result = await _sender.Send(command);
-                return Ok(_response.OkResponse(result));
+                var food = await _foodRepository.GetAsync(f=> f.Id == id);
 
-            }
-            catch (NotFoundExeption ex)
-            {
-                return NotFound(_response.NotFoundResponse(ex.Message));
+                if (food == null)
+                {
+                    return NotFound(_response.NotFoundResponse("Food not found"));
+                }
+                return Ok(_response.OkResponse(_mapper.Map<FoodDto>(food)));
+
             }
             catch (Exception ex) 
             {
@@ -107,15 +99,14 @@ namespace Api.Controllers
                 {
                     return BadRequest(_response.BadRequestResponse("Food is required"));
                 }
+                if( await _foodRepository.DoesExistAsync(f=> f.Name == createFoodDto.Name))
+                {
+                    return BadRequest(_response.BadRequestResponse("Food already exists"));
+                }
 
-                var command = new CreateFoodCommand(createFoodDto);
-                var result = await _sender.Send(command);
+                await _foodRepository.CreateAsync(_mapper.Map<Food>(createFoodDto));    
 
-                return Ok(_response.OkResponse(result));
-            }
-            catch(AlreadyExistsException ex)
-            {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
+                return Ok(_response.OkResponse("Food Created Success"));
             }
             catch (Exception ex) 
             {
@@ -134,15 +125,17 @@ namespace Api.Controllers
         {
             try
             {
-                var command = new DeleteFoodCommand(id);
-                await _sender.Send(command);
+                if (!await _foodRepository.DoesExistAsync(f => f.Id == id))
+                {
+                    return NotFound(_response.NotFoundResponse("Food not found"));
+                }
+
+                var food = await _foodRepository.GetAsync(f => f.Id == id);
+                await _foodRepository.DeleteAsync(food);
+
                 return Ok(_response.OkResponse("Food Deleted Success"));
             }
-            catch (NotFoundExeption ex)
-            {
-                return NotFound(_response.NotFoundResponse(ex.Message));    
-            }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return BadRequest(_response.BadRequestResponse(ex.Message));
             }
@@ -171,13 +164,15 @@ namespace Api.Controllers
         {
             try
             {
-                var command = new UpdateFoodCommand(id, foodDto);
-                var food = await _sender.Send(command);
-                return Ok(_response.OkResponse(food));
-            }
-            catch(NotFoundExeption ex)
-            {
-                return NotFound(_response.NotFoundResponse(ex.Message));
+                if(! await _foodRepository.DoesExistAsync(f => f.Id == id))
+                {
+                    return NotFound(_response.NotFoundResponse("Food not found"));
+                }
+
+                await _foodRepository.UpdateAsync(_mapper.Map<Food>(foodDto));
+
+                return Ok(_response.OkResponse("Food Updated Success"));
+
             }
             catch (Exception ex)
             {

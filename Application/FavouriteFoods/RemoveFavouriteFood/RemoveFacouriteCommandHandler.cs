@@ -21,16 +21,16 @@ namespace Application.FavouriteFoods.RemoveFavouriteFood
 
         public async Task Handle(RemoveFavouriteFoodCommand request, CancellationToken cancellationToken)
         {
-            var food = await _foodRepository.GetAsync(f => f.Id == request.foadId);
-            if (food == null)
-            {
-                throw new NotFoundExeption("The food id is wrong");
-            }
-            if(!_favouriteFoodRepository.IsFoodInFavouriteFoods(request.AppUser, request.foadId))
-            {
-                throw new NotFoundExeption("This food is not in the favourite foods list");
-            }
-            await _favouriteFoodRepository.RemoveFavouriteFoodAsync(request.AppUser, food);
+            //var food = await _foodRepository.GetAsync(f => f.Id == request.foadId);
+            //if (food == null)
+            //{
+            //    throw new NotFoundExeption("The food id is wrong");
+            //}
+            //if(!_favouriteFoodRepository.IsFoodInFavouriteFoods(request.AppUser, request.foadId))
+            //{
+            //    throw new NotFoundExeption("This food is not in the favourite foods list");
+            //}
+            //await _favouriteFoodRepository.RemoveFavouriteFoodAsync(request.AppUser, food);
         }
     }
 }

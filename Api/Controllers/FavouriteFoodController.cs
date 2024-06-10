@@ -1,21 +1,14 @@
 ﻿using System.Net;
-using Api.DTO;
+using Api.ApiResponses;
 using Api.Extensions;
-using Application.Foods.GetAll;
-using CloudinaryDotNet.Actions;
-using CloudinaryDotNet;
 using Core.Models;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Application.FavouriteFoods.GetAllFavouriteFoodsByUserId;
-using Application.FavouriteFoods.AddFavouriteFood;
-using Application.Exceptions;
-using System.Security.Claims;
-using Application.FavouriteFoods.RemoveFavouriteFood;
-using Infrastructure.Repository;
+using Core.Interfaces;
+using AutoMapper;
+using Api.Helper;
+using Api.DTO.FoodDto;
 
 namespace Api.Controllers
 {
@@ -24,28 +17,32 @@ namespace Api.Controllers
     public class FavouriteFoodController : ControllerBase
     {
         private readonly UserManager<AppUser> _userManager;
-        protected ApiResponse _response;
-        private readonly ISender _sender;
+        private readonly IFavouriteFoodRepository _favouriteFoodRepository;
+        private readonly IMapper _mapper;
+        private readonly IFoodRepository _foodRepository;
+        private readonly ApiResponse _response;
 
-        public FavouriteFoodController(ApiResponse response, ISender sender, UserManager<AppUser> userManager)
+        public FavouriteFoodController(ApiResponse response, UserManager<AppUser> userManager, IFavouriteFoodRepository favouriteFoodRepository, IFoodRepository foodRepository, IMapper mapper)
         {
             _response = response;
-            _sender = sender;
             _userManager = userManager;
+            _favouriteFoodRepository = favouriteFoodRepository;
+            _foodRepository = foodRepository;
+            _mapper = mapper;
         }
 
         [HttpGet("GetAllUserFoods", Name = "GetAllUserFoods")]
-        [ResponseCache(Duration = 20)]
+        [ResponseCache(Duration = 10)]
         [Authorize]
 
         public async Task<ActionResult<ApiResponse>> GetAllUserFoods(int pageSize = 0, int pageNumber = 1)
         {
             try
             {
-                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
-                var command = new GetAllFavouriteFoodsByUserIdQuery(user.Id, pageSize, pageNumber);
-                var result = await _sender.Send(command);
-
+                var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
+                var foods = await _favouriteFoodRepository.GetAllFavouriteFoodsAsync(user);
+                var foodsResponse = _mapper.Map<List<FoodDto>>(foods);
+                var result = Pagination<FoodDto>.Paginate(foodsResponse, pageNumber, pageSize); 
                 return Ok(_response.OkResponse(result));
             }
             catch (Exception ex)
@@ -60,23 +57,26 @@ namespace Api.Controllers
         {
             try
             {
-                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+                var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
 
                 if (user.UserFoods == null)
                 {
                     user.UserFoods = new List<UserFoods>();
                 }
 
-                var command = new AddFavouriteFoodCommand(user, foodId);
-                var result = _sender.Send(command);
+                if(! await _foodRepository.DoesExistAsync(f=> f.Id == foodId))
+                {
+                    return NotFound(_response.NotFoundResponse("food id doesnt exist"));
+                }
 
+                if (_favouriteFoodRepository.IsFoodInFavouriteFoods(user, foodId))
+                {
+                    return BadRequest(_response.BadRequestResponse("food is already in the favourite food list"));
+                }
+
+                await _favouriteFoodRepository.AddFavouriteFoodAsync(user, foodId);
 
                 return Ok(_response.OkResponse("Favourite Food Added"));
-
-            }
-            catch (NotFoundExeption ex)
-            {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
 
             }
             catch (Exception ex)
@@ -87,25 +87,30 @@ namespace Api.Controllers
 
         [HttpDelete("DeleteUserFavouriteFood", Name = "DeleteUserFavouriteFood")]
         [Authorize]
-        public async Task<ActionResult<ApiResponse>> DeleteUserFavouriteFood(int foadId)
+        public async Task<ActionResult<ApiResponse>> DeleteUserFavouriteFood(int foodId)
         {
             try
             {
-                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+                var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
 
                 if (user.UserFoods == null)
                 {
                     user.UserFoods = new List<UserFoods>();
                 }
 
-                var command = new RemoveFavouriteFoodCommand(user,foadId);
-                var result = _sender.Send(command);
-                return Ok(_response.OkResponse("Food is deleted from favourite food"));
+                if (! await _foodRepository.DoesExistAsync(f => f.Id == foodId))
+                {
+                    return NotFound(_response.NotFoundResponse("food id doesnt exist"));
+                }
 
-            }
-            catch (NotFoundExeption ex)
-            {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
+                if (! _favouriteFoodRepository.IsFoodInFavouriteFoods(user, foodId))
+                {
+                    return BadRequest(_response.BadRequestResponse("food is already in the favourite food list"));
+                }
+
+                await _favouriteFoodRepository.RemoveFavouriteFoodAsync(user, foodId);
+
+                return Ok(_response.OkResponse("Food is deleted from favourite food"));
 
             }
             catch (Exception ex)

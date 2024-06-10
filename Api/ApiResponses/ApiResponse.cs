@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Api.DTO
+namespace Api.ApiResponses
 {
 
     public class ApiResponse
