@@ -18,6 +18,8 @@ namespace Infrastructure.Data
         public DbSet<Food> Foods { get; set; }
         public DbSet<UserFoods> UserFoods { get; set; }
         public DbSet<UserGoals> UserGoals { get; set; }
+        public DbSet<Muscle> Muscles { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -70,17 +72,23 @@ namespace Infrastructure.Data
                 .HasForeignKey<Coach>(c => c.AppUserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // Configure the one-to-many relationship between muscle and exercises
+            modelBuilder.Entity<Muscle>()
+                .HasMany(m => m.Exercises)
+                .WithOne(e => e.Muscle)
+                .HasForeignKey(e => e.MuscleId);
+
 
 
             modelBuilder.Entity<AppUser>().Ignore(c => c.LockoutEnabled).Ignore(c => c.TwoFactorEnabled);
 
-            modelBuilder.Entity<AppUser>().ToTable("Users"); // Change users table name
-            modelBuilder.Entity<IdentityRole>().ToTable("Roles"); // Change roles table name
-            modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims"); // Change user claims table name
-            modelBuilder.Entity<IdentityUserRole<string>>().ToTable("UserRoles"); // Change user roles table name
-            modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins"); // Change user logins table name
-            modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens"); // Change user tokens table name
-            modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims"); // Change role claims table name
+            //modelBuilder.Entity<AppUser>().ToTable("Users"); // Change users table name
+            //modelBuilder.Entity<IdentityRole>().ToTable("Roles"); // Change roles table name
+            //modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims"); // Change user claims table name
+            //modelBuilder.Entity<IdentityUserRole<string>>().ToTable("UserRoles"); // Change user roles table name
+            //modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins"); // Change user logins table name
+            //modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens"); // Change user tokens table name
+            //modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims"); // Change role claims table name
         }
 
     }
