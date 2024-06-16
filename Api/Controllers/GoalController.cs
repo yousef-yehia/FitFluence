@@ -8,6 +8,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Api.ApiResponses;
+using Infrastructure.Repository;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using Api.Extensions;
+using Api.Helper;
 
 namespace Api.Controllers
 {
@@ -16,14 +21,16 @@ namespace Api.Controllers
     public class GoalController : ControllerBase
     {
         private readonly IGoalRepository _goalRepository;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
         protected ApiResponse _response;
 
-        public GoalController(IGoalRepository goalRepository, IMapper mapper, ApiResponse response)
+        public GoalController(IGoalRepository goalRepository, IMapper mapper, ApiResponse response, UserManager<AppUser> userManager)
         {
             _goalRepository = goalRepository;
             _mapper = mapper;
             _response = response;
+            _userManager = userManager;
         }
 
         [HttpGet("GetAllGoals", Name ="GetAllGoals")]
@@ -32,19 +39,15 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ResponseCache(Duration = 10)]
-        public async Task<ActionResult<ApiResponse>> GetGoals(int pageSize = 10, int pageNumber = 1)
+        public async Task<ActionResult<ApiResponse>> GetGoals()
         {
             try
             {
-                IEnumerable<Goal> GoalList;
+                IList<Goal> GoalList;
 
-                GoalList = await _goalRepository.GetAllAsync(pageSize: pageSize, pageNumber: pageNumber);
-                //Pagination pagination = new() { PageNumber = pageNumber, PageSize = pageSize };
+                GoalList = await _goalRepository.GetAllAsync();
 
-                //Response.Headers["X-Pagination"] = JsonSerializer.Serialize(pagination);
-                var result = _mapper.Map<List<GoalDto>>(GoalList);
-
-                return Ok(_response.OkResponse(result));
+                return Ok(_response.OkResponse(GoalList));
             }
             catch (Exception ex)
             {
@@ -149,10 +152,87 @@ namespace Api.Controllers
             {
                 return BadRequest(_response.BadRequestResponse(ex.Message));
             }
-
-
-            
         }
+
+        [HttpPost("AddGoals", Name = "AddGoals")]
+        [Authorize]
+        public async Task<ActionResult<ApiResponse>> AddGoalsToUser([FromBody] List<int> goalIds)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
+                if (user == null)
+                {
+                    return NotFound(_response.NotFoundResponse("user not found"));
+                }
+
+                // Check and initialize the UserGoals collection if it's null
+                if (user.UserGoals == null)
+                {
+                    user.UserGoals = new List<UserGoals>();
+                }
+
+
+                await _goalRepository.AddGoalToUserAsync(user, goalIds);
+                return Ok(_response.OkResponse("Goals added"));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
+
+        [HttpGet("GetAllUserGoals", Name = "GetAllUserGoals")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ResponseCache(Duration = 10)]
+        [Authorize]
+
+        public async Task<ActionResult<ApiResponse>> GetAllUserGoals(int pageSize = 0, int pageNumber = 1)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
+                var AppUserGoalsList = await _goalRepository.GetAllUserGoalsAsync(user);
+
+                return Ok(_response.OkResponse(AppUserGoalsList));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
+
+
+
+        [HttpDelete("DeleteUserGoal", Name = "DeleteUserGoal")]
+        [Authorize]
+
+        public async Task<ActionResult<ApiResponse>> DeleteUserGoal(int goalId)
+        {
+            var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
+            var goal = await _goalRepository.GetAsync(u => u.Id == goalId);
+   
+            if (goal == null)
+            {
+                return NotFound(_response.NotFoundResponse("the goal id is wrong"));
+            }
+            try
+            {
+                await _goalRepository.DeleteUserGoalAsync(user, goal);
+                return Ok(_response.OkResponse("Deleted"));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
+
 
     }
 }

@@ -56,6 +56,8 @@ namespace Api.Controllers
             var response = _response.OkResponse(userToReturn);
             return Ok(response);
         }
+        [HttpGet]
+
 
         [HttpPost("registerClient")]
         public async Task<ActionResult<ApiResponse>> RegisterClient([FromBody] ClientRegisterRequestDto model)
@@ -154,7 +156,6 @@ namespace Api.Controllers
                 await _userManager.AddToRoleAsync(newUser, Role.roleCoach);
 
                 if (!result.Succeeded) return BadRequest(_response.BadRequestResponse(""));
-
                 var userToReturn = new UserDto
                 {
                     Email = newUser.Email,
@@ -240,28 +241,28 @@ namespace Api.Controllers
             return Ok(response);
         }
 
-        [HttpPost("FacebookLogin")]
-        public async Task<ActionResult<ApiResponse>> FacebookLogin(string accessToken)
-        {
-            try
-            {
-                var result = await _authService.FacebookLogin(accessToken);
+        //[HttpPost("FacebookLogin")]
+        //public async Task<ActionResult<ApiResponse>> FacebookLogin(string accessToken)
+        //{
+        //    try
+        //    {
+        //        var result = await _authService.FacebookLogin(accessToken);
 
-                if (result != "")
-                {
-                    return BadRequest(result);
-                }
-                else
-                {
-                    return Ok(_response.OkResponse(result));
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
-            }
+        //        if (result != "")
+        //        {
+        //            return BadRequest(result);
+        //        }
+        //        else
+        //        {
+        //            return Ok(_response.OkResponse(result));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(_response.BadRequestResponse(ex.Message));
+        //    }
 
-        }
+        //}
 
 
         [HttpPost("addrole")]
@@ -275,7 +276,7 @@ namespace Api.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteUser(string username)
+        public async Task<ActionResult<ApiResponse>> DeleteUser(string username)
         {
             try
             {

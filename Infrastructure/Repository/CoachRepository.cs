@@ -31,24 +31,14 @@ namespace FitFluence.Repository
             await _userRepository.DeleteUserAsync(user);
         }
 
-        public async Task<List<Coach>> GetAllUsersAsync(Expression<Func<Coach, bool>> filter = null, string includeProperties = null, int pageSize = 0, int pageNumber = 1)
+        public async Task<List<Coach>> GetAllUsersAsync(Expression<Func<Coach, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<Coach> usersQuery = _appDbContext.Coachs.AsQueryable();
             if (filter != null)
             {
                 usersQuery.Where(filter);
             }
-            if (pageSize > 0)
-            {
-                if (pageSize > 100)
-                {
-                    pageSize = 100;
-                }
-                //skip0.take(5)
-                //page number- 2     || page size -5
-                //skip(5*(1)) take(5)
-                usersQuery = usersQuery.Skip(pageSize * (pageNumber - 1)).Take(pageSize);
-            }
+
             if (includeProperties != null)
             {
                 foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))

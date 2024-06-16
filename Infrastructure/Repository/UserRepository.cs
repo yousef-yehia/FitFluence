@@ -26,23 +26,12 @@ namespace Infrastructure.Repository
             _mapper = mapper;
         }
 
-        public async Task<List<AppUser>> GetAllUsersAsync(Expression<Func<AppUser, bool>>? filter = null, Expression<Func<AppUser, string>>? ordering = null, string? includeProperties = null, int pageSize = 0, int pageNumber = 1)
+        public async Task<List<AppUser>> GetAllUsersAsync(Expression<Func<AppUser, bool>> filter = null, Expression<Func<AppUser, string>> ordering = null, string includeProperties = null)
         {
             IQueryable<AppUser> usersQuery = _userManager.Users.AsQueryable();
             if (filter != null)
             {
                 usersQuery.Where(filter);
-            }
-            if (pageSize > 0)
-            {
-                if (pageSize > 100)
-                {
-                    pageSize = 100;
-                }
-                //skip0.take(5)
-                //page number- 2     || page size -5
-                //skip(5*(1)) take(5)
-                usersQuery = usersQuery.Skip(pageSize * (pageNumber - 1)).Take(pageSize);
             }
             if (includeProperties != null)
             {
@@ -107,103 +96,6 @@ namespace Infrastructure.Repository
                 return true;
             }
             return false;
-        }
-
-        public async Task AddGoalToUserAsync(AppUser user, List<int> goalIds)
-        {
-            foreach (var goalId in goalIds)
-            {
-                var goal = await _appDbContext.Goals.FindAsync(goalId);
-
-                if (goal != null)
-                {
-                    user.UserGoals.Add(new UserGoals { AppUserId = user.Id, GoalId = goalId });
-                }
-            }
-
-            await _appDbContext.SaveChangesAsync();
-        }
-        //public async Task AddFavouriteFoodAsync(AppUser user, int foodId)
-        //{
-
-        //    var food = await _appDbContext.Foods.FindAsync(foodId);
-
-        //    if (food != null)
-        //    {
-        //        user.UserFoods.Add(new UserFoods { AppUserId = user.Id, FoodId = foodId });
-        //    }
-
-
-        //    await _appDbContext.SaveChangesAsync();
-        //}
-
-        //public async Task DeleteFavouriteFoodAsync(AppUser appUser, Food food)
-        //{
-        //    var user = await _appDbContext.Users
-        //        .Include(u => u.UserFoods)
-        //        .ThenInclude(ug => ug.Food)
-        //        .FirstOrDefaultAsync(u => u.Id == appUser.Id);
-
-        //    var userFood = user.UserFoods.FirstOrDefault( a => a.AppUserId == user.Id && a.FoodId == food.Id);
-
-        //    user.UserFoods.Remove(userFood);
-
-        //    await _appDbContext.SaveChangesAsync();
-        //}
-
-        //public async Task<List<Food>> GetAllFavouriteFoodsAsync(AppUser appUser, int pageSize = 10, int pageNumber = 1)
-        //{
-
-        //    var userFoods = await _appDbContext.UserFoods.Where(u => u.AppUserId == appUser.Id).Select(x => x.Food).ToListAsync();
-        //    // Apply pagination if needed
-        //    if (pageSize > 0)
-        //    {
-        //        if (pageSize > 100)
-        //        {
-        //            pageSize = 100;
-        //        }
-        //        userFoods = userFoods.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
-        //    }
-
-        //    return userFoods;
-        //}
-
-        public async Task DeleteUserGoalAsync(AppUser appUser, Goal goal)
-        {
-            var user = await _appDbContext.Users
-                .Include(u => u.UserGoals)
-                .ThenInclude(ug => ug.Goal)
-                .FirstOrDefaultAsync(u => u.Id == appUser.Id);
-
-            var userGoal = user.UserGoals.FirstOrDefault(a => a.AppUserId == user.Id && a.GoalId == goal.Id);
-
-            user.UserGoals.Remove(userGoal);
-
-            await _appDbContext.SaveChangesAsync();
-        }
-
-        public async Task<List<Goal>> GetAllUserGoalsAsync(AppUser appUser, int pageSize = 10, int pageNumber = 1)
-        {
-            var user = await _appDbContext.Users
-                .Include(u => u.UserGoals)
-                .ThenInclude(ug => ug.Goal)
-                .FirstOrDefaultAsync(u => u.Id == appUser.Id);
-
-            var userGoals = user.UserGoals.Select(ug => ug.Goal).ToList();
-
-            // Apply pagination if needed
-            if (pageSize > 0)
-            {
-                if (pageSize > 100)
-                {
-                    pageSize = 100;
-                }
-                userGoals = userGoals.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
-            }
-
-            var GoalDtoList = _mapper.Map<List<Goal>>(userGoals);
-
-            return GoalDtoList;
         }
 
         public void Detach(AppUser entity)
