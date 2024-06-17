@@ -81,6 +81,8 @@ namespace Api.Extensions
             services.AddScoped<IFavouriteFoodRepository, FavouriteFoodRepository>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserDailyFoodsRepository, UserDailyFoodsRepository>();
+            services.AddScoped<IExerciseRepository, ExerciseRepository>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddScoped<ApiResponse>();
 

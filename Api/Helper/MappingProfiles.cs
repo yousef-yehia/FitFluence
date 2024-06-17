@@ -2,6 +2,7 @@
 using Core.Models;
 using Api.DTO;
 using Api.DTO.FoodDto;
+using Api.DTO.ExerciseDto;
 
 
 namespace Api.Helper
@@ -57,6 +58,9 @@ namespace Api.Helper
             CreateMap<CreateFoodDto, Food>().ReverseMap();
 
             CreateMap<UserDailyFoods, UserDailyFoodDto>().ReverseMap();
+
+            CreateMap<ExerciseDto, Exercise>().ReverseMap();
+            CreateMap<CreateExerciseDto, Exercise>().ReverseMap();
         }
     }
 }

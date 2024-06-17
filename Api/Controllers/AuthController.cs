@@ -8,6 +8,7 @@ using AutoMapper;
 using Core.Interfaces;
 using Core.Models;
 using Infrastructure.Data;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -24,13 +25,15 @@ namespace Api.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
+        private readonly IPhotoService _photoService;
 
         public AuthController(
-            UserManager<AppUser> userManager, 
-            IAuthRepository authService, 
+            UserManager<AppUser> userManager,
+            IAuthRepository authService,
             SignInManager<AppUser> signInManager,
-            IMapper mapper, 
-            ITokenService tokenService)
+            IMapper mapper,
+            ITokenService tokenService,
+            IPhotoService photoService)
         {
             _response = new ApiResponse();
             _userManager = userManager;
@@ -38,6 +41,7 @@ namespace Api.Controllers
             _signInManager = signInManager;
             _mapper = mapper;
             _tokenService = tokenService;
+            _photoService = photoService;
         }
 
         [Authorize]
@@ -76,6 +80,16 @@ namespace Api.Controllers
                     return BadRequest(_response.BadRequestResponse("Username is in use"));
                 }
 
+                var fileExtension = Path.GetExtension(model.Photo.FileName)?.ToLowerInvariant();
+
+                // Check if the file extension is jpg or png
+                if (fileExtension != ".jpg" && fileExtension != ".png" && fileExtension != ".jpeg")
+                {
+                    return BadRequest(_response.BadRequestResponse("only jpg and png and jpeg allowed"));
+                }
+
+
+                var uploadResult = await _photoService.AddPhotoAsync(model.Photo);
                 var newUser = new AppUser
                 {
                     Name = model.Name,
@@ -94,6 +108,7 @@ namespace Api.Controllers
                     Height = model.Height,
                     Age = model.Age,
                     Email = model.Email,
+                    ImageUrl = uploadResult.Url.ToString()
                 };
 
                 var result = await _userManager.CreateAsync(newUser, model.Password);
@@ -190,24 +205,22 @@ namespace Api.Controllers
             return Ok("Email verified successfully.");
         }
 
-        [HttpPut("ForgetPassword", Name = "ForgetPassword")]
-        [Authorize]
-        public async Task<IActionResult> ForgetPassword()
+        [HttpGet("ForgetPassword", Name = "ForgetPassword")]
+        public async Task<ActionResult<ApiResponse>> ForgetPassword(string email)
         {
-            var userIdClaim = (HttpContext.User.Identity as ClaimsIdentity)?.Claims.FirstOrDefault(c => c.Type == "uid");
-            var userId = userIdClaim.Value;
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return BadRequest(_response.BadRequestResponse("this email is wrong"));
+            }
             var result = await _authService.SendResetPasswordEmailAsync(user);
-            return Ok(result);
+            return Ok(_response.OkResponse(result));
         }
 
         [HttpPut("ResetPassword", Name = "ResetPassword")]
         public async Task<IActionResult> ResetPassword(ChangePasswordDto model)
         {
-            var userIdClaim = (HttpContext.User.Identity as ClaimsIdentity)?.Claims.FirstOrDefault(c => c.Type == "uid");
-            var userId = userIdClaim.Value;
-
-            var user = await _userManager.FindByIdAsync(userId);
+            AppUser user = await _userManager.FindByIdAsync(model.Id);
                 
             if (user == null)
             {

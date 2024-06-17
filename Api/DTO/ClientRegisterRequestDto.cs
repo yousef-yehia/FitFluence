@@ -12,5 +12,6 @@
         public int Age { get; set; }
         public int MuscleWeight { get; set; }
         public int FatWeight { get; set; }
+        public IFormFile Photo { get; set; }
     }
 }

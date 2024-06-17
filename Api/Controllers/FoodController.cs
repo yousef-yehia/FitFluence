@@ -33,7 +33,7 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ResponseCache(Duration = 10)]
-        public async Task<ActionResult<ApiResponse>> GetAllFoods(string? search, string? order, int pageSize = 0, int pageNumber = 1)
+        public async Task<ActionResult<ApiResponse>> GetAllFoods(string? search = null, string? order = null, int pageSize = 0, int pageNumber = 1)
         {
             try
             {
@@ -141,20 +141,16 @@ namespace Api.Controllers
             }
         }
 
-        //        [HttpDelete("DeleteAllFood", Name = "DeleteAllFood")]
-        //        [Authorize(Roles = "admin")]
-        //        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        //        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        //        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpDelete("DeleteAllFood", Name = "DeleteAllFood")]
+        //[Authorize(Roles = "admin")]
+        public async Task<ActionResult<ApiResponse>> DeleteAllFood()
+        {
 
-        //        public async Task<ActionResult<ApiResponse>> DeleteAllFood()
-        //        {
-
-        //            await _foodRepository.DeleteAllFoods();
-        //            _response.StatusCode = HttpStatusCode.NoContent;
-        //            _response.IsSuccess = true;
-        //            return Ok(_response);
-        //        }
+            await _foodRepository.DeleteAllFoods();
+            _response.StatusCode = HttpStatusCode.NoContent;
+            _response.IsSuccess = true;
+            return Ok(_response);
+        }
 
         [HttpPut("UpdateFood {id:int}", Name = "UpdateFood")]
         //[Authorize(Roles = "admin")]

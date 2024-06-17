@@ -10,6 +10,7 @@
         public int Age { get; set; }
         public int MuscleWeight { get; set; }
         public int FatWeight { get; set; }
+        public string? ImageUrl { get; set; }
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }

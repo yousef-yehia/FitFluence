@@ -21,7 +21,7 @@ namespace Infrastructure.Data.Seed
             using (var scope = _serviceProvider.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                var csvFilePath = "../Infrastructure/Data/SeedData/new_food.csv";
+                var csvFilePath = "../Infrastructure/Data/SeedData/new_foods.csv";
 
                 if (dbContext.Foods.Any())
                 {

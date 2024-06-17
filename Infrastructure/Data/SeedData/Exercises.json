@@ -1,0 +1,82 @@
+﻿[
+  {
+    "Name": "Bench Press",
+    "Sets": "12 to 15",
+    "Description": "A weight training exercise where you lie on a bench and press a weight upwards.",
+    "GifUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.strengthlog.com%2Fupper-back-exercises%2F&psig=AOvVaw3JtUXBdr4zdhCgfnN-I8tG&ust=1718702748001000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKjG3Oio4oYDFQAAAAAdAAAAABAY",
+    "FocusAreaUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mayoclinic.org%2Fhealthy-lifestyle%2Fadult-health%2Fin-depth%2Fback-pain%2Fart-20546859&psig=AOvVaw3JtUXBdr4zdhCgfnN-I8tG&ust=1718702748001000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKjG3Oio4oYDFQAAAAAdAAAAABAe",
+    "MuscleId": 11
+  },
+  {
+    "Name": "Push-Up",
+    "Sets": "12 to 15",
+    "Description": "An upper body exercise performed by lowering and raising the body using the arms.",
+    "GifUrl": "https://example.com/gifs/push_up.gif",
+    "FocusAreaUrl": "https://example.com/focus/chest.png",
+    "MuscleId": 11
+  },
+  {
+    "Name": "Pull-Up",
+    "Sets": "12 to 15",
+    "Description": "An upper body exercise where you pull yourself up until your chin is above the bar.",
+    "GifUrl": "https://example.com/gifs/pull_up.gif",
+    "FocusAreaUrl": "https://example.com/focus/back.png",
+    "MuscleId": 12
+  },
+  {
+    "Name": "Deadlift",
+    "Sets": "12 to 15",
+    "Description": "A weight training exercise where you lift a loaded barbell off the ground to the level of the hips.",
+    "GifUrl": "https://example.com/gifs/deadlift.gif",
+    "FocusAreaUrl": "https://example.com/focus/back.png",
+    "MuscleId": 12
+  },
+  {
+    "Name": "Bicep Curl",
+    "Sets": "12 to 15",
+    "Description": "An exercise that targets the biceps by lifting a weight with the elbow bending.",
+    "GifUrl": "https://example.com/gifs/bicep_curl.gif",
+    "FocusAreaUrl": "https://example.com/focus/arm.png",
+    "MuscleId": 13
+  },
+  {
+    "Name": "Tricep Dip",
+    "Sets": "12 to 15",
+    "Description": "An exercise that targets the triceps by lowering and raising the body on parallel bars.",
+    "GifUrl": "https://example.com/gifs/tricep_dip.gif",
+    "FocusAreaUrl": "https://example.com/focus/arm.png",
+    "MuscleId": 13
+  },
+  {
+    "Name": "Shoulder Press",
+    "Sets": "12 to 15",
+    "Description": "An exercise where you press a weight above your head.",
+    "GifUrl": "https://example.com/gifs/shoulder_press.gif",
+    "FocusAreaUrl": "https://example.com/focus/shoulder.png",
+    "MuscleId": 14
+  },
+  {
+    "Name": "Lateral Raise",
+    "Sets": "12 to 15",
+    "Description": "An exercise where you raise the arms to the sides until they are parallel to the floor.",
+    "GifUrl": "https://example.com/gifs/lateral_raise.gif",
+    "FocusAreaUrl": "https://example.com/focus/shoulder.png",
+    "MuscleId": 14
+  },
+  {
+    "Name": "Squat",
+    "Sets": "12 to 15",
+    "Description": "A lower body exercise where you lower your hips from a standing position and then stand back up.",
+    "GifUrl": "https://example.com/gifs/squat.gif",
+    "FocusAreaUrl": "https://example.com/focus/legs.png",
+    "MuscleId": 15
+  },
+  {
+    "Name": "Lunge",
+    "Sets": "12 to 15",
+    "Description": "A lower body exercise where you step forward with one leg and lower your hips until both knees are bent at about a 90-degree angle.",
+    "GifUrl": "https://example.com/gifs/lunge.gif",
+    "FocusAreaUrl": "https://example.com/focus/legs.png",
+    "MuscleId": 15
+  }
+]
