@@ -64,7 +64,7 @@ namespace Api.Controllers
 
 
         [HttpPost("registerClient")]
-        public async Task<ActionResult<ApiResponse>> RegisterClient([FromBody] ClientRegisterRequestDto model)
+        public async Task<ActionResult<ApiResponse>> RegisterClient(ClientRegisterRequestDto model)
         {
             try
             {
@@ -80,36 +80,19 @@ namespace Api.Controllers
                     return BadRequest(_response.BadRequestResponse("Username is in use"));
                 }
 
-                var fileExtension = Path.GetExtension(model.Photo.FileName)?.ToLowerInvariant();
+                //var fileExtension = Path.GetExtension(model.Photo.FileName)?.ToLowerInvariant();
 
-                // Check if the file extension is jpg or png
-                if (fileExtension != ".jpg" && fileExtension != ".png" && fileExtension != ".jpeg")
-                {
-                    return BadRequest(_response.BadRequestResponse("only jpg and png and jpeg allowed"));
-                }
+                //Check if the file extension is jpg or png
+                //if (fileExtension != ".jpg" && fileExtension != ".png" && fileExtension != ".jpeg")
+                //{
+                //    return BadRequest(_response.BadRequestResponse("only jpg and png and jpeg allowed"));
+                //}
 
 
-                var uploadResult = await _photoService.AddPhotoAsync(model.Photo);
-                var newUser = new AppUser
-                {
-                    Name = model.Name,
-                    Email = model.Email,
-                    UserName = model.UserName,
-                    PhoneNumber = model.PhoneNumber,
-                };
-                newUser.Client = new Client
-                {
-                    Name = model.Name,
-                    AppUser = newUser,
-                    AppUserId = newUser.Id,
-                    Weight = model.Weight,
-                    FatWeight = model.FatWeight,
-                    MuscleWeight = model.MuscleWeight,
-                    Height = model.Height,
-                    Age = model.Age,
-                    Email = model.Email,
-                    ImageUrl = uploadResult.Url.ToString()
-                };
+                //var uploadResult = await _photoService.AddPhotoAsync(model.Photo);
+
+                var newUser = _mapper.Map<AppUser>(model);
+                //newUser.ImageUrl = uploadResult.Url.ToString();
 
                 var result = await _userManager.CreateAsync(newUser, model.Password);
                 await _userManager.AddToRoleAsync(newUser, Role.roleClient);
@@ -151,21 +134,8 @@ namespace Api.Controllers
                     return BadRequest(_response.BadRequestResponse("Username is in use"));
                 }
 
-                var newUser = new AppUser
-                {
-                    Name = model.Name,
-                    Email = model.Email,
-                    UserName = model.UserName,
-                    PhoneNumber = model.PhoneNumber,
-                };
-                newUser.Coach = new Coach
-                {
-                    Name = model.Name,
-                    AppUser = newUser,
-                    AppUserId = newUser.Id,
-                    Email = model.Email,
-                    Cv = model.Cv,
-                };
+                var newUser = _mapper.Map<AppUser>(model);
+
 
                 var result = await _userManager.CreateAsync(newUser, model.Password);
                 await _userManager.AddToRoleAsync(newUser, Role.roleCoach);

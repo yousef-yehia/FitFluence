@@ -46,10 +46,10 @@ namespace Api.Helper
                         .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
                         .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber)).ReverseMap();
 
-            CreateMap<ClientRegisterRequestDto, Client>().ReverseMap();
-            CreateMap<CoachRegisterRequestDto, Coach>().ReverseMap();
-            CreateMap<UpdateClientDto, Client>().ReverseMap();
-            CreateMap<UpdateCoachDto, Coach>().ReverseMap();
+            CreateMap<ClientRegisterRequestDto, AppUser>().ReverseMap();
+            CreateMap<CoachRegisterRequestDto, AppUser>().ReverseMap();
+            CreateMap<UpdateClientDto, AppUser>().ReverseMap();
+            CreateMap<UpdateCoachDto, AppUser>().ReverseMap();
 
             CreateMap<CreateGoalDto, Goal>().ReverseMap();
             CreateMap<GoalDto, Goal>().ReverseMap();

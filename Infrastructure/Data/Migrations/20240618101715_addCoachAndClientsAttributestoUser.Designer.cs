@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240618101715_addCoachAndClientsAttributestoUser")]
+    partial class addCoachAndClientsAttributestoUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,7 +144,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("MuscleId");
 
-                    b.ToTable("Exercises", (string)null);
+                    b.ToTable("Exercises");
                 });
 
             modelBuilder.Entity("Core.Models.Food", b =>
@@ -180,7 +183,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Foods", (string)null);
+                    b.ToTable("Foods");
                 });
 
             modelBuilder.Entity("Core.Models.Goal", b =>
@@ -197,7 +200,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Goals", (string)null);
+                    b.ToTable("Goals");
                 });
 
             modelBuilder.Entity("Core.Models.Muscle", b =>
@@ -218,7 +221,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Muscles", (string)null);
+                    b.ToTable("Muscles");
                 });
 
             modelBuilder.Entity("Core.Models.UserFoods", b =>
@@ -233,7 +236,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("FoodId");
 
-                    b.ToTable("UserFoods", (string)null);
+                    b.ToTable("UserFoods");
                 });
 
             modelBuilder.Entity("Core.Models.UserGoals", b =>
@@ -248,7 +251,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("GoalId");
 
-                    b.ToTable("UserGoals", (string)null);
+                    b.ToTable("UserGoals");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

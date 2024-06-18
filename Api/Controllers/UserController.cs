@@ -203,11 +203,11 @@ namespace Api.Controllers
                 newUser.NormalizedEmail = updateClientDto.Email.ToUpper();
 
 
-                var updatedClient = _mapper.Map<Client>(updateClientDto);
-                updatedClient.AppUserId = user.Id;
-                updatedClient.AppUser = newUser;
-                updatedClient.ClientId = clientid;
-                newUser.Client = updatedClient;
+                //var updatedClient = _mapper.Map<Client>(updateClientDto);
+                //updatedClient.AppUserId = user.Id;
+                //updatedClient.AppUser = newUser;
+                //updatedClient.ClientId = clientid;
+                //newUser.Client = updatedClient;
 
                 //await _clientRepository.UpdateAsync(updatedClient);
 
@@ -243,11 +243,11 @@ namespace Api.Controllers
                 newUser.UserName = updateCoachDto.UserName;
 
 
-                var updatedCoach = _mapper.Map<Coach>(updateCoachDto);
-                updatedCoach.AppUserId = user.Id;
-                updatedCoach.AppUser = newUser;
-                updatedCoach.CoachId = Coachid;
-                newUser.Coach = updatedCoach;
+                //var updatedCoach = _mapper.Map<Coach>(updateCoachDto);
+                //updatedCoach.AppUserId = user.Id;
+                //updatedCoach.AppUser = newUser;
+                //updatedCoach.CoachId = Coachid;
+                //newUser.Coach = updatedCoach;
 
                 //await _clientRepository.UpdateAsync(updatedClient);
                 await _userRepository.UpdateAsync(newUser);

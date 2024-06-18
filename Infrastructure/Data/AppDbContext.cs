@@ -13,8 +13,6 @@ namespace Infrastructure.Data
         }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Goal> Goals { get; set; }
-        public DbSet<Coach> Coachs { get; set; }
-        public DbSet<Client> Clients { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<UserFoods> UserFoods { get; set; }
         public DbSet<UserGoals> UserGoals { get; set; }
@@ -58,19 +56,6 @@ namespace Infrastructure.Data
                 .HasForeignKey(uf => uf.FoodId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Configure the one-to-one relationship between user and coach and client
-            modelBuilder.Entity<AppUser>()
-                .HasOne(u => u.Client)
-                .WithOne(c => c.AppUser)
-                .HasForeignKey<Client>(c => c.AppUserId)
-                .OnDelete(DeleteBehavior.Cascade);
-            
-
-            modelBuilder.Entity<AppUser>()
-                .HasOne(u => u.Coach)
-                .WithOne(c => c.AppUser)
-                .HasForeignKey<Coach>(c => c.AppUserId)
-                .OnDelete(DeleteBehavior.Cascade);
 
             // Configure the one-to-many relationship between muscle and exercises
             modelBuilder.Entity<Muscle>()
