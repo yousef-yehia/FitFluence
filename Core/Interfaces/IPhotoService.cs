@@ -9,6 +9,8 @@ namespace Core.Interfaces
         Task<string> GetPhotoAsync(string photoName);
         Task<DeletionResult> DeletePhotoAsync(string publicId);
         public Task<ImageUploadResult> AddExercisePhotoAsync(IFormFile file);
+        public Task<ImageUploadResult> AddMusclePhotoAsync(IFormFile file);
+
 
     }
 }

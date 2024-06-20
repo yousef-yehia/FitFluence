@@ -8,5 +8,6 @@
         public string GifUrl { get; set; }
         public string Description { get; set; }
         public string FocusAreaUrl { get; set; }
+        public int MuscleId { get; set; } 
     }
 }

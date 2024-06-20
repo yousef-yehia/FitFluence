@@ -68,8 +68,8 @@ namespace Api.Controllers
             var userfoodsToReturn = new UserDailyFoodDto
             {
                 Foods = foods,
-                Calories = userFoods.Calories,
-                Protien = userFoods.Protien,
+                CaloriesSum = userFoods.Calories,
+                ProtienSum = userFoods.Protien,
             };
 
 

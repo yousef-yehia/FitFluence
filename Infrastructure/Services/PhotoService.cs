@@ -54,6 +54,23 @@ namespace Infrastructure.Services
                 uploadResult = await _cloudinary.UploadAsync(uploadParms);
             }
             return uploadResult;
+        }    
+        public async Task<ImageUploadResult> AddMusclePhotoAsync(IFormFile file)
+        {
+            var uploadResult = new ImageUploadResult();
+            if (file.Length > 0)
+            {
+                using var stream = file.OpenReadStream();
+                var uploadParms = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, stream),
+                    Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face"),
+                    Folder = "MusclePhotos" // Set the folder name here
+
+                };
+                uploadResult = await _cloudinary.UploadAsync(uploadParms);
+            }
+            return uploadResult;
         }
 
 

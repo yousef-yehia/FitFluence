@@ -5,6 +5,7 @@ using Api.DTO.FoodDto;
 using Api.DTO.ExerciseDto;
 using Api.DTO.WorkoutPlanDto;
 using Api.DTO.AuthDto;
+using Api.DTO.MuscleDto;
 
 
 namespace Api.Helper
@@ -57,6 +58,8 @@ namespace Api.Helper
 
             CreateMap<ExerciseReturnDto, Exercise>().ReverseMap();
             CreateMap<CreateExerciseDto, Exercise>().ReverseMap();
+
+            CreateMap<MuscleReturnDto, Muscle>().ReverseMap();
         }      
     }
 }

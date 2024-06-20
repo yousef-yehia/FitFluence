@@ -64,7 +64,7 @@ namespace Infrastructure.Data
                 .HasMany(m => m.Exercises)
                 .WithOne(e => e.Muscle)
                 .HasForeignKey(e => e.MuscleId);
-
+            
             // Configure the one-to-many relationship between user and WorkoutPlan 
             modelBuilder.Entity<WorkoutPlan>()
                 .HasOne(m => m.AppUser)

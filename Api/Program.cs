@@ -29,21 +29,21 @@ builder.Services.AddEndpointsApiExplorer();
 var app = builder.Build();
 
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
-//    var context = services.GetRequiredService<AppDbContext>();
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AppDbContext>();
 
-//    await context.Database.MigrateAsync();
-//    await AppDbContextSeed.SeedDataAsync(context);
+    await context.Database.MigrateAsync();
+    await AppDbContextSeed.SeedDataAsync(context);
 
-//    //var foodSeeder = scope.ServiceProvider.GetRequiredService<FoodSeeder>();
-//    //foodSeeder.Seed();
+    //var foodSeeder = scope.ServiceProvider.GetRequiredService<FoodSeeder>();
+    //foodSeeder.Seed();
 
-//    var RoleSeeder = scope.ServiceProvider.GetRequiredService<RolesSeeder>();
+    var RoleSeeder = scope.ServiceProvider.GetRequiredService<RolesSeeder>();
 
-//    await RoleSeeder.SeedRolesAsync();
-//}
+    await RoleSeeder.SeedRolesAsync();
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

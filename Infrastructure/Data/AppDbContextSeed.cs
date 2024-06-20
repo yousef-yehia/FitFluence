@@ -24,12 +24,12 @@ namespace Infrastructure.Data
                 var muscles = JsonSerializer.Deserialize<List<Muscle>>(musclesData);
                 _dbContext.Muscles.AddRange(muscles);
             }
-            if (!_dbContext.Exercises.Any())
-            {
-                var exerciseData = File.ReadAllText("../Infrastructure/Data/SeedData/Exercises.json");
-                var exercise = JsonSerializer.Deserialize<List<Exercise>>(exerciseData);
-                _dbContext.Exercises.AddRange(exercise);
-            }
+            //if (!_dbContext.Exercises.Any())
+            //{
+            //    var exerciseData = File.ReadAllText("../Infrastructure/Data/SeedData/Exercises.json");
+            //    var exercise = JsonSerializer.Deserialize<List<Exercise>>(exerciseData);
+            //    _dbContext.Exercises.AddRange(exercise);
+            //}
 
 
 
