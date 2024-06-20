@@ -21,7 +21,7 @@ namespace Infrastructure.Services
 
         }
 
-        public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
+        public async Task<ImageUploadResult> AddProfilePhotoAsync(IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
             if (file.Length > 0)
@@ -32,6 +32,23 @@ namespace Infrastructure.Services
                     File = new FileDescription(file.FileName, stream),
                     Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face"),
                     Folder = "ProfilePic" // Set the folder name here
+
+                };
+                uploadResult = await _cloudinary.UploadAsync(uploadParms);
+            }
+            return uploadResult;
+        }
+        public async Task<ImageUploadResult> AddExercisePhotoAsync(IFormFile file)
+        {
+            var uploadResult = new ImageUploadResult();
+            if (file.Length > 0)
+            {
+                using var stream = file.OpenReadStream();
+                var uploadParms = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, stream),
+                    Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face"),
+                    Folder = "ExercisePhotos" // Set the folder name here
 
                 };
                 uploadResult = await _cloudinary.UploadAsync(uploadParms);

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Core.Interfaces
 {
     public interface IExerciseRepository 
     {
         public Task DeleteAllExercisesAsync();
-        public Task CreateExerciseAsync(Exercise exercise);
+        public Task<Exercise> CreateExerciseAsync(Exercise exercise, IFormFile gif, IFormFile focusArea);
         public Task<bool> DeesExerciseExistsAsync(int id);
         public Task UpdateAsync(Exercise exercise);
         public Task DeleteAsync(Exercise exercise);

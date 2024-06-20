@@ -109,7 +109,7 @@ namespace Api.Controllers
                 return BadRequest("Only JPG and PNG files are allowed.");
             }
 
-            var result = await _photoService.AddPhotoAsync(file);
+            var result = await _photoService.AddProfilePhotoAsync(file);
 
             _response.Result = result;
             _response.StatusCode = HttpStatusCode.OK;

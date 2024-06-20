@@ -109,9 +109,9 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost("AddExercise", Name = "AddExercise")]
+        [HttpPost("CreateExercise", Name = "CreateExercise")]
         [ResponseCache(Duration = 10)]
-        public async Task<ActionResult<ApiResponse>> AddExercise(CreateExerciseDto model)
+        public async Task<ActionResult<ApiResponse>> CreateExercise(CreateExerciseDto model)
         {
             try
             {
@@ -125,8 +125,9 @@ namespace Api.Controllers
                     return BadRequest(_response.BadRequestResponse("Muscle Id is wrong"));
                 }
                 var exercise = _mapper.Map<Exercise>(model);
-                await _exerciseRepository.CreateExerciseAsync(exercise);
-                return Ok(_response.OkResponse("Created"));
+                var exerciseCreated = await _exerciseRepository.CreateExerciseAsync(exercise, model.Gif, model.FocusArea);
+                var response = _mapper.Map<ExerciseReturnDto>(exerciseCreated);
+                return Ok(_response.OkResponse(response));
 
             }
             catch (Exception ex)

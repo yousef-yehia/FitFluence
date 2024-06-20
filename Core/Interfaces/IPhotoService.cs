@@ -5,8 +5,10 @@ namespace Core.Interfaces
 {
     public interface IPhotoService
     {
-        Task<ImageUploadResult> AddPhotoAsync(IFormFile file);
+        Task<ImageUploadResult> AddProfilePhotoAsync(IFormFile file);
         Task<string> GetPhotoAsync(string photoName);
         Task<DeletionResult> DeletePhotoAsync(string publicId);
+        public Task<ImageUploadResult> AddExercisePhotoAsync(IFormFile file);
+
     }
 }

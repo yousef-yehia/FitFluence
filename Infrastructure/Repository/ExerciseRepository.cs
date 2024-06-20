@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Core.Interfaces;
 using Core.Models;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repository
@@ -14,14 +15,22 @@ namespace Infrastructure.Repository
     public class ExerciseRepository : IExerciseRepository
     {
         private readonly AppDbContext _appDb;
-        public ExerciseRepository(AppDbContext appDb, AppDbContext appDbContext)
+        private readonly IPhotoService _photoService;
+        public ExerciseRepository(AppDbContext appDbContext, IPhotoService photoService)
         {
             _appDb = appDbContext;
+            _photoService = photoService;
         }
-        public async Task CreateExerciseAsync(Exercise exercise)
+        public async Task<Exercise> CreateExerciseAsync(Exercise exercise, IFormFile gif, IFormFile focusArea)
         {
+            var gifResponse = await _photoService.AddExercisePhotoAsync(gif);
+            var focusAreaResponse = await _photoService.AddExercisePhotoAsync(focusArea);
+
+            exercise.GifUrl = gifResponse.Url.ToString();
+            exercise.FocusAreaUrl = focusAreaResponse.Url.ToString();
             await _appDb.Exercises.AddAsync(exercise);
             await SaveAsync();
+            return exercise;
         }
 
         public async Task<bool> DeesExerciseExistsAsync(int id)
