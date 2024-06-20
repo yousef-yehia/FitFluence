@@ -1,6 +1,6 @@
 ﻿namespace Core.Models
 {
-    public class UserFoods
+    public class FavouriteFood
     {
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }

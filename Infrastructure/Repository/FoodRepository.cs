@@ -8,9 +8,9 @@ namespace Infrastructure.Repository
     public class FoodRepository : Repository<Food>, IFoodRepository
     {
         private readonly AppDbContext _appDbContext;
-        public FoodRepository(AppDbContext appDb, AppDbContext appDbContext) : base(appDb)
+        public FoodRepository(AppDbContext appDb) : base(appDb)
         {
-            _appDbContext = appDbContext;
+            _appDbContext = appDb;
         }
 
         public async Task<Food> UpdateAsync(Food food)

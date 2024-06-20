@@ -14,10 +14,12 @@ namespace Infrastructure.Data
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Goal> Goals { get; set; }
         public DbSet<Food> Foods { get; set; }
-        public DbSet<UserFoods> UserFoods { get; set; }
+        public DbSet<FavouriteFood> FavouriteFoods { get; set; }
         public DbSet<UserGoals> UserGoals { get; set; }
         public DbSet<Muscle> Muscles { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<WorkoutPlan> WorkoutPlans { get; set; }
+        public DbSet<WorkoutPlanExercise> WorkoutPlanExercises { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,16 +43,16 @@ namespace Infrastructure.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Configure the many-to-many relationship between user and favourite foods
-            modelBuilder.Entity<UserFoods>()
+            modelBuilder.Entity<FavouriteFood>()
                  .HasKey(uf => new { uf.AppUserId, uf.FoodId });
 
-            modelBuilder.Entity<UserFoods>()
+            modelBuilder.Entity<FavouriteFood>()
                 .HasOne(uf => uf.AppUser)
-                .WithMany(u => u.UserFoods)
+                .WithMany(u => u.FavouriteFoods)
                 .HasForeignKey(uf => uf.AppUserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<UserFoods>()
+            modelBuilder.Entity<FavouriteFood>()
                 .HasOne(uf => uf.Food)
                 .WithMany(f => f.UserFoods)
                 .HasForeignKey(uf => uf.FoodId)
@@ -63,6 +65,27 @@ namespace Infrastructure.Data
                 .WithOne(e => e.Muscle)
                 .HasForeignKey(e => e.MuscleId);
 
+            // Configure the one-to-many relationship between user and WorkoutPlan 
+            modelBuilder.Entity<WorkoutPlan>()
+                .HasOne(m => m.AppUser)
+                .WithMany(e => e.WorkoutPlans)
+                .HasForeignKey(e => e.AppUserId);
+
+            // Configure the many-to-many relationship between user and favourite foods
+            modelBuilder.Entity<WorkoutPlanExercise>()
+                 .HasKey(uf => new { uf.WorkoutPlanId, uf.ExerciseId });
+
+            modelBuilder.Entity<WorkoutPlanExercise>()
+                .HasOne(uf => uf.WorkoutPlan)
+                .WithMany(u => u.WorkOutPlanExercises)
+                .HasForeignKey(uf => uf.WorkoutPlanId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<WorkoutPlanExercise>()
+                .HasOne(uf => uf.Exercise)
+                .WithMany(f => f.workoutPlanExercises)
+                .HasForeignKey(uf => uf.ExerciseId)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             modelBuilder.Entity<AppUser>().Ignore(c => c.LockoutEnabled).Ignore(c => c.TwoFactorEnabled);

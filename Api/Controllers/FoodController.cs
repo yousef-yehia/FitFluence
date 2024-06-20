@@ -38,8 +38,8 @@ namespace Api.Controllers
             try
             {
                 var foods = await _foodRepository.GetAllAsync(search, order);
-                var foodsResponse = _mapper.Map<List<FoodDto>>(foods);
-                var paginatedFoods = Pagination<FoodDto>.Paginate(foodsResponse, pageNumber, pageSize);
+                var foodsResponse = _mapper.Map<List<FoodReturnDto>>(foods);
+                var paginatedFoods = Pagination<FoodReturnDto>.Paginate(foodsResponse, pageNumber, pageSize);
 
                 return Ok(_response.OkResponse(paginatedFoods));
             }
@@ -71,7 +71,7 @@ namespace Api.Controllers
                 {
                     return NotFound(_response.NotFoundResponse("Food not found"));
                 }
-                return Ok(_response.OkResponse(_mapper.Map<FoodDto>(food)));
+                return Ok(_response.OkResponse(_mapper.Map<FoodReturnDto>(food)));
 
             }
             catch (Exception ex) 

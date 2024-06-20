@@ -63,7 +63,7 @@ namespace Api.Controllers
 
             var userFoods = _userDailyFoodsRepository.GetFoodSelections(user.Id);
 
-            var foods = _mapper.Map<List<FoodDto>>(userFoods.Foods);
+            var foods = _mapper.Map<List<FoodReturnDto>>(userFoods.Foods);
 
             var userfoodsToReturn = new UserDailyFoodDto
             {

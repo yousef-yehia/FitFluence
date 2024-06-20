@@ -17,7 +17,7 @@ namespace Api.Extensions
             ClaimsPrincipal user)
         {
             return await userManager.Users
-                .Include(x => x.UserFoods)
+                .Include(x => x.FavouriteFoods)
                 .SingleOrDefaultAsync(x => x.Email == user.FindFirstValue(ClaimTypes.Email));
         }
     }

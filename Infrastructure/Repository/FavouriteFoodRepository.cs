@@ -21,12 +21,12 @@ namespace Infrastructure.Repository
 
         public async Task AddFavouriteFoodAsync(AppUser user, Food food)
         {
-            user.UserFoods.Add(new UserFoods { AppUserId = user.Id, FoodId = food.Id });
+            user.FavouriteFoods.Add(new FavouriteFood { AppUserId = user.Id, FoodId = food.Id });
             await _appDbContext.SaveChangesAsync();
         }
         public async Task AddFavouriteFoodAsync(AppUser user, int foodId)
         {
-            user.UserFoods.Add(new UserFoods { AppUserId = user.Id, FoodId = foodId });
+            user.FavouriteFoods.Add(new FavouriteFood { AppUserId = user.Id, FoodId = foodId });
             await _appDbContext.SaveChangesAsync();
         }
 
@@ -46,22 +46,22 @@ namespace Infrastructure.Repository
         public async Task RemoveFavouriteFoodAsync(AppUser appUser, int foodId)
         {
 
-            var userFood = appUser.UserFoods.FirstOrDefault(a => a.AppUserId == appUser.Id && a.FoodId == foodId);
+            var userFood = appUser.FavouriteFoods.FirstOrDefault(a => a.AppUserId == appUser.Id && a.FoodId == foodId);
 
-            appUser.UserFoods.Remove(userFood);
+            appUser.FavouriteFoods.Remove(userFood);
 
             await _appDbContext.SaveChangesAsync();
         }
 
         public async Task<List<Food>> GetAllFavouriteFoodsAsync(AppUser appUser)
         {
-            var userFoods = await _appDbContext.UserFoods.Where(u => u.AppUserId == appUser.Id).Select(x => x.Food).ToListAsync();
+            var userFoods = await _appDbContext.FavouriteFoods.Where(u => u.AppUserId == appUser.Id).Select(x => x.Food).ToListAsync();
             return userFoods;
         }
 
         public bool IsFoodInFavouriteFoods(AppUser appUser, int foodId)
         {
-            return (appUser.UserFoods.Any(uf => uf.FoodId == foodId));
+            return (appUser.FavouriteFoods.Any(uf => uf.FoodId == foodId));
         }
 
 

@@ -14,7 +14,7 @@ namespace Infrastructure.Repository
     public class ExerciseRepository : IExerciseRepository
     {
         private readonly AppDbContext _appDb;
-        public ExerciseRepository(AppDbContext appDb, AppDbContext appDbContext) 
+        public ExerciseRepository(AppDbContext appDb, AppDbContext appDbContext)
         {
             _appDb = appDbContext;
         }
@@ -26,7 +26,7 @@ namespace Infrastructure.Repository
 
         public async Task<bool> DeesExerciseExistsAsync(int id)
         {
-            return await _appDb.Exercises.AnyAsync(e=> e.Id == id);
+            return await _appDb.Exercises.AnyAsync(e => e.Id == id);
         }
 
         public async Task DeleteAllExercisesAsync()
@@ -45,13 +45,13 @@ namespace Infrastructure.Repository
             }
 
             exercises = exercises.OrderBy(f => f.Name).ToList();
-           
+
 
             return exercises;
         }
         public async Task<List<Exercise>> GetAllByMuscleAsync(int muscleId, string search = null)
         {
-            var exercises = await _appDb.Exercises.Where(e=> e.MuscleId == muscleId).ToListAsync();
+            var exercises = await _appDb.Exercises.Where(e => e.MuscleId == muscleId).ToListAsync();
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -59,13 +59,18 @@ namespace Infrastructure.Repository
             }
 
             exercises = exercises.OrderBy(f => f.Name).ToList();
-           
+
 
             return exercises;
-        }  
+        }
         public async Task<Exercise> GetExerciseByIdAsync(int id)
         {
-            var exercises = await _appDb.Exercises.FirstOrDefaultAsync(e=> e.Id == id);
+            var exercises = await _appDb.Exercises.FirstOrDefaultAsync(e => e.Id == id);
+            return exercises;
+        }
+        public async Task<Exercise> GetExerciseByNameAsync(string name)
+        {
+            var exercises = await _appDb.Exercises.FirstOrDefaultAsync(e => e.Name.ToLower() == name.ToLower());
             return exercises;
         }
 

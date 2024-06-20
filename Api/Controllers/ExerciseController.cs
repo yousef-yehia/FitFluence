@@ -37,11 +37,11 @@ namespace Api.Controllers
             try
             {
                 var exercises = await _exerciseRepository.GetAllAsync(search);
-                var exercisesResponse = _mapper.Map<List<ExerciseDto>>(exercises);
+                var exercisesResponse = _mapper.Map<List<ExerciseReturnDto>>(exercises);
 
                 if(pageSize > 0)
                 {
-                    var paginatedExercises = Pagination<ExerciseDto>.Paginate(exercisesResponse, pageNumber, pageSize);
+                    var paginatedExercises = Pagination<ExerciseReturnDto>.Paginate(exercisesResponse, pageNumber, pageSize);
 
                     return Ok(_response.OkResponse(paginatedExercises));
                 }
@@ -65,11 +65,11 @@ namespace Api.Controllers
                     return NotFound(_response.NotFoundResponse("Muscle ID is wrong"));
                 }
                 var exercises = await _exerciseRepository.GetAllByMuscleAsync(muscleId, search);
-                var exercisesResponse = _mapper.Map<List<ExerciseDto>>(exercises);
+                var exercisesResponse = _mapper.Map<List<ExerciseReturnDto>>(exercises);
 
                 if(pageSize > 0)
                 {
-                    var paginatedExercises = Pagination<ExerciseDto>.Paginate(exercisesResponse, pageNumber, pageSize);
+                    var paginatedExercises = Pagination<ExerciseReturnDto>.Paginate(exercisesResponse, pageNumber, pageSize);
 
                     return Ok(_response.OkResponse(paginatedExercises));
                 }
@@ -100,7 +100,7 @@ namespace Api.Controllers
                 {
                     return NotFound(_response.NotFoundResponse("exercise not found"));
                 }
-                return Ok(_response.OkResponse(_mapper.Map<ExerciseDto>(exercise)));
+                return Ok(_response.OkResponse(_mapper.Map<ExerciseReturnDto>(exercise)));
 
             }
             catch (Exception ex)

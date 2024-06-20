@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.Json.Serialization;
 using Api.ApiResponses;
 using Api.Helper;
 using Core.Interfaces;
@@ -70,6 +71,7 @@ namespace Api.Extensions
             services.AddTransient<RolesSeeder>();
 
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
             services.AddSingleton<IEmailService, EmailService>();
             services.AddSingleton<IPhotoService, PhotoService>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -80,6 +82,7 @@ namespace Api.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserDailyFoodsRepository, UserDailyFoodsRepository>();
             services.AddScoped<IExerciseRepository, ExerciseRepository>();
+            services.AddScoped<IWorkoutPlanRepository, WorkoutPlanRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddScoped<ApiResponse>();
@@ -91,6 +94,11 @@ namespace Api.Extensions
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
+            });
+
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
             services.AddHttpClient(); // Register IHttpClientFactory

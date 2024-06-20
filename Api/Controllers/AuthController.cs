@@ -1,8 +1,7 @@
 ﻿using System.Net;
 using System.Security.Claims;
 using Api.ApiResponses;
-using Api.Dto;
-using Api.DTO;
+using Api.DTO.AuthDto;
 using Api.Extensions;
 using AutoMapper;
 using Core.Interfaces;

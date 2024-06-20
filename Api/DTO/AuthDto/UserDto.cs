@@ -1,4 +1,4 @@
-﻿namespace Api.Dto
+﻿namespace Api.DTO.AuthDto
 {
     public class UserDto
     {

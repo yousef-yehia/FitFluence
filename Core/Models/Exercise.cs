@@ -16,6 +16,7 @@ namespace Core.Models
         public string FocusAreaUrl {  get; set; }
         public int MuscleId { get; set; }
         public Muscle Muscle{ get; set;}
+        public List<WorkoutPlanExercise> workoutPlanExercises { get; set; }
 
 
     }

@@ -12,7 +12,8 @@ namespace Core.Models
         public string? ImageUrl { get; set; }
         public string? Cv { get; set; }
         public List<UserGoals> UserGoals { get; set; }
-        public List<UserFoods> UserFoods  { get; set; }
+        public List<FavouriteFood> FavouriteFoods  { get; set; }
+        public List<WorkoutPlan> WorkoutPlans { get; set; }
 
     }
 }

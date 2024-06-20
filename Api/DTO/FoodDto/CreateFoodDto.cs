@@ -16,5 +16,6 @@ namespace Api.DTO.FoodDto
         public double Carbohydrates { get; set; }
         public double Protein { get; set; }
         public double Fiber { get; set; }
+        public IFormFile Image { get; set; }
     }
 }

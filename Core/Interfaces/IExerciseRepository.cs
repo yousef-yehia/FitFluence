@@ -16,6 +16,7 @@ namespace Core.Interfaces
         public Task DeleteAsync(Exercise exercise);
 
         public Task<Exercise> GetExerciseByIdAsync(int id);
+        public Task<Exercise> GetExerciseByNameAsync(string name);
 
         public Task<List<Exercise>> GetAllByMuscleAsync(int muscleId, string? search = null);
         public Task<List<Exercise>> GetAllAsync(string? search = null);

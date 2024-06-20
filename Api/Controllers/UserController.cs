@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using System.Text.Json;
 using Api.ApiResponses;
-using Api.DTO;
+using Api.DTO.AuthDto;
 using Api.Extensions;
 using Api.Helper;
 using AutoMapper;

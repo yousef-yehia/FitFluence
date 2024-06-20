@@ -3,6 +3,8 @@ using Core.Models;
 using Api.DTO;
 using Api.DTO.FoodDto;
 using Api.DTO.ExerciseDto;
+using Api.DTO.WorkoutPlanDto;
+using Api.DTO.AuthDto;
 
 
 namespace Api.Helper
@@ -18,12 +20,6 @@ namespace Api.Helper
                         .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
                         .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber)).ReverseMap();
 
-            CreateMap<TestRegisterDto, AppUser>()
-                        .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
-                        .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
-                        .ForMember(dest => dest.NormalizedEmail, opt => opt.MapFrom(src => src.Email.ToUpper()))
-                        .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.FullName))
-                        .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber)).ReverseMap();
 
             CreateMap<CoachRegisterRequestDto, AppUser>()
                         .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
@@ -53,15 +49,15 @@ namespace Api.Helper
 
             CreateMap<CreateGoalDto, Goal>().ReverseMap();
             CreateMap<GoalDto, Goal>().ReverseMap();
-            CreateMap<FoodDto, Food>().ReverseMap();
+            CreateMap<FoodReturnDto, Food>().ReverseMap();
             CreateMap<CreateFoodDto, Food>().ReverseMap();
             CreateMap<CreateFoodDto, Food>().ReverseMap();
 
             CreateMap<UserDailyFoods, UserDailyFoodDto>().ReverseMap();
 
-            CreateMap<ExerciseDto, Exercise>().ReverseMap();
+            CreateMap<ExerciseReturnDto, Exercise>().ReverseMap();
             CreateMap<CreateExerciseDto, Exercise>().ReverseMap();
-        }
+        }      
     }
 }
 

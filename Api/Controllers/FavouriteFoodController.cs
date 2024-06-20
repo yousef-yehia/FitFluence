@@ -41,8 +41,8 @@ namespace Api.Controllers
             {
                 var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
                 var foods = await _favouriteFoodRepository.GetAllFavouriteFoodsAsync(user);
-                var foodsResponse = _mapper.Map<List<FoodDto>>(foods);
-                var result = Pagination<FoodDto>.Paginate(foodsResponse, pageNumber, pageSize); 
+                var foodsResponse = _mapper.Map<List<FoodReturnDto>>(foods);
+                var result = Pagination<FoodReturnDto>.Paginate(foodsResponse, pageNumber, pageSize); 
                 return Ok(_response.OkResponse(result));
             }
             catch (Exception ex)
@@ -59,9 +59,9 @@ namespace Api.Controllers
             {
                 var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
 
-                if (user.UserFoods == null)
+                if (user.FavouriteFoods == null)
                 {
-                    user.UserFoods = new List<UserFoods>();
+                    user.FavouriteFoods = new List<FavouriteFood>();
                 }
 
                 if(! await _foodRepository.DoesExistAsync(f=> f.Id == foodId))
@@ -93,9 +93,9 @@ namespace Api.Controllers
             {
                 var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
 
-                if (user.UserFoods == null)
+                if (user.FavouriteFoods == null)
                 {
-                    user.UserFoods = new List<UserFoods>();
+                    user.FavouriteFoods = new List<FavouriteFood>();
                 }
 
                 if (! await _foodRepository.DoesExistAsync(f => f.Id == foodId))

@@ -1,6 +1,6 @@
 ﻿namespace Api.DTO.FoodDto
 {
-    public class FoodDto
+    public class FoodReturnDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
