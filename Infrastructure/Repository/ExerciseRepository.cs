@@ -46,7 +46,7 @@ namespace Infrastructure.Repository
 
         public async Task<List<Exercise>> GetAllAsync(string search = null)
         {
-            var exercises = await _appDb.Exercises.ToListAsync();
+            var exercises = await _appDb.Exercises.Include(e=> e.Muscle).ToListAsync();
 
             if (!string.IsNullOrEmpty(search))
             {

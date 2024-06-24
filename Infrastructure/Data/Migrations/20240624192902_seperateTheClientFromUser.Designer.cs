@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240624192902_seperateTheClientFromUser")]
+    partial class seperateTheClientFromUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,6 +40,9 @@ namespace Infrastructure.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CvUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -51,7 +57,7 @@ namespace Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Height")
+                    b.Property<double>("Height")
                         .HasColumnType("float");
 
                     b.Property<string>("ImageUrl")
@@ -91,7 +97,7 @@ namespace Infrastructure.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<double?>("Weight")
+                    b.Property<double>("Weight")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -105,65 +111,6 @@ namespace Infrastructure.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("Core.Models.Client", b =>
-                {
-                    b.Property<int>("ClientId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientId"));
-
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("ClientId");
-
-                    b.HasIndex("AppUserId")
-                        .IsUnique();
-
-                    b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("Core.Models.Coach", b =>
-                {
-                    b.Property<int>("CoachId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CoachId"));
-
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CvUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CoachId");
-
-                    b.HasIndex("AppUserId")
-                        .IsUnique();
-
-                    b.ToTable("Coachs");
-                });
-
-            modelBuilder.Entity("Core.Models.CoachsAndClients", b =>
-                {
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CoachId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ClientId", "CoachId");
-
-                    b.HasIndex("CoachId");
-
-                    b.ToTable("CoachsAndClients");
                 });
 
             modelBuilder.Entity("Core.Models.Exercise", b =>
@@ -497,47 +444,6 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Core.Models.Client", b =>
-                {
-                    b.HasOne("Core.Models.AppUser", "AppUser")
-                        .WithOne("Client")
-                        .HasForeignKey("Core.Models.Client", "AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("Core.Models.Coach", b =>
-                {
-                    b.HasOne("Core.Models.AppUser", "AppUser")
-                        .WithOne("Coach")
-                        .HasForeignKey("Core.Models.Coach", "AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("Core.Models.CoachsAndClients", b =>
-                {
-                    b.HasOne("Core.Models.Client", "Client")
-                        .WithMany("CoachsAndClients")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Core.Models.Coach", "Coach")
-                        .WithMany("CoachsAndClients")
-                        .HasForeignKey("CoachId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("Coach");
-                });
-
             modelBuilder.Entity("Core.Models.Exercise", b =>
                 {
                     b.HasOne("Core.Models.Muscle", "Muscle")
@@ -670,25 +576,11 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Models.AppUser", b =>
                 {
-                    b.Navigation("Client");
-
-                    b.Navigation("Coach");
-
                     b.Navigation("FavouriteFoods");
 
                     b.Navigation("UserGoals");
 
                     b.Navigation("WorkoutPlans");
-                });
-
-            modelBuilder.Entity("Core.Models.Client", b =>
-                {
-                    b.Navigation("CoachsAndClients");
-                });
-
-            modelBuilder.Entity("Core.Models.Coach", b =>
-                {
-                    b.Navigation("CoachsAndClients");
                 });
 
             modelBuilder.Entity("Core.Models.Exercise", b =>

@@ -7,6 +7,7 @@ using Azure;
 using Core.Interfaces;
 using Core.Models;
 using Infrastructure.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,7 +38,7 @@ namespace Api.Controllers
             try
             {
                 var exercises = await _exerciseRepository.GetAllAsync(search);
-                var exercisesResponse = _mapper.Map<List<ExerciseReturnDto>>(exercises);
+                var exercisesResponse = CustomMappers.MapExerciseToExerciseReturnDto(exercises);
 
                 if(pageSize > 0)
                 {
@@ -110,7 +111,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("CreateExercise", Name = "CreateExercise")]
-        [ResponseCache(Duration = 10)]
+        [Authorize]
         public async Task<ActionResult<ApiResponse>> CreateExercise(CreateExerciseDto model)
         {
             try

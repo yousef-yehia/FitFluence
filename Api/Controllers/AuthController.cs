@@ -49,11 +49,11 @@ namespace Api.Controllers
         {
             var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
 
-            var userToReturn = new UserDto
+            var userToReturn = new LoginResponseDto
             {
-                Email = user.Email,
-                Token = _tokenService.CreateToken(user),
-                DisplayName = user.Name
+                UserName = user.UserName,
+                ImageUrl = user.ImageUrl,
+                Token = _tokenService.CreateToken(user)
             };
 
             var response = _response.OkResponse(userToReturn);
@@ -90,7 +90,24 @@ namespace Api.Controllers
 
                 //var uploadResult = await _photoService.AddPhotoAsync(model.Photo);
 
-                var newUser = _mapper.Map<AppUser>(model);
+                var newUser = new AppUser
+                {
+                    Name = model.Name,
+                    Email = model.Email,
+                    UserName = model.UserName,
+                    PhoneNumber = model.PhoneNumber,
+                    Weight = model.Weight,
+                    FatWeight = model.FatWeight,
+                    MuscleWeight = model.MuscleWeight,
+                    Height = model.Height,
+                    Age = model.Age,
+                    Gender = model.Gender,
+                };
+                newUser.Client = new Client
+                {
+                    AppUser = newUser,
+                    AppUserId = newUser.Id,
+                };                
                 //newUser.ImageUrl = uploadResult.Url.ToString();
 
                 var result = await _userManager.CreateAsync(newUser, model.Password);
@@ -100,11 +117,11 @@ namespace Api.Controllers
 
                 await _authService.SendVerificationEmailAsync(newUser);
 
-                var userToReturn = new UserDto
+                var userToReturn = new RegisterResponseDto
                 {
-                    Email = newUser.Email,
-                    Token = _tokenService.CreateToken(newUser),
-                    DisplayName = newUser.Name
+                    UserName = model.UserName,
+                    ImageUrl = newUser.ImageUrl,
+                    Token = _tokenService.CreateToken(newUser)
                 };
 
                 var response = _response.OkResponse(userToReturn);
@@ -133,18 +150,35 @@ namespace Api.Controllers
                     return BadRequest(_response.BadRequestResponse("Username is in use"));
                 }
 
-                var newUser = _mapper.Map<AppUser>(model);
-
+                var newUser = new AppUser
+                {
+                    Name = model.Name,
+                    Email = model.Email,
+                    UserName = model.UserName,
+                    PhoneNumber = model.PhoneNumber,
+                    Weight = model.Weight,
+                    FatWeight = model.FatWeight,
+                    MuscleWeight = model.MuscleWeight,
+                    Height = model.Height,
+                    Age = model.Age,
+                    Gender = model.Gender,
+                };
+                newUser.Coach = new Coach
+                {
+                    AppUser = newUser,
+                    AppUserId = newUser.Id,
+                };
 
                 var result = await _userManager.CreateAsync(newUser, model.Password);
                 await _userManager.AddToRoleAsync(newUser, Role.roleCoach);
 
                 if (!result.Succeeded) return BadRequest(_response.BadRequestResponse(""));
-                var userToReturn = new UserDto
+
+                var userToReturn = new RegisterResponseDto
                 {
-                    Email = newUser.Email,
-                    Token = _tokenService.CreateToken(newUser),
-                    DisplayName = newUser.Name
+                    UserName = model.UserName,
+                    ImageUrl = newUser.ImageUrl,
+                    Token = _tokenService.CreateToken(newUser)
                 };
 
                 var response = _response.OkResponse(userToReturn);
@@ -212,11 +246,13 @@ namespace Api.Controllers
 
             if (!result.Succeeded) return Unauthorized(_response.UnauthorizedResponse("The Password is Wrong"));
 
-            var userToReturn = new UserDto
+            var userToReturn = new LoginResponseDto
             {
+                UserName = user.UserName,
+                ImageUrl = user.ImageUrl,
                 Email = user.Email,
-                Token = _tokenService.CreateToken(user),
-                DisplayName = user.Name
+                UserId = user.Id,
+                Token = _tokenService.CreateToken(user)
             };
 
             var response = _response.OkResponse(userToReturn);

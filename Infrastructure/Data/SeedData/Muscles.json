@@ -1,28 +1,23 @@
 ﻿[
   {
     "Name": "Chest",
-    "ImageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Ffitbod.me%2Fblog%2Finner-chest-workout%2F&psig=AOvVaw3m-lP6i3ndNS60OLYWCQSC&ust=1718702648557000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJjmjtqo4oYDFQAAAAAdAAAAABAJ",
-    "Exercises": []
+    "ImageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Ffitbod.me%2Fblog%2Finner-chest-workout%2F&psig=AOvVaw3m-lP6i3ndNS60OLYWCQSC&ust=1718702648557000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJjmjtqo4oYDFQAAAAAdAAAAABAJ"
   },
   {
     "Name": "Back",
-    "ImageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Ffitandwoke.com%2Fthe-only-3-back-exercises-you-need-for-growth%2F&psig=AOvVaw3JtUXBdr4zdhCgfnN-I8tG&ust=1718702748001000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKjG3Oio4oYDFQAAAAAdAAAAABAJ",
-    "Exercises": []
+    "ImageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Ffitandwoke.com%2Fthe-only-3-back-exercises-you-need-for-growth%2F&psig=AOvVaw3JtUXBdr4zdhCgfnN-I8tG&ust=1718702748001000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKjG3Oio4oYDFQAAAAAdAAAAABAJ"
   },
   {
     "Name": "Arm",
-    "ImageUrl": "https://example.com/images/arm.png",
-    "Exercises": []
+    "ImageUrl": "https://example.com/images/arm.png"
   },
   {
     "Name": "Shoulder",
-    "ImageUrl": "https://example.com/images/shoulder.png",
-    "Exercises": []
+    "ImageUrl": "https://example.com/images/shoulder.png"
   },
   {
     "Name": "Legs",
-    "ImageUrl": "https://example.com/images/legs.png",
-    "Exercises": []
+    "ImageUrl": "https://example.com/images/legs.png"
   }
 ]
 

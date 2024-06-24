@@ -47,7 +47,7 @@ namespace Infrastructure.Services
                 var uploadParms = new ImageUploadParams
                 {
                     File = new FileDescription(file.FileName, stream),
-                    Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face"),
+                    Transformation = new Transformation().Crop("fill").Gravity("face"),
                     Folder = "ExercisePhotos" // Set the folder name here
 
                 };

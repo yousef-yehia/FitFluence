@@ -8,11 +8,13 @@ namespace Core.Models
         public string Name { get; set; }
         public bool Verified { get; set; }
         public string Serving { get; set; }
+        public string Description { get; set; }
         public double Calories { get; set; }
         public double Fat { get; set; }
         public double Carbohydrates { get; set; }
         public double Protein { get; set; }
         public double Fiber { get; set; }
+        public string ImageURL { get; set; }
         public List<FavouriteFood> UserFoods { get; set; }
         //public void Update(string? name, string? serving, double calories = 0, double fat = 0, double carbohydrates = 0, double protein = 0, double fiber = 0 )
         //{

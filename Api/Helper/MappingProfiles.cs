@@ -60,6 +60,11 @@ namespace Api.Helper
             CreateMap<CreateExerciseDto, Exercise>().ReverseMap();
 
             CreateMap<MuscleReturnDto, Muscle>().ReverseMap();
+
+            CreateMap<ClientRegisterRequestDto, Client>().ReverseMap();
+            CreateMap<CoachRegisterRequestDto, Coach>().ReverseMap();
+            CreateMap<UpdateClientDto, Client>().ReverseMap();
+            CreateMap<UpdateCoachDto, Coach>().ReverseMap();
         }      
     }
 }

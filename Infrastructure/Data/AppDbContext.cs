@@ -20,6 +20,9 @@ namespace Infrastructure.Data
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<WorkoutPlan> WorkoutPlans { get; set; }
         public DbSet<WorkoutPlanExercise> WorkoutPlanExercises { get; set; }
+        public DbSet<Coach> Coachs { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<CoachsAndClients> CoachsAndClients { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -58,7 +61,6 @@ namespace Infrastructure.Data
                 .HasForeignKey(uf => uf.FoodId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-
             // Configure the one-to-many relationship between muscle and exercises
             modelBuilder.Entity<Muscle>()
                 .HasMany(m => m.Exercises)
@@ -86,6 +88,37 @@ namespace Infrastructure.Data
                 .WithMany(f => f.workoutPlanExercises)
                 .HasForeignKey(uf => uf.ExerciseId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // Configure the one-to-one relationship between user and coach and client
+            modelBuilder.Entity<AppUser>()
+                .HasOne(u => u.Client)
+                .WithOne(c => c.AppUser)
+                .HasForeignKey<Client>(c => c.AppUserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            modelBuilder.Entity<AppUser>()
+                .HasOne(u => u.Coach)
+                .WithOne(c => c.AppUser)
+                .HasForeignKey<Coach>(c => c.AppUserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Configure the many-to-many relationship between Coach and Clients
+            modelBuilder.Entity<CoachsAndClients>()
+                 .HasKey(uf => new { uf.ClientId, uf.CoachId });
+
+            modelBuilder.Entity<CoachsAndClients>()
+                .HasOne(uf => uf.Client)
+                .WithMany(u => u.CoachsAndClients)
+                .HasForeignKey(uf => uf.ClientId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CoachsAndClients>()
+                .HasOne(uf => uf.Coach)
+                .WithMany(f => f.CoachsAndClients)
+                .HasForeignKey(uf => uf.CoachId)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
 
             modelBuilder.Entity<AppUser>().Ignore(c => c.LockoutEnabled).Ignore(c => c.TwoFactorEnabled);
