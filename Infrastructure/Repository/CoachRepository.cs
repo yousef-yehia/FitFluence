@@ -17,13 +17,24 @@ namespace FitFluence.Repository
             _userRepository = userRepository;
         }
 
+        public async Task AddClientToCoachAsync(int clientId, int coachId)
+        {
+            await _appDbContext.CoachsAndClients.AddAsync(new CoachAndClient { CoachId = coachId, ClientId = clientId });
+            await _appDbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> ClientExistInCoachClientsAsync(int coachId, int clientId)
+        {
+            return await _appDbContext.CoachsAndClients.AnyAsync(c => c.CoachId == coachId && c.ClientId == clientId);
+        }
+
         public async Task CreateAsync(Coach coach)
         {
             await _appDbContext.AddAsync(coach);
             await _appDbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteUserAsync(Coach coach)
+        public async Task DeleteCoachAsync(Coach coach)
         {
             _appDbContext.Coachs.Remove(coach);
             await _appDbContext.SaveChangesAsync();
@@ -31,7 +42,7 @@ namespace FitFluence.Repository
             await _userRepository.DeleteUserAsync(user);
         }
 
-        public async Task<List<Coach>> GetAllUsersAsync(Expression<Func<Coach, bool>> filter = null, string includeProperties = null)
+        public async Task<List<Coach>> GetAllCoachsAsync(Expression<Func<Coach, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<Coach> usersQuery = _appDbContext.Coachs.AsQueryable();
             if (filter != null)
@@ -75,7 +86,9 @@ namespace FitFluence.Repository
         {
             _appDbContext.Coachs.Update(coach);
             await _appDbContext.SaveChangesAsync();
+
             var user = await _userRepository.GetAsync(u => u.Id == coach.AppUserId);
+
             await _userRepository.UpdateAsync(user);
             return coach;
         }

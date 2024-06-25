@@ -22,7 +22,7 @@ namespace Infrastructure.Data
         public DbSet<WorkoutPlanExercise> WorkoutPlanExercises { get; set; }
         public DbSet<Coach> Coachs { get; set; }
         public DbSet<Client> Clients { get; set; }
-        public DbSet<CoachsAndClients> CoachsAndClients { get; set; }
+        public DbSet<CoachAndClient> CoachsAndClients { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -104,16 +104,16 @@ namespace Infrastructure.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Configure the many-to-many relationship between Coach and Clients
-            modelBuilder.Entity<CoachsAndClients>()
+            modelBuilder.Entity<CoachAndClient>()
                  .HasKey(uf => new { uf.ClientId, uf.CoachId });
 
-            modelBuilder.Entity<CoachsAndClients>()
+            modelBuilder.Entity<CoachAndClient>()
                 .HasOne(uf => uf.Client)
                 .WithMany(u => u.CoachsAndClients)
                 .HasForeignKey(uf => uf.ClientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<CoachsAndClients>()
+            modelBuilder.Entity<CoachAndClient>()
                 .HasOne(uf => uf.Coach)
                 .WithMany(f => f.CoachsAndClients)
                 .HasForeignKey(uf => uf.CoachId)

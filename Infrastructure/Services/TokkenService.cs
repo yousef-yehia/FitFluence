@@ -36,6 +36,7 @@ namespace Infrastructure.Services
             {
                 Subject = new ClaimsIdentity(claims),
                 SigningCredentials = creds,
+                Expires = DateTime.MaxValue,
                 Issuer = _config["Token:Issuer"]
             };
 

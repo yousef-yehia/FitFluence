@@ -52,8 +52,9 @@ namespace Api.Controllers
             var userToReturn = new LoginResponseDto
             {
                 UserName = user.UserName,
+                UserId = user.Id,
+                Email = user.Email,
                 ImageUrl = user.ImageUrl,
-                Token = _tokenService.CreateToken(user)
             };
 
             var response = _response.OkResponse(userToReturn);
@@ -134,7 +135,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("registerCoach")]
-        public async Task<ActionResult<ApiResponse>> RegisterCoach([FromBody] CoachRegisterRequestDto model)
+        public async Task<ActionResult<ApiResponse>> RegisterCoach(CoachRegisterRequestDto model)
         {
             try
             {

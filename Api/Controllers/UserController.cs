@@ -1,19 +1,13 @@
-﻿using System.Net;
-using System.Security.Claims;
-using System.Text.Json;
-using Api.ApiResponses;
+﻿using Api.ApiResponses;
 using Api.DTO.AuthDto;
 using Api.Extensions;
 using Api.Helper;
 using AutoMapper;
 using Core.Interfaces;
 using Core.Models;
-using Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers
 {
@@ -24,15 +18,13 @@ namespace Api.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IUserRepository _userRepository;
         private readonly ApiResponse _response;
-        private readonly AppDbContext _appDbContext;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
-        public UserController(UserManager<AppUser> userManager, IUserRepository userRepository, ApiResponse response, AppDbContext appDbContext, IMapper mapper, IPhotoService photoService)
+        public UserController(UserManager<AppUser> userManager, IUserRepository userRepository, ApiResponse response, IMapper mapper, IPhotoService photoService)
         {
             _userManager = userManager;
             _userRepository = userRepository;
             _response = response;
-            _appDbContext = appDbContext;
             _mapper = mapper;
             _photoService = photoService;
         }
@@ -55,22 +47,7 @@ namespace Api.Controllers
             }
         }
 
-        [HttpGet("GetAllCoaches", Name = "GetAllCoaches")]
-        [ResponseCache(Duration = 10)]
-        public async Task<ActionResult<ApiResponse>> GetAllCoaches(int pageSize = 0, int pageNumber = 1)
-        {
-            try
-            {
-                var AppUserList = await _userManager.GetUsersInRoleAsync(Role.roleCoach);
-                var paginatedUsers = Pagination<AppUser>.Paginate(AppUserList.ToList(), pageNumber, pageSize);
 
-                return Ok(_response.OkResponse(paginatedUsers));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
-            }
-        }
         [HttpGet("GetAllClients", Name = "GetAllClients")]
         [ResponseCache(Duration = 10)]
         public async Task<ActionResult<ApiResponse>> GetAllClients(int pageSize = 0, int pageNumber = 1)
@@ -88,32 +65,30 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost("UploadPhoto", Name = "UploadPhoto")]
-        public async Task<ActionResult<ApiResponse>> UploadPhoto(IFormFile file)
+        [HttpPost("UpdateProfilePhoto", Name = "UpdateProfilePhoto")]
+        [Authorize]
+        public async Task<ActionResult<ApiResponse>> UpdateProfilePhoto(IFormFile file)
         {
+            var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
             if (file == null || file.Length == 0)
             {
-                _response.StatusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                return BadRequest(_response);
+                return BadRequest(_response.BadRequestResponse("the file is null or empty"));
             }
 
-            // Get the file extension
             var fileExtension = Path.GetExtension(file.FileName)?.ToLowerInvariant();
 
-            // Check if the file extension is jpg or png
             if (fileExtension != ".jpg" && fileExtension != ".png" && fileExtension != ".jpeg")
             {
-                _response.StatusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                return BadRequest("Only JPG and PNG files are allowed.");
+                return BadRequest( _response.BadRequestResponse("Only JPG, PNG and jpeg files are allowed."));
             }
 
             var result = await _photoService.AddProfilePhotoAsync(file);
 
-            _response.Result = result;
-            _response.StatusCode = HttpStatusCode.OK;
-            return Ok(_response);
+            user.ImageUrl = result.Url.ToString();
+            await _userManager.UpdateAsync(user);
+           
+            return Ok(_response.OkResponse("image updated successfully"));
 
         }
 
@@ -135,10 +110,7 @@ namespace Api.Controllers
         //}
 
         [HttpGet("GetUser", Name = "GetUser")]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ResponseCache(CacheProfileName = "Default30")]
+        [ResponseCache(Duration = 10)]
         public async Task<ActionResult<ApiResponse>> GetUser(string id)
         {
             if (id == null)
@@ -154,7 +126,6 @@ namespace Api.Controllers
             }
             return Ok(_response.OkResponse(user));
         }
-
 
 
         [HttpDelete("DeleteUser", Name = "DeleteUser")]
@@ -179,11 +150,8 @@ namespace Api.Controllers
 
         [HttpPut("UpdateClient {id}", Name = "UpdateClient")]
         //[Authorize(Roles = "admin")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Authorize]
-
-        public async Task<IActionResult> UpdateClient(int clientid, [FromBody] UpdateClientDto updateClientDto)
+        public async Task<IActionResult> UpdateClient(UpdateClientDto updateClientDto)
         {
             try
             {
@@ -224,10 +192,8 @@ namespace Api.Controllers
 
         [HttpPut("UpdateCoach {id}", Name = "UpdateCoach")]
         //[Authorize(Roles = "admin")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Authorize]
-        public async Task<IActionResult> UpdateCoach(int Coachid, [FromBody] UpdateClientDto updateCoachDto)
+        public async Task<IActionResult> UpdateCoach(UpdateClientDto updateCoachDto)
         {
             try
             {

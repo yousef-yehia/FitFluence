@@ -10,5 +10,6 @@ namespace Core.Interfaces
         public Task<List<Client>> GetAllClientsAsync(Expression<Func<Client, bool>>? filter = null, string? includeProperties = null);
         Task<Client> GetAsync(Expression<Func<Client, bool>> filter = null, bool tracked = true, string? includeProperties = null);
         public Task DeleteUserAsync(Client client);
+        public Task<int> GetClientIdFromAppUserIdAsync(string appUserId);
     }
 }

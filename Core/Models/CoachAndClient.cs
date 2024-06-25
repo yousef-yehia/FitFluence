@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    public class CoachsAndClients
+    public class CoachAndClient
     {
         public int CoachId { get; set; }    
         public Coach Coach { get; set; }

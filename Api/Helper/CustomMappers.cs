@@ -1,4 +1,5 @@
-﻿using Api.DTO.ExerciseDto;
+﻿using Api.DTO.CoachDto;
+using Api.DTO.ExerciseDto;
 using Api.DTO.WorkoutPlanDto;
 using Core.Models;
 
@@ -35,6 +36,26 @@ namespace Api.Helper
                 FocusAreaUrl = e.FocusAreaUrl,
             }).ToList();
             return exerciseReturn;
+        }
+
+        public static List<CoachReturnDto> MapCoachToCoachReturnDto(List<Coach> coaches)
+        {
+            var coachReturn = coaches.Select(u => new CoachReturnDto
+            {
+                Age = u.AppUser.Age,
+                Email = u.AppUser.Email,
+                Name = u.AppUser.Name,
+                PhoneNumber = u.AppUser.PhoneNumber,
+                Gender = u.AppUser.Gender,
+                CvUrl = u.CvUrl,
+                FatWeight = u.AppUser.FatWeight,
+                Height = u.AppUser.Height,
+                ImageUrl = u.AppUser.ImageUrl,
+                MuscleWeight = u.AppUser.MuscleWeight,
+                UserId = u.AppUser.Id,
+                Weight = u.AppUser.Weight,
+            }).ToList();
+            return coachReturn;
         }
     }
 }

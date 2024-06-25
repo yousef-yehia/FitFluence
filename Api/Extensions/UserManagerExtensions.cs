@@ -19,6 +19,15 @@ namespace Api.Extensions
             return await userManager.Users
                 .Include(x => x.FavouriteFoods)
                 .SingleOrDefaultAsync(x => x.Email == user.FindFirstValue(ClaimTypes.Email));
+        } 
+        public static async Task<AppUser> FindByEmailFromClaimsPrincipalWithCoach(this UserManager<AppUser> userManager,
+            ClaimsPrincipal user)
+        {
+            return await userManager.Users
+                .Include(x => x.Coach)
+                .SingleOrDefaultAsync(x => x.Email == user.FindFirstValue(ClaimTypes.Email));
         }
+
+
     }
 }
