@@ -51,10 +51,7 @@ namespace Api.Controllers
 
 
 
-        [HttpGet("GetFood {id:int}", Name = "GetFood")]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [HttpGet("GetFood", Name = "GetFood")]
         [ResponseCache(Duration = 10)]
         public async Task<ActionResult<ApiResponse>> GetFood(int id)
         {

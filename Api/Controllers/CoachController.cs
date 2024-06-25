@@ -84,5 +84,28 @@ namespace Api.Controllers
                 return BadRequest(_response.BadRequestResponse(ex.Message));
             }
         }
+
+        [HttpGet("GetCoachClients", Name = "GetCoachClients")]
+        [Authorize]
+        public async Task<ActionResult<ApiResponse>> GetCoachClients()
+        {
+            try
+            {
+                var appUser = await _userManager.FindByEmailFromClaimsPrincipalWithCoach(User);
+                var coachId = appUser.Coach.CoachId;
+                if (coachId == 0)
+                {
+                    return NotFound(_response.NotFoundResponse("Coach is not found"));
+                }
+
+                var coachClients = await _coachRepository.GetAllCoachClientsAsync(coachId);
+                var coachClientsReturn = CustomMappers.MapClientToClientReturnDto(coachClients);
+                return Ok(_response.OkResponse(coachClientsReturn));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
     }
 }

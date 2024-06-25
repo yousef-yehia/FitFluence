@@ -42,6 +42,12 @@ namespace FitFluence.Repository
             await _userRepository.DeleteUserAsync(user);
         }
 
+        public async Task<List<Client>> GetAllCoachClientsAsync(int coachId)
+        {
+            var clients = await _appDbContext.Clients.Include(c=> c.AppUser).Where(c => c.CoachsAndClients.Any(cac => cac.CoachId == coachId)).ToListAsync();
+            return clients;
+        }
+
         public async Task<List<Coach>> GetAllCoachsAsync(Expression<Func<Coach, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<Coach> usersQuery = _appDbContext.Coachs.AsQueryable();

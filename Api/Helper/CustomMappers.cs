@@ -57,5 +57,24 @@ namespace Api.Helper
             }).ToList();
             return coachReturn;
         }
+        public static List<ClientReturnDto> MapClientToClientReturnDto(List<Client> clients)
+        {
+            var clientReturn = clients.Select(u => new ClientReturnDto
+            {
+                Age = u.AppUser.Age,
+                Email = u.AppUser.Email,
+                UserName = u.AppUser.UserName,
+                Name = u.AppUser.Name,
+                PhoneNumber = u.AppUser.PhoneNumber,
+                Gender = u.AppUser.Gender,
+                FatWeight = u.AppUser.FatWeight,
+                Height = u.AppUser.Height,
+                ImageUrl = u.AppUser.ImageUrl,
+                MuscleWeight = u.AppUser.MuscleWeight,
+                UserId = u.AppUser.Id,
+                Weight = u.AppUser.Weight,
+            }).ToList();
+            return clientReturn;
+        }
     }
 }
