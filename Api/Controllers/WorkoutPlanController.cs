@@ -40,7 +40,7 @@ namespace Api.Controllers
                 var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
                 var workOutplans = await _workoutPlanRepository.GetAllWorkoutPlansWithExercisesAsync(user);
 
-                var workoutPlansReturn = CustomMappers.MapWorkoutplanToWorkoutPLanRetirnDto(workOutplans);
+                var workoutPlansReturn = CustomMappers.MapWorkoutplanToWorkoutPLanReturnDto(workOutplans);
 
                 return Ok(_response.OkResponse(workoutPlansReturn));
             }
@@ -53,7 +53,7 @@ namespace Api.Controllers
 
         [HttpPost("AddExerciseToWorkoutPlan")]
         [Authorize]
-        public async Task<ActionResult<ApiResponse>> AddExerciseToWorkoutPlan(int workoutPlanId, string exerciseName) 
+        public async Task<ActionResult<ApiResponse>> AddExerciseToWorkoutPlan(int workoutPlanId, string exerciseName, int numberOfReps, double weight) 
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Api.Controllers
                     return NotFound(_response.NotFoundResponse("exercise name is wrong"));
                 }
 
-                await _workoutPlanRepository.AddExerciseToWorkoutPLanAsync(workoutPlanId, exercise);
+                await _workoutPlanRepository.AddExerciseToWorkoutPLanAsync(workoutPlanId, exercise, numberOfReps, weight);
                 return Ok(_response.OkResponse("added"));
             }
             catch (Exception ex)

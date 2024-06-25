@@ -11,7 +11,7 @@ namespace Core.Interfaces
     {
         public Task<List<WorkoutPlan>> GetAllWorkoutPlansWithExercisesAsync(AppUser appUser, string? search = null, string? orderBy = null);
         public Task UpdateWorkoutPlanAsync(int workoutPlanId, string newWorkoutPlanName);
-        public Task AddExerciseToWorkoutPLanAsync(int workoutPlanId, Exercise exercise);
+        public Task AddExerciseToWorkoutPLanAsync(int workoutPlanId, Exercise exercise, int numberOFReps, double weight);
         public Task DeleteExerciseFromWorkoutPlanAsync(int workoutPlanId, int exerciseId);
 
     }

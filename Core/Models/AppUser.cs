@@ -16,5 +16,6 @@ namespace Core.Models
         public List<UserGoals> UserGoals { get; set; }
         public List<FavouriteFood> FavouriteFoods  { get; set; }
         public List<WorkoutPlan> WorkoutPlans { get; set; }
+        public List<WorkoutHistory> WorkoutHistories { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Api.DTO.CoachDto;
 using Api.DTO.ExerciseDto;
+using Api.DTO.WorkoutHistoryDto;
 using Api.DTO.WorkoutPlanDto;
 using Core.Models;
 
@@ -7,7 +8,7 @@ namespace Api.Helper
 {
     public static class CustomMappers
     {
-        public static List<WorkoutPlanReturnDto> MapWorkoutplanToWorkoutPLanRetirnDto(List<WorkoutPlan> workOutplans)
+        public static List<WorkoutPlanReturnDto> MapWorkoutplanToWorkoutPLanReturnDto(List<WorkoutPlan> workOutplans)
         {
             var workoutPlansReturn = workOutplans.Select(w => new WorkoutPlanReturnDto
             {
@@ -75,6 +76,24 @@ namespace Api.Helper
                 Weight = u.AppUser.Weight,
             }).ToList();
             return clientReturn;
+        }
+
+        public static List<WorkoutHistoryReturnDto> MapWorkoutHistoryToWorkoutHistoryReturnDto(List<WorkoutHistory> workOutHostories)
+        {
+            var workoutPlansReturn = workOutHostories.Select(w => new WorkoutHistoryReturnDto
+            {
+                Id = w.Id,
+                Date = w.Date,
+                WorkoutHistoryExercises = w.WorkoutHistoryExercises.Select(we => new WorkoutHistroyExerciseReturnDto
+                {
+                    Weight = we.Weight,
+                    ExerciseGifUrl = we.ExerciseGifUrl,
+                    ExerciseName = we.ExerciseName,
+                    NumberOfReps = we.NumberOfReps,
+                    ExerciseId = we.ExerciseId,
+                }).ToList()
+            }).ToList();
+            return workoutPlansReturn;
         }
     }
 }

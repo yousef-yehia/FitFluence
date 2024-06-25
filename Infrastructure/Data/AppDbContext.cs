@@ -20,6 +20,8 @@ namespace Infrastructure.Data
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<WorkoutPlan> WorkoutPlans { get; set; }
         public DbSet<WorkoutPlanExercise> WorkoutPlanExercises { get; set; }
+        public DbSet<WorkoutHistory> WorkoutHistories { get; set; }
+        public DbSet<WorkoutHistoryExercise> WorkoutHistoryExercises { get; set; }
         public DbSet<Coach> Coachs { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<CoachAndClient> CoachsAndClients { get; set; }
@@ -73,7 +75,7 @@ namespace Infrastructure.Data
                 .WithMany(e => e.WorkoutPlans)
                 .HasForeignKey(e => e.AppUserId);
 
-            // Configure the many-to-many relationship between user and favourite foods
+            // Configure the many-to-many relationship between workoutPlan and exercise
             modelBuilder.Entity<WorkoutPlanExercise>()
                  .HasKey(uf => new { uf.WorkoutPlanId, uf.ExerciseId });
 
@@ -85,9 +87,31 @@ namespace Infrastructure.Data
 
             modelBuilder.Entity<WorkoutPlanExercise>()
                 .HasOne(uf => uf.Exercise)
-                .WithMany(f => f.workoutPlanExercises)
+                .WithMany(f => f.WorkoutPlanExercises)
                 .HasForeignKey(uf => uf.ExerciseId)
                 .OnDelete(DeleteBehavior.Cascade);
+                        
+            // Configure the one-to-many relationship between user and WorkoutHistory 
+            modelBuilder.Entity<WorkoutHistory>()
+                .HasOne(m => m.AppUser)
+                .WithMany(e => e.WorkoutHistories)
+                .HasForeignKey(e => e.AppUserId);
+
+            // Configure the many-to-many relationship between WorkoutHistory and exercise
+            modelBuilder.Entity<WorkoutHistoryExercise>()
+                 .HasKey(uf => new { uf.WorkoutHistoryId, uf.ExerciseId });
+
+            modelBuilder.Entity<WorkoutHistoryExercise>()
+                .HasOne(uf => uf.WorkoutHistory)
+                .WithMany(u => u.WorkoutHistoryExercises)
+                .HasForeignKey(uf => uf.WorkoutHistoryId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<WorkoutHistoryExercise>()
+                .HasOne(uf => uf.Exercise)
+                .WithMany(f => f.WorkoutHistoryExercises)
+                .HasForeignKey(uf => uf.ExerciseId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             // Configure the one-to-one relationship between user and coach and client
             modelBuilder.Entity<AppUser>()

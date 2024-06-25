@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240625192126_UpdateInWorkoutPLanExercise")]
+    partial class UpdateInWorkoutPLanExercise
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -314,57 +317,6 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("UserGoals");
                 });
 
-            modelBuilder.Entity("Core.Models.WorkoutHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("WorkoutHistories");
-                });
-
-            modelBuilder.Entity("Core.Models.WorkoutHistoryExercise", b =>
-                {
-                    b.Property<int>("WorkoutHistoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExerciseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ExerciseGifUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExerciseName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NumberOfReps")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Weight")
-                        .HasColumnType("float");
-
-                    b.HasKey("WorkoutHistoryId", "ExerciseId");
-
-                    b.HasIndex("ExerciseId");
-
-                    b.ToTable("WorkoutHistoryExercises");
-                });
-
             modelBuilder.Entity("Core.Models.WorkoutPlan", b =>
                 {
                     b.Property<int>("Id")
@@ -643,36 +595,6 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("Goal");
                 });
 
-            modelBuilder.Entity("Core.Models.WorkoutHistory", b =>
-                {
-                    b.HasOne("Core.Models.AppUser", "AppUser")
-                        .WithMany("WorkoutHistories")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("Core.Models.WorkoutHistoryExercise", b =>
-                {
-                    b.HasOne("Core.Models.Exercise", "Exercise")
-                        .WithMany("WorkoutHistoryExercises")
-                        .HasForeignKey("ExerciseId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Core.Models.WorkoutHistory", "WorkoutHistory")
-                        .WithMany("WorkoutHistoryExercises")
-                        .HasForeignKey("WorkoutHistoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Exercise");
-
-                    b.Navigation("WorkoutHistory");
-                });
-
             modelBuilder.Entity("Core.Models.WorkoutPlan", b =>
                 {
                     b.HasOne("Core.Models.AppUser", "AppUser")
@@ -687,7 +609,7 @@ namespace Infrastructure.Data.Migrations
             modelBuilder.Entity("Core.Models.WorkoutPlanExercise", b =>
                 {
                     b.HasOne("Core.Models.Exercise", "Exercise")
-                        .WithMany("WorkoutPlanExercises")
+                        .WithMany("workoutPlanExercises")
                         .HasForeignKey("ExerciseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -764,8 +686,6 @@ namespace Infrastructure.Data.Migrations
 
                     b.Navigation("UserGoals");
 
-                    b.Navigation("WorkoutHistories");
-
                     b.Navigation("WorkoutPlans");
                 });
 
@@ -781,9 +701,7 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Models.Exercise", b =>
                 {
-                    b.Navigation("WorkoutHistoryExercises");
-
-                    b.Navigation("WorkoutPlanExercises");
+                    b.Navigation("workoutPlanExercises");
                 });
 
             modelBuilder.Entity("Core.Models.Food", b =>
@@ -799,11 +717,6 @@ namespace Infrastructure.Data.Migrations
             modelBuilder.Entity("Core.Models.Muscle", b =>
                 {
                     b.Navigation("Exercises");
-                });
-
-            modelBuilder.Entity("Core.Models.WorkoutHistory", b =>
-                {
-                    b.Navigation("WorkoutHistoryExercises");
                 });
 
             modelBuilder.Entity("Core.Models.WorkoutPlan", b =>

@@ -38,7 +38,7 @@ namespace Infrastructure.Repository
             }
             return workoutPlan;
         }
-        public async Task AddExerciseToWorkoutPLanAsync(int workoutPlanId, Exercise exercise)
+        public async Task AddExerciseToWorkoutPLanAsync(int workoutPlanId, Exercise exercise, int numberOFReps, double weight)
         {
 
             _appDbContext.WorkoutPlanExercises.Add(new WorkoutPlanExercise
@@ -46,7 +46,9 @@ namespace Infrastructure.Repository
                 ExerciseId = exercise.Id,
                 ExerciseName = exercise.Name,
                 ExerciseGifUrl = exercise.GifUrl,
-                WorkoutPlanId = workoutPlanId
+                WorkoutPlanId = workoutPlanId,
+                NumberOfReps = numberOFReps,
+                Weight = weight
             });
             await _appDbContext.SaveChangesAsync();
         } 
