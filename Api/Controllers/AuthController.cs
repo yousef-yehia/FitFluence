@@ -3,6 +3,7 @@ using System.Security.Claims;
 using Api.ApiResponses;
 using Api.DTO.AuthDto;
 using Api.Extensions;
+using Api.Helper;
 using AutoMapper;
 using Core.Interfaces;
 using Core.Models;
@@ -52,9 +53,16 @@ namespace Api.Controllers
             var userToReturn = new LoginResponseDto
             {
                 UserName = user.UserName,
-                UserId = user.Id,
-                Email = user.Email,
                 ImageUrl = user.ImageUrl,
+                Email = user.Email,
+                UserId = user.Id,
+                Token = _tokenService.CreateToken(user),
+                Age = user.Age,
+                Gender = user.Gender,
+                Height = user.Height,
+                Weight = user.Weight,
+                Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault()
+
             };
 
             var response = _response.OkResponse(userToReturn);
@@ -253,7 +261,12 @@ namespace Api.Controllers
                 ImageUrl = user.ImageUrl,
                 Email = user.Email,
                 UserId = user.Id,
-                Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
+                Age = user.Age,
+                Gender = user.Gender,
+                Height = user.Height,
+                Weight = user.Weight,
+                Role =  _userManager.GetRolesAsync(user).Result.FirstOrDefault()
             };
 
             var response = _response.OkResponse(userToReturn);

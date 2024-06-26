@@ -88,7 +88,34 @@ namespace Api.Controllers
             user.ImageUrl = result.Url.ToString();
             await _userManager.UpdateAsync(user);
            
-            return Ok(_response.OkResponse("image updated successfully"));
+            return Ok(_response.OkResponse(result.Url.ToString()));
+        }
+
+        [HttpPost("UpdateUser", Name = "UpdateUser")]
+        [Authorize]
+        public async Task<ActionResult<ApiResponse>> UpdateUser(UpdateUserDto model)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
+                if (model.ImageUrl != null) user.ImageUrl = model.ImageUrl;
+                if (model.Age != null) user.Age = model.Age.Value;
+                if (model.Name != null) user.Name = model.Name;
+                if (model.ImageUrl != null) user.ImageUrl = model.ImageUrl;
+                if (model.Height != null) user.Height = model.Height.Value;
+                if (model.Weight != null) user.Weight = model.Weight.Value;
+                if (model.FatWeight != null) user.FatWeight = model.FatWeight.Value;
+                if (model.MuscleWeight != null) user.MuscleWeight = model.MuscleWeight.Value;
+
+                await _userManager.UpdateAsync(user);
+
+                return Ok(_response.OkResponse("User Updated Successfully"));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
 
         }
 

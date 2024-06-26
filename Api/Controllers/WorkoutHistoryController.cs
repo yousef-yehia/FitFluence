@@ -3,9 +3,7 @@ using Api.Extensions;
 using Api.Helper;
 using Core.Interfaces;
 using Core.Models;
-using CsvHelper.Configuration.Attributes;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,13 +43,24 @@ namespace Api.Controllers
             {
                 var appUser = await _userManager.FindByEmailFromClaimsPrincipalWithWorkoutHistories(User);
 
-                WorkoutHistory workoutHistory = _workoutHistoryRepository.GetWorkHistoriesByDate(appUser, DateTime.UtcNow.Date);
+                WorkoutHistory workoutHistory =await _workoutHistoryRepository.GetWorkoutHistoryByDateAsync(appUser.Id, DateTime.UtcNow.Date);
+
+                var exercise = await _exerciseRepository.GetExerciseByIdAsync(exerciseId);
 
                 if (workoutHistory == null)
                 {
+                    if(_workoutHistoryRepository.GetWorkHistoriesCount(appUser) >= 10)
+                    {
+                        await _workoutHistoryRepository.DeleteWorkoutHistoryAsync(appUser.Id);
+                    }
+
                     workoutHistory = await _workoutHistoryRepository.CreateWorkoutHistoryAsync(appUser.Id);
                 }
-                var exercise = await _exerciseRepository.GetExerciseByIdAsync(exerciseId);
+
+                if(_workoutHistoryRepository.IsExerciseInWorkoutHistory(exercise, workoutHistory))
+                {
+                    return BadRequest(_response.BadRequestResponse("Exercise already in workout history"));
+                }
 
                 await _workoutHistoryRepository.AddExerciseToWorkoutHisterAsync(workoutHistory, exercise, numberOfReps, weight);
 
@@ -61,7 +70,33 @@ namespace Api.Controllers
             {
                 return BadRequest(_response.BadRequestResponse(ex.Message));
             }
+        }
+        
+        [HttpDelete("RemoveExerciseFromWorkoutHistory", Name = "RemoveExerciseFromWorkoutHistory")]
+        [Authorize]
+        public async Task<ActionResult<ApiResponse>> RemoveExerciseFromWorkoutHistory(int exerciseId)
+        {
+            try
+            {
+                var appUser = await _userManager.FindByEmailFromClaimsPrincipal(User);
 
+                WorkoutHistory workoutHistory = await _workoutHistoryRepository.GetWorkoutHistoryByDateAsync(appUser.Id, DateTime.UtcNow.Date);
+
+                var exercise = await _exerciseRepository.GetExerciseByIdAsync(exerciseId);
+
+                if (! _workoutHistoryRepository.IsExerciseInWorkoutHistory(exercise, workoutHistory))
+                {
+                    return BadRequest(_response.BadRequestResponse("Exercise is not in workout history"));
+                }
+
+                await _workoutHistoryRepository.RemoveExerciseFromWorkoutHistoryAsync(workoutHistory, exercise);
+
+                return Ok(_response.OkResponse("exercise is removed from workout history"));
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
         }
     }
 }

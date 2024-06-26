@@ -15,8 +15,9 @@ namespace Core.Interfaces
         public Task DeleteWorkoutHistoryAsync(string appUserId);
         public Task<List<WorkoutHistory>> GetAllWorkoutHistoriesAsync(string appUserId);
         public bool DoesWorkHistoryDateExistsAsync(AppUser appUser, DateTime date);
+        public bool IsExerciseInWorkoutHistory(Exercise exercise, WorkoutHistory workoutHistory);
         public int GetWorkHistoriesCount(AppUser appUser);
-        public WorkoutHistory GetWorkHistoriesByDate(AppUser appUser, DateTime date);
+        public Task<WorkoutHistory> GetWorkoutHistoryByDateAsync(string appUserId, DateTime date);
 
     }
 }

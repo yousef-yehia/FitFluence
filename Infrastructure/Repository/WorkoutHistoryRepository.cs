@@ -73,16 +73,25 @@ namespace Infrastructure.Repository
         }
         public int GetWorkHistoriesCount(AppUser appUser)
         {
-            return appUser.WorkoutHistories.Count();
+            return appUser.WorkoutHistories.Count;
         } 
-        public WorkoutHistory GetWorkHistoriesByDate(AppUser appUser, DateTime date)
+        public async Task<WorkoutHistory> GetWorkoutHistoryByDateAsync(string appUserId, DateTime date)
         {
-            return appUser.WorkoutHistories.Where(w=> w.Date == date).FirstOrDefault();
+            return await _appDbContext.WorkoutHistories.Where(w => w.Date == date && w.AppUserId== appUserId).Include(w=>w.WorkoutHistoryExercises).AsNoTracking().FirstOrDefaultAsync();
         }
-
-        public Task RemoveExerciseFromWorkoutHistoryAsync(WorkoutHistory workoutHistory, Exercise exercise)
+        public bool IsExerciseInWorkoutHistory(Exercise exercise, WorkoutHistory workoutHistory)
         {
-            throw new NotImplementedException();
+            return workoutHistory.WorkoutHistoryExercises.Any(w => w.ExerciseId == exercise.Id);
+        }   
+
+        public async Task RemoveExerciseFromWorkoutHistoryAsync(WorkoutHistory workoutHistory, Exercise exercise)
+        {
+            _appDbContext.WorkoutHistoryExercises.Remove(new WorkoutHistoryExercise
+            {
+                WorkoutHistoryId = workoutHistory.Id,
+                ExerciseId = exercise.Id,
+            });
+            await _appDbContext.SaveChangesAsync();
         }
 
     }
