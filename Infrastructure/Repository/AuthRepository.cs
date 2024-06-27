@@ -6,6 +6,7 @@ using System.Web;
 using AutoMapper;
 using Core.Interfaces;
 using Core.Models;
+using Core.UtilityModels;
 using Infrastructure;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;

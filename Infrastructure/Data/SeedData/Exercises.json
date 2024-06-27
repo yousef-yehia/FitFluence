@@ -1,82 +1,810 @@
 ﻿[
   {
-    "Name": "Bench Press",
-    "Sets": "12 to 15",
-    "Description": "A weight training exercise where you lie on a bench and press a weight upwards.",
-    "GifUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.strengthlog.com%2Fupper-back-exercises%2F&psig=AOvVaw3JtUXBdr4zdhCgfnN-I8tG&ust=1718702748001000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKjG3Oio4oYDFQAAAAAdAAAAABAY",
-    "FocusAreaUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mayoclinic.org%2Fhealthy-lifestyle%2Fadult-health%2Fin-depth%2Fback-pain%2Fart-20546859&psig=AOvVaw3JtUXBdr4zdhCgfnN-I8tG&ust=1718702748001000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKjG3Oio4oYDFQAAAAAdAAAAABAe",
+    "Name": "STANDING MEDICINE BALL CHEST PASS",
+    "reps": "8 to 12",
+    "Description": "1. Setup:\nStand with your feet shoulder-width apart.\nHold the medicine ball with both hands at chest level, elbows bent and pointing outward.\nPosition the ball close to your chest, maintaining a firm grip.\n\n2. Execution:\nBegin by bracing your core and engaging your lower body muscles.\nPush the ball forcefully away from your chest using both hands simultaneously.\nAs you extend your arms, fully extend your elbows but do not lock them out.\nThe goal is to release the ball in a controlled manner, propelling it forward explosively.\nFollow through with your arm movement, and make sure your wrists stay straight during the entire motion.\n\n3. Reception:\nAs the ball travels away from you, quickly bring your hands back to your chest.\nPrepare to catch the ball as it rebounds back toward you.\nCatch the ball before it hits the ground, absorb the impact by bending your elbows slightly and flexing your shoulders.\n\n4. Repeat:\nAfter catching the ball, reset your starting position and repeat the movement for the desired number of repetitions.\n\nTips:\nAlways warm up before performing explosive exercises to prepare your muscles and joints.\nKeep your core engaged throughout the exercise to maintain stability and prevent excess strain on your lower back.\nUse a medicine ball that’s appropriate for your fitness level and goals. The weight of the ball will affect the intensity of the exercise.\nFocus on explosive power and coordination rather than using excessive weights.\nEnsure you have adequate space in front of you to safely perform the exercise without obstacles.", 
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/08/Standing-Medicine-Ball-Chest-Pass.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/08/Medicine-Ball-Chest-Pass-muscles-worked-300x300.png",
     "MuscleId": 1
   },
   {
-    "Name": "Push-Up",
-    "Sets": "12 to 15",
-    "Description": "An upper body exercise performed by lowering and raising the body using the arms.",
-    "GifUrl": "https://example.com/gifs/push_up.gif",
-    "FocusAreaUrl": "https://example.com/focus/chest.png",
+    "Name": "INCLINE CHEST FLY MACHINE",
+    "reps": "8 to 12",
+    "Description": "1. Adjust the Machine: Set the machine’s seat and arms to an incline that targets your upper chest. Ensure that the handles are positioned at a height comfortable for your reach.\n\n2. Seat Positioning: Sit on the machine with your back flat against the backrest and your feet firmly planted on the floor. Grab the handles with an overhand grip, palms facing inward.\n\n3. Initial Position: Start with your arms extended straight out to the sides, slightly bent at the elbows. Your elbows should be at a level slightly below your shoulders.\n\n4. Movement: Keeping a slight bend in your elbows, exhale and bring the handles or levers together in front of you. Focus on using your chest muscles to perform the movement. Visualize hugging a large tree as you bring your arms together.\n\n5. Contraction: Hold the fully contracted position for a moment, feeling the tension in your chest muscles.\n\n6. Return: Inhale and slowly reverse the movement, bringing your arms back to the starting position in a controlled manner. Ensure a smooth and controlled motion without locking out your elbows.\n\n7. Repeat: Aim for a specific number of repetitions and sets, considering a weight that challenges your muscles without compromising your form.\n\nFORM TIPS:\nEnsure a smooth, controlled motion during both the concentric (bringing the handles together) and eccentric (returning to starting position) phases of the exercise.\nKeep your back and head against the machine’s backrest.\nEngage your chest muscles throughout the movement, and do not rely on your shoulders or arms to lift the weight. Focus on feeling the stretch and contraction in your chest muscles with each repetition.\nDo not fully lock your elbows at the end of the motion to avoid unnecessary strain on the joints.\nAvoid using momentum or swinging your body to complete the movement.\nAdjust the weight according to your strength level, starting lighter if you’re new to the exercise and increasing gradually as you get more comfortable with the movement.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/06/Incline-Chest-Fly-Machine.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
     "MuscleId": 1
   },
   {
-    "Name": "Pull-Up",
-    "Sets": "12 to 15",
-    "Description": "An upper body exercise where you pull yourself up until your chin is above the bar.",
-    "GifUrl": "https://example.com/gifs/pull_up.gif",
-    "FocusAreaUrl": "https://example.com/focus/back.png",
+    "Name": "BENCH PRESS",
+    "reps": "8 to 12",
+    "Description": "1. Set Up Properly: The first step in executing a proper bench press is to set up your equipment and body position. Make sure your bench is in a stable position, and your feet are firmly planted on the ground. Your back should be flat against the bench, and your shoulder blades should be retracted and squeezed together.\n\n2. Grip the Bar Correctly: Your grip on the bar is an essential aspect of your bench press technique. You should grip the bar with your palms facing away from your body, and your thumbs wrapped around the bar. Your grip should be shoulder-width apart or slightly wider.\n\n3. Engage Your Core: Before you start lifting, engage your core by taking a deep breath and bracing your abdominal muscles. This will help stabilize your spine and prevent any arching or bending during the lift.\n\n4. Lower the Bar with Control: When lowering the bar, focus on controlling the weight and keeping your elbows tucked in at a 45-degree angle. This will help prevent shoulder injuries and improve your pressing power.\n\n5. Press with Explosive Force: When pressing the bar back up, focus on pushing with explosive force and driving your feet into the ground. This will help activate your legs and provide a stable base of support.\n\n6. Keep Your Shoulders Down: Throughout the lift, make sure to keep your shoulders down and away from your ears. This will help prevent any undue stress on your shoulders and keep the focus on your chest and triceps.\n\n7. Use Proper Breathing Technique: Proper breathing technique is crucial when performing the bench press. Take a deep breath before lowering the bar and exhale forcefully as you press it back up.\n\n8. Maintain Proper Elbow Position: Finally, make sure to maintain proper elbow position throughout the lift. Your elbows should be tucked in close to your body and not flared out to the sides. This will help prevent shoulder injuries and maximize your pressing power.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bench-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "PEC DECK FLY    ",
+    "reps": "8 to 12",
+    "Description": "1. Adjust the seat height of the machine so that the handles are at chest height when you are seated.\n\n2. Sit on the machine with your back firmly against the backrest and grasp the handles with your hands. Your arms should be straight and parallel to the floor.\n\n3. Slowly bring the handles together in front of your chest by squeezing your chest muscles. Keep your arms straight throughout the movement.\n\n4. Hold the contraction for a second and then slowly release the handles back to the starting position.\n\n5. Repeat for the desired number of repetitions.\n\nMake sure to keep your back firmly against the backrest throughout the exercise and avoid rounding your shoulders forward. Additionally, focus on using your chest muscles to control the movement rather than your arms or shoulders.\n\nNote: It is important to use proper form and not use too much weight to prevent injury and ensure that the chest muscles are properly targeted. If you are unsure about the proper form or have any concerns, it is recommended to consult with a certified fitness trainer.",
+     "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pec-Deck-Fly.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/peck-deck-fly-muscles-worked.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "DUMBBELL PULLOVER",
+    "reps": "8 to 12",
+    "Description": "1. Position your upper back on the bench. Your feet should be flat on the floor, and your knees bent at a 90-degree angle.\n\n2. Hold a dumbbell with both hands, with your palms facing upward and your arms extended over your chest.\n\n3. Slowly lower the dumbbell back behind your head while keeping your arms straight and your core engaged. You should feel a stretch in your chest and lats as you lower the weight.\n\n4. Pause for a second when the weight is just above your head, then slowly raise the weight back up to the starting position. Make sure to keep your arms straight and avoid bending your elbows.\n\n5. Repeat for the desired number of repetitions.\n\nIt’s important to maintain good form throughout the exercise to avoid injury and get the most out of the movement. If you want to target the chest, then you will need to keep your arms as straight as possible, and your elbows in tight.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Pullover.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Dumbbell-Pullovers-Muscles-Worked-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "LOW CABLE CROSSOVER",
+    "reps": "8 to 12",
+    "Description": "1. Start by setting the cable machine to the lowest setting and attaching a handle to each side.\n\n2. Stand in the center of the cable machine with your feet shoulder-width apart and facing the machine. Grab a handle in each hand and bring your hands up to shoulder height. This is the starting position.\n\n3. Take a step forward with one foot, keeping your knees slightly bent, and lean forward at the waist while maintaining a straight back.\n\n4. Your hands should end up at your sides, just below your hips.\n\n5. With a slight bend in your arms, draw your weights upward and toward the midline of your body. Make sure to keep your elbows slightly bent throughout the movement.\n\n6. Pause for a moment, then slowly release the tension and return to the starting position.\n\n7. Repeat for the desired number of repetitions, then switch sides and repeat with the other arm.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Low-Cable-Crossover.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/LOW-CABLE-CROSSOVER-muscle-worked-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "HIGH CABLE CROSSOVER",
+    "reps": "8 to 12",
+    "Description": "1. Adjust the cables: Adjust the cables to the highest position on both sides of the cable machine. Attach the handles to each cable.\n\n2. Stand in the center: Stand in the center of the machine, facing away from it. Hold the handles with your palms facing down.\n\n3. Position yourself: Take a step forward with one leg or lean forward slightly, keeping your feet shoulder-width apart. Your arms should be extended out to your sides, parallel to the floor.\n\n4. Cross the handles: Slowly bring both handles towards each other, crossing them in front of your body. Your arms should be slightly bent at the elbow.\n\n5. Squeeze your chest: Pause for a moment and squeeze your chest muscles.\n\n6. Return to the starting position: Slowly lower the handles back to the starting position, keeping your arms slightly bent.\n\n7. Repeat: Repeat the exercise for the desired number of repetitions.\n\nTips:\n\nKeep your feet firmly planted on the ground throughout the exercise to maintain stability.\nFocus on contracting your chest muscles as you bring the handles together.\nKeep your arms slightly bent to avoid locking out your elbows and to maintain tension in your muscles.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/High-Cable-Crossover.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/High-Cable-Crossover-Muscle-worked--300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "CABLE CROSSOVERS (UPPER CHEST)",
+    "reps": "8 to 12",
+    "Description": "1. Adjust the pulleys to the highest position on the cable machine and attach the handles or rope attachments.\n\n2. Take one handle in each hand.\n\n3. Take a step forward with one foot, keeping a slight bend in the knees.\n\n4. Then, keeping your elbows slightly bent and your chest up, slowly cross your arms up and in front of your head.\n\n5. Squeeze your chest muscles at the top of the movement and slowly spread the arms apart.\n\n6. Slowly lower the handles back to the starting position.\n\n7. Repeat: Perform the desired number of repetitions.\n\nNote:\n\nWhen incorporating cable upper chest crossovers into your training program, it is important to use proper form and technique to avoid injury and ensure maximum muscle activation.\n\nStart with lighter weights and gradually increase the weight as you become more comfortable with the exercise. Additionally, consider pairing cable upper chest crossovers with other chest exercises, such as push-ups or bench presses, to target all areas of the chest and promote overall chest strength and development.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/10/Cable-Upper-Chest-Crossovers.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "INCLINE BARBELL BENCH PRESS",
+    "reps": "8 to 12",
+    "Description": "Here are the steps to perform an incline barbell bench press:\n\n1. Set up the incline bench at the desired angle (30 to 45 degrees).\n\n2. Load the barbell with an appropriate weight for your fitness level and goals.\n\n3. Lie down on the bench with your feet firmly on the ground and your head resting on the bench.\n\n4. Grab the barbell with a grip slightly wider than shoulder-width apart.\n\n5. Unrack the barbell and bring it down to your upper chest, with your elbows flared out to the sides.\n\n6. Press the barbell back up to the starting position, exhaling as you push.\n\n7. Repeat for the desired number of reps.\n\nNote: It is important to maintain proper form throughout the exercise to avoid injury and get the most out of the movement. Keep your core tight, your back flat against the bench, and your feet firmly planted on the ground. Avoid bouncing the bar off your chest or arching your back excessively. Start with a lighter weight and gradually increase as your strength improves.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Barbell-Bench-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "DUMBBELL FLY",
+    "reps": "8 to 12",
+    "Description": "The dumbbell fly exercise targets the sternal heads of your pectoralis major muscles, which are found in your chest. It also strengthens your triceps, deltoids, biceps, wrist flexors, and brachialis muscles. Dumbbell flyes will help you build fully defined pectorals. It is one of the best exercises you should do if you want a defined and more shredded chest muscle. Dumbbell flyes are very effective for working the large pectoralis major and smaller pectoralis minor muscles. Exercising these muscles can give you the 'chest separation' look.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Fly.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "DUMBBELL BENCH PRESS",
+    "reps": "8 to 12",
+    "Description": "1. Setup:\nLie flat on a bench with your feet firmly planted on the ground.\nHold a dumbbell in each hand, resting them on your thighs.\n\n2. Starting Position:\nUsing a controlled motion, bring the dumbbells up to shoulder level while sitting on the bench. This is your starting position.\nYour palms should be facing forward, and your wrists should be in a neutral position.\n\n3. Execution:\nInhale and engage your core muscles.\nSlowly lower the dumbbells towards your chest in a controlled manner, keeping your elbows at about a 45-degree angle to your body. Your upper arms should be parallel to the floor.\nLower the dumbbells until your elbows are slightly below the bench level or until you feel a gentle stretch in your chest muscles.\n\n4. Pushing Phase:\nExhale and push the dumbbells back up to the starting position, fully extending your arms without locking your elbows.\nKeep your chest engaged and maintain a slight arch in your lower back throughout the movement.\n\n5. Repeat:\nPerform the desired number of repetitions, maintaining proper form and control.\n\nTIPS:\nStart with a weight that you can lift comfortably while maintaining proper form. Gradually increase the weight as you become more experienced and stronger.\nFocus on a controlled movement both during the lowering and pushing phases to maximize muscle engagement and minimize the risk of injury.\nKeep your shoulder blades retracted (pinched together) to provide stability and support to your shoulders.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Press-1.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "CABLE CROSSOVER",
+    "reps": "8 to 12",
+    "Description": "Cable crossover exercise is an excellent exercise to stretch your chest muscles, increase the range of motion and shred chest muscles. There are 3 types of movement. These types vary depending on how you use the station. In the pulley system, your direction of pulling the cables and the height you connect the rope allow you to target the upper, middle and lower parts of your chest muscles separately.\nThe tension in the cable provides a softer and more continuous resistance than free weights that can be affected by momentum. Thanks to constant resistance, it triggers the work of many small stabilizing muscles in your chest in addition to the pectoral muscles.\nThanks to free work, you do not experience muscle imbalance, your muscles develop equally and you feel that you are experiencing pump at the end of the exercise.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Cable-Crossover.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "ONE-ARM CABLE CHEST PRESS",
+    "reps": "8 to 12",
+    "Description": "Here are the steps to perform the exercise correctly:\n\n1. Adjust the cable machine: Start by adjusting the cable machine so that the handle is at chest height.\n\n2. Position yourself: Take a step forward with one foot and keep your feet shoulder-width apart. Hold the handle with one hand and bring it to your chest.\n\n3. Engage your core: Engage your core muscles to keep your torso stable throughout the exercise.\n\n4. Push the handle: Press the handle forward until your arm is fully extended but not locked out. Keep your elbow close to your body and avoid twisting your torso.\n\n5. Slowly return to starting position: Slowly return the handle to your chest and repeat for the desired number of repetitions.\n\n6. Switch sides: Once you have completed the desired number of reps, switch sides and repeat the exercise with your other arm.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/12/One-Arm-Cable-Chest-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/One-Arm-Cable-Chest-Press-muscles-worked-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "SINGLE-ARM CABLE CROSSOVER",
+    "reps": "8 to 12",
+    "Description": "The single arm cable crossover is an upper body exercise that targets the chest muscles. Working the chest one side at a time allows you to focus on the balance between the sides of your chest and really feel the chest muscles contracting. The tension in the cable provides a softer and more continuous resistance than free weights that can be affected by momentum. In addition, performing the exercise on each arm separately allows both chests to work equally.\n\nIn addition to your pecs, the single-arm cable crossover works the Levator scapulae, Rhomboids, and Latissimus muscles in your back as synergists, while your arm and abdominal muscles act as stabilizers.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/10/Single-Arm-Cable-Crossover.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Single-Arm-Cable-Crossover-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "INCLINE DUMBBELL FLY",
+    "reps": "8 to 12",
+    "Description": "Incline dumbbell fly is an isolated exercise that targets the hard-to-develop upper chest muscles.\nWell-rounded pecs development occurs when specific weight loads are applied to the muscle at varying angles. Horizontal adduction exercise will result in activation of these muscle fibers and hypertrophy of the chest.\nSince the incline dumbbell flyes exercise will place much more emphasis on the chest muscles, it’s a good movement to use during your chest workout for maximum definition.\nİncline dumbbell fly exercise will help you build fully defined pecs. It is one of the best exercises you should do If you want a defined and more shred chest muscle.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-dumbbell-Fly.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "INCLINE DUMBBELL PRESS",
+    "reps": "8 to 12",
+    "Description":"Here’s a step-by-step guide on how to perform the incline dumbbell press:\n\n-Set an incline bench to a 30-45 degree angle and sit on the bench with your back flat against the bench and your feet flat on the ground.\n-Then, you raise the dumbbells to shoulder width and rotate your wrists so that your palms are facing away from your body.\n-Press the dumbbells upward and together until they meet over your chest. Pause briefly at the top of the movement, then lower the dumbbells back to the starting position, keeping your elbows at a 45-degree angle to your body.\n-Repeat the movement for the desired number of repetitions.\n\nNote: Remember to use a weight that challenges you but allows you to maintain proper form throughout the exercise. It’s also important to warm up properly before starting the exercise to prevent injury.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "REVERSE GRIP INCLINE DUMBBELL PRESS",
+    "reps": "8 to 12",
+    "Description": "The reverse grip incline dumbbell press is an upper-body exercise targeting the upper pectoral muscles. The reverse grip helps keep your elbows in and your upper arms parallel to your torso. Moving your arms in this way further increases the use of the upper pectoral muscle fibers.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/09/Reverse-Grip-Incline-Dumbbell-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "MACHINE FLY",
+    "reps": "8 to 12",
+    "Description":"BUTTERFLY / PEC DECK FLY / SEATED MACHINE FLY It is expressed in different names such as.\n\nBecause only one joint is used in the machine fly action, it’s considered an isolation exercise. The main target area during this exercise is inside the chest, but other areas are also working.\nMachine fly exercise will help you build fully defined pecs. It is one of the best exercises you should do If you want a defined and more shred upper chest muscle.\nMany of the movements that work the same muscle group may look alike, but they focus on different parts of the muscles because they are at different angles. If you want to build better muscle specifically, keep in mind that it is more beneficial to include exercises that focus on different aspects to your training program.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/10301301-Lever-Pec-Deck-Fly_Chest_720.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  }, 
+  {
+    "Name": "DECLINE DUMBBELL PRESS",
+    "reps": "8 to 12",
+    "Description": "The decline dumbbell press is a staple strength exercise that has benefits for lower chest muscle and desired defined pecs. The definition in the lower region is preferred to distinguish between your chest and abdominal muscles.\nThe decline dumbbell press exercise is primarily used for the lower pectorals it does place a great deal of stress on the middle and upper pecs also.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Decline-Dumbbell-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "LEVER INCLINE CHEST PRESS",
+    "reps": "8 to 12",
+    "Description": "",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Incline-Chest-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "CHEST DIPS",
+    "reps": "8 to 12",
+    "Description": "chest dips are a bodyweight exercise that target the chest, triceps, and shoulders. They are performed using parallel bars or dip bars, and involve lowering your body by bending your elbows and leaning forward slightly, and then pushing yourself back up by straightening your arms.\n1. Stand facing a set of parallel bars with your hands shoulder-width apart and palms facing inward.\n2. Jump up and straighten your arms so that your body is fully extended. Your feet should be off the ground.\n3. Lower your body by bending your elbows and leaning forward slightly, keeping your elbows close to your sides.\n4. Continue lowering until your shoulders are slightly below your elbows or until you feel a stretch in your chest.\n5. Push yourself back up to the starting position by straightening your arms, exhaling as you do so.\n6. Repeat for your desired number of repetitions.\n\nTips: It’s important to keep your core engaged and your body in a straight line throughout the movement. If you’re new to chest dips, start with assisted dips using resistance bands or a dip machine until you build up the strength to perform them unassisted.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Chest-Dips.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/bench-dips-muscle-worked-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "ASSISTED CHEST DIP",
+    "reps": "8 to 12",
+    "Description": "If you are a beginner and cannot do chest dips with body weight, you can use the assisted version. Keep in mind that the position of your torso affects the focus of the exercise. A slight forward tilt is better for targeting the pectorals, and the more you bend forward the harder you work the pectorals. An upright posture shifts the focus to the triceps.\nDips is a Closed Kinetic Chain Exercise. As a bodyweight movement that targets your chest and triceps, dips have numerous benefits in terms of strength improvements, mass building, and general fitness performance. Dips are literally one of the best exercises you can do for your upper body.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Assisted-Chest-Dip.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/bench-dips-muscle-worked-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "LYING CABLE FLY",
+    "reps": "8 to 12",
+    "Description": "Using cables aims to maintain constant tension on target muscles important for muscle hypertrophy. This continuous resistance makes it a more beneficial method for muscle gain. Lying cable fly exercise targets the sternal heads of your pectoralis major muscles, which are found in your chest, but also strengthens your triceps, deltoids, biceps, wrist flexors and brachialis muscles.\nLying cable fly exercise will help you build fully defined pectorals. It is one of the best exercises you should do If you want a defined and more shred chest muscle.\nLying cable flyes are very effective for the work of the large pectoralis major and smaller pectoralis minor muscles. Exercising these muscles can give you the ‘chest separation’ look.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Lying-Cable-Fly.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+  {
+    "Name": "INNER CHEST PRESS MACHINE",
+    "reps": "8 to 12",
+    "Description": "The inner chest press machine is an exercise that provides greater stability by focusing on the inner chest muscles. Targeting the inner chest muscles, this chest press machine helps build upper body strength and increase muscle mass",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Inner-Chest-Press-Machine.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Press-Muscle-work-300x300.png",
+    "MuscleId": 1
+  },
+
+
+
+
+  {
+    "Name": "LEVER FRONT PULLDOWN",
+    "reps": "8 to 12",
+    "Description": "Lat pulldown is one of the most popular exercises used to strengthen the back muscles. Pulldown V-Taper is among the movements that allow you to reach the image. It provides interaction in teres minor and teres major muscle groups for the development of the rear shoulder and wing muscles. In this way, you can create a wider back, wing and shoulder structure.\nHunching over your computer and phone all day can cause tension and pain in your back. However, regular muscle strengthening exercise will help strengthen these muscles, potentially improving your posture, reducing pain, and improving the overall health of your muscle tissue.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Front-Pulldown.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/SEATED-ROW-MACHINE-muscle-worked-300x300.png",
     "MuscleId": 2
   },
   {
-    "Name": "Deadlift",
-    "Sets": "12 to 15",
-    "Description": "A weight training exercise where you lift a loaded barbell off the ground to the level of the hips.",
-    "GifUrl": "https://example.com/gifs/deadlift.gif",
-    "FocusAreaUrl": "https://example.com/focus/back.png",
+    "Name": "PULL-UP",
+    "reps": "8 to 12",
+    "Description": "When it comes to compound exercises, one of the best exercises that comes to mind is probably the pull-up movement. Pull-up is a closed-chain exercise that works almost all of the muscle groups on the upper body and provides both hypertrophy and strength at body weight.\nIt strengthens the back and wing muscles. The focus of the pull-ups exercise is on the back muscles. It is one of the most effective exercises to develop and strengthen the back and wing muscles.\nIt plays an important role in body strength and power increase: By strengthening the muscles lining the infraspinatus, scapula and scapula, it helps prevent problems caused by muscle weakness such as poor posture and scapular protrusion.\nIt plays an important role in body power and strength increase: Since pull-up is a compound exercise, it works the muscles in the upper body in perfect harmony. The pull-up exercise performed at body weight supports general body strength and core strength. It provides a stronger and more solid body.\nProvides cardiovascular benefits: Pull-ups increase your heart rate. When this type of exercise is done quickly and with no rest periods in between, it provides a great cardiovascular workout as well as the ability to develop strength.\nIncreases grip strength: When you hold an object in your daily life, it allows you to grasp it more firmly. For example; You can feel this even when opening a jar.\nPull-up up makes your arms stronger: If you cannot do the pull-up exercise, this is probably an indication that your arms are weak. Arms and wrists work actively in all types of pull-ups. The strength of the arms increases more each time you lift the body weight. Increasing the number of pull-ups means the development and strengthening of your arms.\nIt develops wing muscles: It is effective in working and shaping the parts of the body, which are located in the right and left upper parts and which are called wing muscles. If you want a V-taper body, you can have it with a pull-up motion.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pull-up.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Muscles-worked-in-pull-up-300x300.png",
     "MuscleId": 2
   },
   {
-    "Name": "Bicep Curl",
-    "Sets": "12 to 15",
-    "Description": "An exercise that targets the biceps by lifting a weight with the elbow bending.",
-    "GifUrl": "https://example.com/gifs/bicep_curl.gif",
-    "FocusAreaUrl": "https://example.com/focus/arm.png",
+    "Name": "CABLE REAR PULLDOWN",
+    "reps": "8 to 12",
+    "Description":  "1. Set Up:\nUse a pulldown machine with a wide grip bar attached.\nAdjust the machine to an appropriate weight.\nSit on the machine bench facing the bar, and secure your thighs under the provided supports.\n2. Grip:\nGrab the bar with both hands using a wide grip. In a wide grip, your hands are positioned wider than shoulder-width apart.\n3. Body Position:\nLean forward slightly while maintaining a straight back.\nEnsure your thighs are securely positioned under the supports to stabilize your body.\n4. Movement:\nPull the bar down behind your head by bringing your elbows out to the sides.\nFocus on squeezing your shoulder blades together as you pull the bar down.\nLower the bar until it’s close to the back of your neck, and you feel a contraction in your lat muscles.\n5. Controlled Release:\nAllow the cable to raise the bar back up slowly.\nFully extend your arms and shoulders at the top of the movement.\n6. Repeat:\nPerform the desired number of repetitions, maintaining control throughout the exercise.\nTIPS:\nEnsure a smooth and controlled movement, avoiding any jerking or swinging.\nKeep your back straight and chest up throughout the exercise.\nDo not use excessively heavy weights that compromise your form.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Cable-Rear-Pulldown.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/SEATED-ROW-MACHINE-muscle-worked-300x300.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "LAT PULLDOWN",
+    "reps": "8 to 12",
+    "Description": "Start by attaching a wide handle bar to the cable.\nSit on the lat pulldown machine with your feet flat on the ground and your knees firmly pressed against the pad. Your thighs should be parallel to the ground.\nGrab the bar with both hands, making sure your palms are facing away from you and your grip is wider than shoulder-width apart.\nWhile keeping your back straight and your chest up, pull the bar down towards your chest by contracting your back muscles. Your elbows should point downwards and stay close to your body.\nPause for a second when the bar reaches your chest, and then slowly release it back up to the starting position, extending your arms fully.\nRepeat for the desired number of reps.\nTips:\n- Avoid using momentum to pull the bar down. Make sure you use controlled movements and focus on engaging your back muscles.\n- Keep your shoulders down and away from your ears throughout the exercise.\n- Exhale as you pull the bar down towards your chest, and inhale as you release it back up to the starting position.\n- Start with a lighter weight to ensure proper form and technique, and gradually increase the weight as you get stronger.\n- To incorporate lat pulldowns into your workout routine, aim to perform 3-4 sets of 8-12 reps with a weight that challenges you. Make sure to use proper form and technique, and consider adding lat pulldowns to your workout routine 2 times per week. Whether you’re a beginner or an experienced lifter, lat pulldowns can provide numerous benefits for your physical health and fitness goals.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/SEATED-ROW-MACHINE-muscle-worked-300x300.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "SEATED CABLE ROW",
+    "reps": "8 to 12",
+    "Description": "SEATED CABLE ROW INSTRUCTIONS: Place feet firmly on footrest or platform, keep back straight, engage core to maintain posture, retract shoulder blades to engage upper back muscles, pull handles towards you with elbows flared, squeeze shoulder blades, pause at top, exhale while pulling in, inhale while returning. Repeat for desired reps. TIPS: Maintain proper posture throughout to avoid rounding the back, start with lighter weight and gradually increase, use slow and controlled movements to engage muscles effectively. ATTACHMENTS YOU CAN USE FOR CABLE ROWS: Seated cable rows can be performed with a variety of attachments, including wide-grip handles, close-grip handles, rope, stirrup and v-bars. This makes them a versatile exercise that can be customized to target different muscle groups and provide a range of benefits. Incorporating these attachments into your cable row workout routine can help you target specific muscle groups and achieve maximum results. Each attachment provides a unique challenge and can help you to build overall back strength, improve your posture and prevent injuries. Straight bar: The straight bar is a popular attachment for cable rows and is designed to target the lat muscles. By using a wide grip, you can increase the range of motion and engage the lats more effectively. Close-grip handle: The close-grip handle is an attachment that can help target the mid-back muscles and increase the overall intensity of the exercise. By bringing your hands close together, you can engage the rhomboid muscles and build upper back strength. Rope attachment: The rope attachment is a variation of the cable row that can help to target the rear deltoids and improve overall shoulder strength. By using a rope, you can increase the range of motion and engage the shoulder muscles more effectively.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Cable-Row.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/SEATED-ROW-MACHINE-muscle-worked-300x300.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "BARBELL BENT OVER ROW",
+    "reps": "8 to 12",
+    "Description": "Setup: Stand with feet shoulder-width apart, toes forward, barbell on floor. Choose overhand or underhand grip. Bend at the Hips: Hinge at hips, keep back straight, lower torso almost parallel to floor, knees slightly bent. Grasp the Barbell: Grip barbell wider than shoulder-width, arms fully extended, firm grip. Starting Position: Back flat, chest out, shoulder blades pulled back and down. The Row: Pull barbell towards upper abdomen or lower chest, elbows close to body, squeeze shoulder blades together. Lower the Barbell: Slowly lower barbell back to starting position with control. TIPS FOR PROPER FORM: Avoid rounding back; keep back straight, engage core. Keep head neutral, look slightly forward for proper spinal alignment. Do not use momentum; focus on using back and arm muscles. Consider using weightlifting belt for extra support with heavy loads.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Bent-Over-Row.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Bent-Over-Row-muscles-worked-1196x1200.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "CABLE STRAIGHT ARM PULLDOWN",
+    "reps": "8 to 12",
+    "Description": "The straight-arm pulldown exercise is a variation of the classic lat-pulldown. Keeping the arms straight prevents the mid-back and biceps from taking over the movement, so you can focus on the lat muscles you’re trying to work more directly.\nHaving a strong back helps to keep the spinal column in proper alignment and allows for completion of everyday tasks with reduced injury risk. In addition to helping strengthen the back, the exercise secondarily works the triceps and shoulders.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Cable-Straight-Arm-Pulldown.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Cable-Straight-Arm-Pulldown-Muscles-Worked-1.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "LEVER T-BAR ROW",
+    "reps": "8 to 12",
+    "Description": "T-bar rows are a strength training exercise that mimics the movement of rowing a boat. The goal is to strengthen the muscles that bring the arms toward the body, as well as those that move the shoulder blades toward the spine. T-bar rows allow you to lift more weight due to the nature of this movement, enabling you to leverage heavier loads.\nThe exercise targets the entire back chain, including the latissimus dorsi, infraspinatus, trapezius, posterior deltoids, and rhomboids. Adding exercises like barbell rows and T-bar rows to your training programs will benefit the development of back muscles.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lever-T-bar-Row.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/T-bar-row-muscles-worked-1-300x300.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "DUMBBELL ROW",
+    "reps": "8 to 12",
+    "Description": "The dumbbell row is an effective exercise to strengthen and develop the musculature of the back. The one-arm dumbbell row is a unilateral exercise that builds the strength and size of the latissimus dorsi and improves the overall function of the shoulder joint. Training one arm at a time is the best way to ensure optimal focus on the target muscle, enhance fiber recruitment, and overcome strength imbalances between the sides of your body.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Row.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/SEATED-ROW-MACHINE-muscle-worked-300x300.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "BENT OVER DUMBBELL ROW",
+    "reps": "8 to 12",
+    "Description": "Grab two dumbbells and stand with your feet shoulder-width apart. Grab the dumbbells with your palms facing each other. While keeping your back straight, slightly bend your knees and lean forward so that your spine is 45-90 degrees to the floor. Let your arms hang all the way down. Pull the weight straight up, keeping your elbows close to your body. Row the dumbbells up to your waist, squeezing your shoulder blades together.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bent-Over-Dumbbell-Row.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Bent-Over-Dumbbell-Row-muscle-worked.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "REVERSE LAT-PULLDOWN",
+    "reps": "8 to 12",
+    "Description": "1. Set Up:\nAdjust the seat on the lat pulldown machine so that your thighs are secured under the leg pads.\nGrasp the bar with a reverse grip, with your palms facing you and your hands slightly wider than shoulder width.\n2. Body Position:\n Sit down with your back straight and your chest up.\n Keep your feet flat on the floor. Hold the bar with a firm grip.\n3. Movement:\nStart with your arms fully extended overhead.\n Pull the bar down towards your chest by bringing your elbows down and back.\n Focus on squeezing your shoulder blades together as you bring the bar down.\n Lower the bar in a controlled manner to the starting position without letting the weight stack touch.\n4. Breathing:\n Inhale as you extend your arms overhead.\n Exhale as you pull the bar down.\nTips:\n Keep your torso stationary; avoid leaning back excessively.\n Focus on using your lats to initiate the movement.\n Control the weight throughout the entire range of motion.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Reverse-Lat-Pulldown.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Reverse-Lat-Pulldown-muscles-worked-300x300.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "SEATED ROW MACHINE",
+    "reps": "8 to 12",
+    "Description": "The seated row machine is a pulling exercise that primarily targets the back muscles, especially the latissimus dorsi. It is suitable for beginners and is commonly used in upper body strength training.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Row-Machine.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/SEATED-ROW-MACHINE-muscle-worked-300x300.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "REVERSE GRIP BARBELL ROW",
+    "reps": "8 to 12",
+    "Description": "The Reverse Grip Barbell Row is a variation of the traditional Barbell Bent Over Row, where you use an underhand grip (palms facing upward) on the barbell. This grip variation shifts the emphasis to the biceps and lower lats, while still engaging the upper back muscles.\n1. Setup: Stand with your feet shoulder-width apart, toes pointing forward, and the barbell in front of you on the floor. For the Reverse Grip Barbell Row, take an underhand grip on the barbell (palms facing up), with your hands positioned slightly wider than shoulder-width apart. 2. Bend at the Hips: Hinge at your hips while keeping your back straight. Lower your torso until it is almost parallel to the floor. Keep your knees slightly bent throughout the movement. 3. Grasp the Barbell: Reach down and grip the barbell with the underhand grip. Your arms should be fully extended, and your grip should be firm. 4. Starting Position: Your back should be flat, chest out, and shoulder blades pulled back and down. This is the starting position. 5. The Row: Pull the barbell towards your upper abdomen or lower chest while keeping your elbows close to your body. Focus on squeezing your shoulder blades together at the top of the movement to engage your back muscles fully. 6. Lower the Barbell: Slowly lower the barbell back down to the starting position while maintaining control. Do not allow the weight to pull you forward; instead, control the descent. Repeat: Perform the desired number of repetitions. Tips for Proper Form: Maintain a flat back and avoid rounding your shoulders during the exercise. Keep your head in a neutral position, looking slightly forward, to maintain proper spinal alignment. Focus on using your back muscles to pull the weight, rather than relying solely on your biceps. Engage your core throughout the movement for stability and to protect your lower back.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Reverse-Grip-Barbell-Row.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/bent-over-muscle-worked-300x300.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "DEADLIFT",
+    "reps": "8 to 12",
+    "Description": "Here are the steps to perform a conventional deadlift:\n1. Begin by standing with your feet shoulder-width apart, with your toes pointed straight ahead. The barbell should be on the ground in front of you.\n2. Bend down and grasp the bar with your hands slightly wider than shoulder-width apart, using an overhand or mixed grip (one hand overhand, one hand underhand).\n3. Bend your knees and lower your hips, keeping your back straight and your chest up. Keep your head and neck in a neutral position, and focus on looking forward.\n4. Take a deep breath and brace your core muscles. This will help to stabilize your spine and protect your lower back.\n5. Keep the bar close to your body as you lift, and use your legs, glutes, and back muscles to power the lift.\n6. Once you have lifted the bar to a standing position, pause for a moment, then lower it back down to the ground, keeping your back straight and your core engaged.\n\nIt is important to maintain proper form throughout the lift, as improper technique can lead to injury. Some key points to keep in mind include:\n\n- Keep your back straight and your chest up throughout the lift.\n- Keep the bar close to your body, and use your legs and glutes to power the lift.\n- Brace your core muscles to stabilize your spine and protect your lower back.\n- Avoid rounding your back or allowing your shoulders to hunch forward.\n- Use a weight that allows you to perform the exercise with proper form and technique.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Deadlift.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/deadlift-muscle-worked-300x300.png",
+    "MuscleId": 2
+  },
+  {
+    "Name": "T-BAR ROW",
+    "reps": "8 to 12",
+    "Description": "1. Set up the Equipment: First, set up the T-bar row machine with the appropriate amount of weight. If you don’t have access to a T-bar row machine, you can also use a barbell and a landmine attachment.\n2. Position Yourself: Bend at the hips, keeping your back straight, and reach down to grasp the V-bar handles with a neutral grip (palms facing each other).\n3. Lift the Weight: Lift the weight off the ground and let it hang in front of your body. This is your starting position.\n4. Engage Your Back Muscles: Slowly pull the weight towards your chest by retracting your shoulder blades and squeezing your back muscles. Keep your elbows close to your body and your forearms parallel to the ground.\n5. Hold the Contraction: Hold the contraction for a second or two, then slowly lower the weight back to the starting position.\n6. Repeat: Complete the desired number of repetitions, then rest and repeat for additional sets.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/T-Bar-Row.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/T-bar-row-muscles-worked-1-300x300.png",
+    "MuscleId": 2
+  },
+
+
+
+
+  {
+    "Name": "STANDING BARBELL CONCENTRATION CURL",
+    "reps": "8 to 12",
+    "Description": "1. Begin by standing with your feet shoulder-width apart.\n2. Hold a barbell with both hands using a supinated (palms facing forward) grip, with your hands slightly wider than shoulder-width apart.\n3. Lean your upper body forward at the hips until it is nearly parallel to the floor. This forward lean helps isolate the biceps and engage the stabilizer muscles.\n4. Place your elbows on your thighs or knees for support, allowing your arms to hang straight down, fully extended.\n5. With your upper arms stationary, curl the barbell upwards towards your chest by flexing your elbows.\n6. Squeeze your biceps at the top of the movement.\n7. Slowly lower the barbell back down to the starting position, fully extending your arms.\n\nCOMMENTS AND TIPS:\n1. This exercise differs from the traditional seated concentration curl as it requires you to stand and lean forward, which engages more stabilizer muscles to maintain balance.\n2. Keep your body still during the exercise; only your forearms should be moving.\n3. Maintain a neutral position for your back and neck to ensure safety and reduce the risk of injury.\n4. Avoid fully locking out your elbows as you straighten your arms during the lowering phase to maintain tension on the biceps.\nRemember to use an appropriate weight for your fitness level, use proper form, and perform the exercise with controlled movements to maximize its effectiveness and minimize the risk of injury.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/10/Standing-Barbell-Concentration-Curl.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/10/Standing-Barbell-Concentration-Curl-muscles-worked-300x300.png",
     "MuscleId": 3
   },
   {
-    "Name": "Tricep Dip",
-    "Sets": "12 to 15",
-    "Description": "An exercise that targets the triceps by lowering and raising the body on parallel bars.",
-    "GifUrl": "https://example.com/gifs/tricep_dip.gif",
-    "FocusAreaUrl": "https://example.com/focus/arm.png",
+    "Name": "WAITER CURL",
+    "reps": "8 to 12",
+    "Description": "1. Stand up straight with your feet about hip-width apart.\n2. Hold a dumbbell with both hands, allowing the dumbbell to rest on your palms, and avoid gripping it with your fingers.\n3. Start with your arms fully extended, holding the dumbbell in front of you at thigh level.\n4. The top of the dumbbell should be facing straight up.\n5. Keeping your back straight and your shoulder blades pulled back, focus on using only your biceps to curl the weight towards your chest.\n6. Ensure that the top of the dumbbell remains facing upward throughout the entire repetition.\n7. Slowly lower the dumbbell back to the starting position to complete one repetition.\n\n8. Gradual Progression: Beginners can start with a manageable weight and gradually increase it as they become more comfortable with the exercise. This allows for a gradual progression in both strength and muscle development.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/waiter-curl.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/biceps-anatomy-300x300.png",
     "MuscleId": 3
   },
   {
-    "Name": "Shoulder Press",
-    "Sets": "12 to 15",
-    "Description": "An exercise where you press a weight above your head.",
-    "GifUrl": "https://example.com/gifs/shoulder_press.gif",
-    "FocusAreaUrl": "https://example.com/focus/shoulder.png",
+    "Name": "DOUBLE ARM DUMBBELL CURL",
+    "reps": "8 to 12",
+    "Description": "1. Hold a dumbbell in each hand with your palms facing forward.\n2. Slowly raise both dumbbells at the same time by bending your elbows, while keeping your upper arms stationary. Keep your palms facing forward throughout the movement.\n3. Continue to curl the dumbbells until they are level with your shoulders or until you feel a good contraction in your biceps.\n4. Pause for a second at the top of the movement, then slowly lower the dumbbells back down to the starting position.\n5. Repeat for your desired number of reps.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/04/Double-Arm-Dumbbell-Curl.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/biceps-anatomy-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "OVERHEAD CABLE CURL",
+    "reps": "8 to 12",
+    "Description": "1. Select a cable machine ensuring both hand grips are positioned up high.\n2. Select the appropriate weight for your required repetitions. Grasp both cable attachments and take up the slack, moving into the centre.\n3. Allow your arms to be out to the sides and in a raised position. (This is your starting position.)\n4. From this position, bring about movement by flexing at your elbows.\n5. Continue to flex until your forearms and Biceps region make contact.\n6. At this point, start to slowly reverse the movement back to your starting position.\n7. This is one repetition. Continue until necessary repetitions are completed.\n\nTips: Use a slow and controlled tempo to keep your muscles under tension for longer. Use a full range of motion that allows you to fully extend your arms at the bottom of the movement and fully contract your biceps at the top of the movement. Use progressive overload to maximize muscle activation and gains in strength and size.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/overhead-cable-curl.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/biceps-anatomy-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "DUMBBELL CURL",
+    "reps": "8 to 12",
+    "Description": "Start with a comfortable weight: Select a weight that you can comfortably lift for the desired number of reps. It’s better to start with a lighter weight and work your way up, rather than using a weight that’s too heavy and sacrificing form.\nStand with proper posture: Stand up straight with your feet shoulder-width apart and your shoulders back. This will help to maintain proper alignment and engage your core.\nHold the dumbbells correctly: Hold the dumbbells with a neutral grip (palms facing inward) and keep your wrists straight. Avoid using a grip that’s too tight, as this can cause unnecessary strain on the wrists.\nKeep your elbows close to your sides: Keep your elbows close to your sides throughout the movement. This will help to isolate the biceps and prevent swinging.\nCurl one arm at a time: Start by curling one dumbbell towards your shoulder, keeping your elbow close to your side. As you lift the weight, focus on squeezing your bicep at the top of the movement.\nLower the weight in a controlled manner: Lower the weight back down in a controlled manner, making sure to keep your elbow close to your side. Avoid letting the weight drop quickly, as this can put unnecessary strain on the joints.\nAlternate between arms: Once you have completed a full rep with one arm, switch to the other arm and repeat the exercise.\nBreathe properly: Inhale as you lower the weight and exhale as you curl the weight towards your shoulder.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/biceps-anatomy-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "BARBELL CURL",
+    "reps": "8 to 12",
+    "Description": "1. Stand up straight with your feet shoulder-width apart and grasp the barbell with an underhand grip, with your hands shoulder-width apart.\n2. Keep your elbows close to your sides and lift the barbell towards your chest, while contracting your biceps. Make sure to keep your elbows stationary and avoid swinging the weight.\n3. Slowly lower the barbell back to the starting position, keeping your biceps engaged throughout the movement.\n4. Repeat for the desired number of repetitions.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Curl.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/biceps-anatomy-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "CONCENTRATION CURL",
+    "reps": "8 to 12",
+    "Description": "1. Sit on a bench or chair with your feet flat on the ground and a dumbbell in one hand.\n2. Place your elbow on the inside of your thigh, with your arm fully extended and the dumbbell hanging straight down.\n3. Curl the weight up towards your shoulder, keeping your elbow stationary and your upper arm pressed against your thigh.\n4. Pause at the top of the movement, then slowly lower the weight back down to the starting position.\n5. Repeat for the desired number of repetitions, then switch to the other arm and repeat.\n\nTips: Keep your elbow stationary throughout the exercise to maximize bicep activation. Focus on squeezing your bicep at the top of the movement to fully contract the muscle. Keep your upper arm pressed against your thigh to prevent swinging and cheating. Use a controlled and slow movement, rather than jerking the weight up and down. Exhale as you curl the weight up, and inhale as you lower it down.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Concentration-Curl.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/biceps-anatomy-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "HAMMER CURL",
+    "reps": "8 to 12",
+    "Description": "1. Stand or sit with good posture: Hold a weight in each hand with a neutral grip, palms facing each other. Your arms should be fully extended and hanging by your sides.\n2. Curl one arm at a time: Exhale and curl one weight towards your shoulder, while keeping the other weight extended and hanging by your side.\n3. Contract your biceps: At the top of the movement, squeeze your biceps to fully contract the muscles.\n4. Lower the weight: Inhale and slowly lower the weight back to the starting position, keeping your elbow close to your body and maintaining control throughout the movement.\n5. Repeat with the other arm: Curl the weight towards your shoulder while keeping the other arm extended and hanging by your side.\n6. Alternate arms: Continue alternating arms, curling one weight at a time while keeping the other arm extended and hanging by your side.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Hammer-Curl.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/biceps-anatomy-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "HIGH CABLE SINGLE ARM BICEP CURL",
+    "reps": "8 to 12",
+    "Description": "1. Stand facing a cable machine with the handle attached to the highest pulley. Grab the handle with one hand and step back a few feet.\n2. With your arm fully extended and your palm facing up, curl the handle towards your shoulder by bending your elbow and contracting your biceps.\n3. Hold the peak contraction for a second, then slowly lower the handle back down to the starting position.\n4. Repeat for your desired number of reps, then switch arms and repeat.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/High-Cable-Single-Arm-Bicep-Curl.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/biceps-anatomy-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "DUMBBELL REVERSE CURL",
+    "reps": "8 to 12",
+    "Description": "1. Stand with your feet shoulder-width apart and hold a pair of dumbbells in front of your thighs, palms facing downward (pronated grip).\n2. Keep your elbows close to your sides and slowly lift the dumbbells towards your shoulders by flexing your elbows. Keep your wrists straight and your palms facing downwards throughout the movement.\n3. Pause at the top of the movement and squeeze your forearms and biceps for a second.\n4. Slowly lower the dumbbells back to the starting position by extending your elbows and maintaining control of the weight.\n5. Repeat for the desired number of repetitions.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/dumbbell-reverse-curl.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/biceps-anatomy-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "ONE ARM TRICEPS PUSHDOWN",
+    "reps": "8 to 12",
+    "Description": "Performing the exercise one arm at a time allows you to focus on proper form and technique for each arm independently.\n\nBegin by positioning a rope or handle attachment to the top part of a cable machine and grasp the rope or handle with one hand.\n\nStarting Position: Start with your elbow bent at a 90-degree angle and tucked close to your side. Your forearm should be parallel to the ground, pointing down towards the floor.\n\nForm: Exhale and pull down the rope. Extend your elbow so that it is almost completely straight. Hold for a brief second at the bottom and then slowly return to the starting position.\n\nTips: You can change the repetitions, sets, tempo/speed, and intensity to vary the effect of the exercise.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/11/One-arm-triceps-pushdown.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/triceps-muscle-worked-1-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "DUMBBELL KICKBACK",
+    "reps": "8 to 12",
+    "Description": "Starting Position: Place one knee and one hand on a bench. Keep your lower back in a neutral position– not too arched and not too rounded.\n\nBring your shoulder next to your body. Pull back your upper arm so that it is next to (parallel) your body.\n\nForm: Exhale and straighten your arm alongside your body. Hold for a brief second at the top and then slowly lower to the starting position.\n\nTips: Be mindful of the position of your lower back. Don’t let your lower back round too far forwards. Use your lower back muscles to keep your spine and pelvis in a neutral position.\n\nIn regards to the upper body, do your best to keep your upper arm at your side throughout the entire exercise.\n\nKickback exercise works best with light to moderate weights and medium to high reps. Use the kickbacks as a finishing workout and really feel the pump.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Kickback.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/triceps-muscle-worked-1-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "PUSH-DOWN",
+    "reps": "8 to 12",
+    "Description": "Stand in front of a cable machine with a high pulley attachment. Grab the straight bar or rope handle with an overhand grip (palms facing down).\nPosition your feet shoulder-width apart, and slightly bend your knees for stability. Keep your back straight, and engage your core throughout the exercise.\nStart with your elbows bent at your sides and your forearms parallel to the ground, pointing down towards the floor. This is the starting position.\nEngage your triceps and push the bar or handle down towards your thighs, fully extending your arms.\nHold the fully extended position for a brief moment, focusing on squeezing your triceps.\nSlowly and in a controlled manner, let the bar or handle return to the starting position, keeping tension on the triceps.\nComplete the desired number of repetitions.\n\nTips: Keep your upper arms stationary throughout the exercise; only your forearms should move. Avoid using momentum or swinging your body during the movement. Maintain a stable stance with your feet grounded for balance and stability. Control the weight throughout the entire range of motion, both during the downward and upward phases. Breathe naturally, exhaling as you push the bar or handle down and inhaling as you return to the starting position.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pushdown.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/triceps-muscle-worked-1-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "BENCH DIPS",
+    "reps": "8 to 12",
+    "Description": "Starting Position: While sitting on the edge of a bench, place your hands next to your sides with your fingers facing forwards.\n\nPlace your feet slightly out in front of you, and then lift your body off the bench.\n\nForm: Inhale as you lower down towards the floor. Hold for a brief second and then exhale and press yourself back up away from the floor.\n\nPersonal Trainer Tips: With this exercise, pay close attention to your range of motion. The further you lower yourself, the more stress you place on the shoulder. Only go up to 90 degrees at the elbow. It is okay to use a limited range of motion based on your body.\n\nIf your shoulders feel stiff, avoid this exercise or spend a lot of time stretching your shoulders, chest muscles, and lats.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Bench-Dips.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/bench-dips-muscle-worked-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "TRICEPS DIPS",
+    "reps": "8 to 12",
+    "Description": "Starting Position: For Dips, begin in the up position with your elbows straight. If you’re a little shorter than the machine, you may have to jump a little to get into the starting position.\n\nForm: Inhale and bend your elbows to slowly lower your body towards the floor. Lean your body forward very slightly as you lower. Hold for a brief second at the bottom and then exhale and straighten your elbows to return to the starting position.\n\nPersonal Trainer Tips: Move in a slow and controlled manner. Avoid moving too fast, as it can cause swaying back and forth.\n\nUse a comfortable range of motion. You don’t need to lower as low as possible; bend your elbows and shoulders to about 90 degrees.\n\nThe challenge with triceps dips is lifting almost your entire body weight. If you’re not strong enough for full dips, consider building strength with bench dips, lever tricep dips, or a dip assist machine.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Triceps-Dips.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/bench-dips-muscle-worked-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "CABLE TRICEP KICKBACK",
+    "reps": "8 to 12",
+    "Description": "Starting Position: Attach a rope or handle to the bottom of a cable machine. Hinge forward from your hips and place your opposite elbow on your thigh for support.\n\nForm: While keeping your arm next to your body, exhale and straighten your elbow against the resistance. Hold briefly in the straightened position before slowly returning to the starting position.\n\nPersonal Trainer Tips: The cables offer a different feeling from dumbbells and free weights because they add constant tension throughout the range of motion. Ensure you move through the full range of motion. If you struggle with the range of motion, lighten the weight.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Cable-Tricep-Kickback.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/triceps-muscle-worked-1-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "SEATED DUMBBELL TRICEPS EXTENSION",
+    "reps": "8 to 12",
+    "Description": "Seated Dumbbell Triceps Extension is a single joint isolating exercise that provides strength and muscle development. Overhead extension movements are particularly useful in targeting the long head of the triceps muscle. Having a larger and more dense long head will give you an overall appearance of a larger tricep.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Seated-Dumbbell-Triceps-Extension.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/triceps-muscle-worked-1-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "DUMBBELL SKULL CRUSHER",
+    "reps": "8 to 12",
+    "Description": "Starting Position: Begin by lying on a bench while holding 2 dumbbells. Slightly lift your chest off the bench and tuck your chin so that your head and neck stay in good alignment.\n\nForm: Lift your arms toward the ceiling and slightly squeeze your shoulder blades. Keeping your upper arms stable, lower your elbows towards your forehead. Hold for a brief second and then slowly return to the starting position.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Dumbbell-Skull-Crusher.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/triceps-muscle-worked-1-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "ROPE PUSHDOWN",
+    "reps": "8 to 12",
+    "Description": "Starting Position: Attach a rope attachment to the upper part of a cable machine. Hold the rope with your hands facing each other.\n\nForm: Exhale and pull the rope down towards your waist. Hold for a brief moment and then slowly return to the starting position.\n\nPersonal Trainer Tips: Keep your shoulders in good alignment during this exercise. The tendency is for the shoulders to tip forwards as you push down. Also, keep your shoulders stationary; only move your elbows to isolate and focus on the triceps. Stand up straight, keep your back in good alignment, and always move in a slow and controlled manner.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Rope-Pushdown.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/triceps-muscle-worked-1-300x300.png",
+    "MuscleId": 3
+  },
+  {
+    "Name": "TRICEPS DIP MACHINE",
+    "reps": "8 to 12",
+    "Description": "Starting Position: Sit in the tricep machine and adjust the seat so that you are comfortable. Align your shoulders as closely to the pivot point of the machine as possible.\n\nForm: Exhale and push down on the machine to straighten your arms. Hold for a brief second and then inhale and return to the starting position.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/09/Triceps-Dip-Machine.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Overhand-Triceps-Dip-300x300.png",
+    "MuscleId": 3
+  },
+
+
+
+
+  {
+    "Name": "SEATED BARBELL SHOULDER PRESS",
+    "reps": "8 to 12",
+    "Description": "Starting Position: Begin sitting down with your feet firmly on the ground. Hold the bar at shoulder level with your palms facing forward.\n\nForm: Exhale and press the bar over your head. Hold for a short second at the top and then slowly lower back to the starting position. Focus on feeling the burn in your shoulders throughout the movement. This helps ensure you’re engaging the target muscles effectively.\n\nPERSONAL TRAINER TIPS:\nStart light: It’s important to focus on proper form before adding weight. Choose a weight that allows you to maintain good form throughout all your reps. Gradually increase the weight you lift over time to keep challenging your muscles and promote growth.\nControl the weight: Don’t use momentum to lift the weight. Focus on using your muscles to control the movement.\nComplete Range of Motion: Lower the barbell down to at least chin level to achieve a full range of motion for optimal muscle engagement.\nKeep your core engaged: This will help you maintain proper posture and stability throughout the exercise.\nBreathe: Breathe out as you press the weight overhead and inhale as you lower it back down.\n\nSTANDING VS SEATED:\nCompared to the standing shoulder press, the seated variation reduces the need for core stabilization, allowing for greater isolation of the deltoids. This can be beneficial for targeted shoulder development programs designed for athletes or bodybuilders.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Shoulder-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/shoulder-press-muscle-worked-300x300.png",
     "MuscleId": 4
   },
   {
-    "Name": "Lateral Raise",
-    "Sets": "12 to 15",
-    "Description": "An exercise where you raise the arms to the sides until they are parallel to the floor.",
-    "GifUrl": "https://example.com/gifs/lateral_raise.gif",
-    "FocusAreaUrl": "https://example.com/focus/shoulder.png",
+    "Name": "DUMBBELL PUSH PRESS",
+    "reps": "8 to 12",
+    "Description": "1. Starting Position: Stand with your feet shoulder-width apart. Hold a dumbbell in each hand, with your arms bent at a 90-degree angle, and your palms facing each other. The dumbbells should be positioned just outside your shoulders. This is your starting position.\n\n2. Dip Your Knees: Begin the movement by slightly bending your knees, initiating a small dip.\n\n3. Explosive Push (Drive Phase): Explosively push up with your legs. This leg drive generates the force needed to lift the dumbbells overhead. Simultaneously, press the dumbbells straight over your shoulders, extending your arms fully at the top of the movement.\n\n4. Top Position: At the top of the movement, your arms should be fully extended overhead. Your wrists should be stacked over your shoulders, and your palms should still be facing each other.\n\n5. Lower the Dumbbells: Lower the dumbbells back to the starting position by bending your elbows and controlling the descent. Maintain good form and control as you bring the dumbbells down.\n\n6. Repeat: Perform the desired number of repetitions, typically within a specific rep range based on your fitness goals and the weight you’re using.\n\nTIPS:\n1. Ensure proper form: Maintain a stable core, keep your back straight, and avoid arching or rounding your spine.\n2. Use an appropriate weight: Start with a weight that allows you to perform the exercise with good technique. Gradually increase the weight as you get stronger.\n3. Controlled Tempo: Maintain a controlled and steady tempo during both the ascent (pressing the dumbbells) and descent (lowering the dumbbells) phases of the exercise. Avoid jerky movements.\n4. Warm up: Prioritize shoulder warm-up exercises and mobility work to prepare your shoulders for the demands of the push press.\n5. Ensure you have adequate shoulder and hip mobility before attempting the push press. Limited mobility can compromise your form and effectiveness. As you become more proficient, gradually increase the weight to challenge yourself. However, prioritize maintaining good form over heavy weights.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/10/Dumbbell-Push-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/muscle-worked-in-the-push-press-300x300.png",
     "MuscleId": 4
   },
   {
-    "Name": "Squat",
-    "Sets": "12 to 15",
-    "Description": "A lower body exercise where you lower your hips from a standing position and then stand back up.",
-    "GifUrl": "https://example.com/gifs/squat.gif",
-    "FocusAreaUrl": "https://example.com/focus/legs.png",
+    "Name": "STANDING DUMBBELL SHOULDER PRESS",
+    "reps": "8 to 12",
+    "Description": "1. Stand with your feet shoulder-width apart.\n\n2. Hold a dumbbell in each hand at shoulder height, with your palms facing forward and your elbows bent at 90 degrees. You can start with the dumbbells at shoulder height or rest them on your shoulders.\n\n3. Exhale and push the dumbbells upward, extending your arms fully without locking your elbows at the top.\n\n4. Keep your head straight, and your back should not arch excessively. Maintain a neutral spine.\n\n5. Your wrists should remain in line with your forearms throughout the movement.\n\n6. At the top of the movement, your arms should be fully extended overhead.\n\n7. Inhale and slowly lower the dumbbells back to shoulder height in a controlled manner.\n\nPERSONAL TRAINER TIPS:\n1. Use a weight that challenges you but allows you to maintain proper form.\n2. Keep your core engaged to support your back and stabilize your body.\n3. Don’t arch your back or use momentum to lift the dumbbells.\n4. Maintain a controlled tempo throughout the exercise.\n5. Warm up your shoulders with some light stretching before starting the exercise.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/Standing-Dumbbell-Overhead-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/dumbbell-shoulder-press-muscle-worked-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "DUMBBELL LATERAL RAISE",
+    "reps": "8 to 12",
+    "Description": "1. Stand tall with your feet shoulder-width apart, knees slightly bent, and hold a dumbbell in each hand. Let your arms hang naturally by your sides with your palms facing your body.\n\n2. Engage your core muscles and maintain a slight bend in your elbows throughout the exercise.\n\n3. Keeping your back straight and your shoulders relaxed, exhale and lift both arms out to the sides until they are parallel to the floor. Maintain a slight bend in your elbows as you raise your arms.\n\n4. Focus on using your shoulder muscles to perform the movement, rather than relying on momentum or swinging your body.\n\n5. Pause for a moment at the top of the movement, feeling the contraction in your shoulder muscles.\n\n6. Inhale and slowly lower your arms back down to the starting position, controlling the descent.\n\n7. Repeat the exercise for the desired number of repetitions.\n\nTips:\n\n1. Start with lighter dumbbells and gradually increase the weight as you become more comfortable and stronger.\n2. Keep your wrists in a neutral position throughout the exercise.\n3. Avoid shrugging your shoulders toward your ears. Keep your shoulders down and focus on using the deltoids to lift the weights.\n4. Control the movement both on the way up and down to engage the muscles fully.\n5. Maintain proper posture by keeping your chest up and your shoulders down.\n6. Avoid using excessive swinging or momentum to lift the weights. Focus on a controlled and deliberate motion.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Lateral-Dumbbell-Raise-musle-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "DUMBBELL SHOULDER PRESS",
+    "reps": "8 to 12",
+    "Description": "1. Starting Position: Begin seated with your feet firmly on the floor. Hold the dumbbells at shoulder height with your palms facing forwards.\n\n2. Form: Exhale and press the dumbbells over your head. Hold for a brief second at the top and then slowly lower to the starting position.\n\n3. Personal Trainer Tips: Be mindful of your lower back position. As you press overhead, your back will have the tendency to arch. Remember to start with lighter weights and gradually increase the load as you progress. Keep your core muscles engaged so that you maintain good posture.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/dumbbell-shoulder-press-muscle-worked-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "CABLE LATERAL RAISE",
+    "reps": "8 to 12",
+    "Description": "1. Starting Position: Attach a handle to the bottom of a cable machine, and grasp the handle with an overhand position.\n\n2. Form: Exhale and lift your arm out to the side to about 90 degrees. Hold for a brief second and then slowly return to the starting position.\n\n3. Personal Trainer Tips: During this shoulder exercise, posture and form are very important. As you get fatigued, there will be a tendency to either shrug your shoulders or tilt your hips and lower back in order to lift the weight. Engage your abdominal muscles to stabilize your pelvis and lower back and keep your shoulder blades pulled down and back as you lift.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/07/one-arm-Cable-Lateral-Raise.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Lateral-Dumbbell-Raise-musle-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "45 DEGREE INCLINE ROW",
+    "reps": "8 to 12",
+    "Description": "1. Set an adjustable bench at a 45-degree angle and lie face down with your chest against the bench, and your feet flat on the ground.\n\n2. Pick up two dumbbells or a barbell with an overhand grip, and let your arms hang straight down towards the floor.\n\n3. Exhale and lift the dumbbells or barbell towards your chest while keeping your elbows close to your body.\n\n4. Pause for a second at the top of the movement and squeeze your shoulder blades together.\n\n5. Inhale and lower the weight back down towards the starting position.\n\n6. Repeat for the desired number of repetitions.\n\nProgressive Overload: To build muscle and increase strength, it’s important to gradually increase the resistance or weight used during the exercise. The 45-degree incline row can be performed with dumbbells, barbells, or other types of resistance, allowing for progressive overload and muscle growth over time.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/45-Degree-Incline-Row.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Lateral-Dumbbell-Raise-musle-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "LEVER SHOULDER PRESS",
+    "reps": "8 to 12",
+    "Description": "1. Starting Position: Adjust the seat height so that you are comfortable in the machine. If the machine has markers for pivot points, do your best to align your body with those pivot points.\n\n2. Grasp the handles and keep your spine and head in good alignment.\n\n3. Form: While keeping your core muscles engaged, exhale and press your arms over your head. Hold for a brief second at the top and then slowly lower back to the starting position.\n\n4. Personal Trainer Tips: As with all exercises, posture is very important. Make sure that your back does not arch excessively when you press overhead.\n\n5. 2 Different Arm Positions: The lever shoulder press can be performed with different grips and hand positions, providing variety to your shoulder training. Most machines have 2 different arm positions (abducted or neutral).\n\n6. In the neutral position, your arms are facing each other.\n\n7. In the abducted position, the arms are out to the side and facing forwards.\n\n8. Try both grips and stick with the one that you like the most.\n\n9. Pressing overhead is a great way to strengthen the shoulder muscles, but use caution if you have a history of shoulder or neck pain.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Shoulder-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/shoulder-press-muscle-worked-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "STANDING CLOSE GRIP MILITARY PRESS",
+    "reps": "8 to 12",
+    "Description": "1. Stand with your feet shoulder-width apart.\n\n2. Grab the barbell with a grip that is slightly narrower than shoulder-width apart. Your palms should be facing forward, and your elbows should be positioned slightly in front of the bar.\n\n3. Lift the barbell off the rack or clean it to shoulder level, and hold it there with your upper arms parallel to the floor. This is your starting position.\n\n4. Take a deep breath, brace your core, and engage your glutes for stability.\n\n5. Press the barbell upward in a controlled manner by extending your arms overhead. Keep your elbows pointing forward and your wrists neutral.\n\n6. Continue pressing until your arms are fully extended, and the barbell is directly overhead. Make sure to maintain proper form and avoid excessive arching of the lower back.\n\n7. Pause briefly at the top, and then slowly lower the barbell back to the starting position by bending your elbows and lowering it under control.\n\n8. Repeat for the desired number of repetitions.\n\n9. It’s important to note that using a close grip on the barbell can increase the stress on the shoulders and elbows. If you have any pre-existing shoulder or elbow issues, or if you experience discomfort, it’s recommended to use lighter weights or consider alternative exercises. As always, focus on maintaining proper form and gradually increase the weight as your strength and technique improve.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/10/Standing-Barbell-Close-Grip-Military-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/shoulder-press-muscle-worked-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "DUMBBELL CHEST SUPPORTED LATERAL RAISES",
+    "reps": "8 to 12",
+    "Description": "The chest supported lateral raise is a shoulder strengthening exercise that targets the lateral deltoids and posterior deltoids.\nIn addition, due to the position of the movement, it enables the trapezius muscles to work.\nThe position of the angle you set in this exercise is important because if you lower the incline, the focus will be entirely on your posterior deltoid muscles, and if you bring the incline fully upright, the target will be on your lateral deltoid muscles.\nIt is recommended to adjust the incline according to the muscle group you want to emphasize in this exercise.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2022/02/Dumbbell-Chest-Supported-Lateral-Raises.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/chest-supported-lateral-raise-muscle-worked.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "ALTERNATING DUMBBELL FRONT RAISE",
+    "reps": "8 to 12",
+    "Description": "Starting Position: Simply begin by standing with  dumbbells in your hands with the back of your hands facing forwards.\n Form: Exhale and alternately raise your arms in front of your body. Only lift to about 90 degrees. Hold briefly at the top and then slowly return to the starting position.\n Personal Trainer Tips: Engage your abdominal muscles and keep your lower back stable as you lift towards the front. It is very easy to use momentum and move out of good posture during the exercise.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Alternating-Dumbbell-Front-Raise.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/shoulder-press-muscle-worked-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "TWO ARM CABLE FRONT RAISE",
+    "reps": "8 to 12",
+    "Description": "Cable front raise is the most popular shoulder development and strengthening exercise targeting the anterior deltoid.\n Front raise exercise with cable machines provides constant tension and continuous resistance while lifting and lowering the weight. Because muscle growth and strength gains are directly dependent on how much the muscle is stretched during exercise, cable machines tire the muscles faster and provide greater strength gain.\n Cable front exercise strengthens the stabilizing muscles in your shoulders and improves your muscular balance",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Two-Arm-Cable-Front-Raise.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/shoulder-press-muscle-worked-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "TWO ARM DUMBBELL FRONT RAISE",
+    "reps": "8 to 12",
+    "Description": "Starting Position: Simply begin by standing with  dumbbells in your hands with the back of your hands facing forwards.\n Form: Exhale and lift your arms to the front of your body. Only lift to about 90 degrees. Hold briefly at the top and then slowly return to the starting position.\n Personal Trainer Tips:  Engage your abdominal muscles and keep your lower back stable as you lift towards the front. It is very easy to use momentum and move out of good posture during the exercise.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/08/Two-Arm-Dumbbell-Front-Raise.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/shoulder-press-muscle-worked-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "DUMBBELL FRONT RAISE",
+    "reps": "8 to 12",
+    "Description": "The Dumbbell front raise is a isole exercise that targets the fronts and sides of the shoulders. Suitable for all levels, this shoulder flexion exercise is a good option for building strength, improving shoulder mobility and shaping your shoulder heads.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Front-Raise.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/shoulder-press-muscle-worked-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "LEANING SINGLE ARM DUMBBELL LATERAL RAISE",
+    "reps": "8 to 12",
+    "Description": "The leaning single arm dumbbell lateral raise is an isolation exercise that strengthens the entire shoulder. Compared with the dumbbell lateral raise, the leaning dumbbell lateral raise puts your lateral deltoid under tension through a greater portion of the range of motion, making each repetition more effective.The leaning position creates leverage while maximizing the isolation on the shoulders throughout the movement. It also places greater overload at the top of the movement.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Leaning-Single-Arm-Dumbbell-Lateral-Raise.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Lateral-Dumbbell-Raise-musle-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "REAR DELT FLY MACHINE",
+    "reps": "8 to 12",
+    "Description": "Starting Position: Adjust the seat so that the handles are about shoulder level, and make sure to maintain good neck and lower back posture.\n\nForm: Exhale and pull your arms apart until your shoulders are parallel with your body. Hold for a brief second and then slowly return to the starting position.\n\nPersonal Trainer Tips: You don’t have to pull your arms as far back as possible during this exercise. Use a comfortable range of motion, and don’t force your shoulder too far past parallel with your body.\n\nAs with every exercise posture is very important, make sure that your keep your head in good alignment and don’t let your head move forwards.\n\nAlso make sure that you do not cheat by using your lower back to pull the weights backwards. If you feel muscle work in your lower back, that could be a sign that the weight you are using is too heavy and you are likely compensating by using your lower back muscles.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Delt-Machine-Flys.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Lateral-Dumbbell-Raise-musle-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "HALF ARNOLD PRESS",
+    "reps": "8 to 12",
+    "Description": "Another version of the Arnold press targets the deltoid muscles, just like the Arnold press. The Arnold press works many muscles in the shoulder, but because of the rotation it requires, it may be a more risky exercise than a standard press if you have shoulder discomfort. The half Arnold press can be used as a more practical exercise for those who have difficulty doing the standard Arnold press.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/10/Half-Arnold-Press.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/shoulder-press-muscle-worked-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "FACE PULL",
+    "reps": "8 to 12",
+    "Description": "Face pull is a tremendous exercise that effectively works many muscles, including the shoulder, back, wing and trapezius muscles. It also activates the trapezius muscles, and may benefit discomfort caused by muscle weakness such as postural posture and shoulder blade protrusion by affecting the infraspinatus and subscapula muscles that cover the scapula. In addition, face pull is one of the most effective corrective exercises that help compensate for poor posture and shoulder dysfunction.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Face-Pull.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/muscle-worked-in-the-face-pull-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "HALF KNEELING HIGH CABLE ROW ROPE",
+    "reps": "8 to 12",
+    "Description": "Half kneeling high cable row is a tremendous exercise that effectively works many muscles, including the shoulder, back, wing and trapezius muscles. It also activates the trapezius muscles, and may benefit discomfort caused by muscle weakness such as postural posture and shoulder blade protrusion by affecting the infraspinatus and subscapula muscles that cover the scapula. In addition, face pull is one of the most effective corrective exercises that help compensate for poor posture and shoulder dysfunction.\n\nMany of the movements that work the same muscle group may look alike, but they focus on different parts of the muscles because they are at different angles. If you want to build better muscle specifically, keep in mind that it is more beneficial to include exercises that focus on different aspects to your training program.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Half-Kneeling-High-Cable-Row-Rope.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/muscle-worked-in-the-face-pull-300x300.png",
+    "MuscleId": 4
+  },
+  {
+    "Name": "BENT OVER REVERSE CABLE FLY",
+    "reps": "8 to 12",
+    "Description": "Bent over reverse cable fly is a cable exercise that primarily targets the lateral and posterior shoulders. It is an effective exercise that you can include in your program to isolate the rear shoulder muscles and strengthen the rotator cuff muscles.\n\nIt also activates the trapezius muscles, and may benefit discomfort caused by muscle weakness such as postural posture and shoulder blade protrusion by affecting the infraspinatus and subscapula muscles that cover the scapula.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/bent-over-reverse-cable-fly.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Lateral-Dumbbell-Raise-musle-300x300.png",
+    "MuscleId": 4
+  },
+
+
+
+
+  {
+    "Name": "DUMBBELL GOBLET SQUAT OVERVIEW",
+    "reps": "8 to 12",
+    "Description": "1. Stand with your feet shoulder-width apart. Hold a dumbbell vertically in front of your chest, with both hands gripping the top of the weight.\n2. Brace your core and keep your back straight. Push your hips back and bend your knees as if you’re going to sit down in a chair.\n3. Lower yourself until your thighs are parallel to the floor (or as low as comfortably possible).\n4. Pause for a second at the bottom, then push through your heels to drive yourself back up to the starting position.\n5. Perform the desired number of repetitions, maintaining proper form and control.\n\nTips:\n1. Avoid rounding your back or letting your knees cave inward.\n2. Keep your weight evenly distributed on your feet.\n3. Start with a lighter weight to master the technique before increasing the load.\n4. If you experience any pain or discomfort, stop the exercise and reassess your form.",
+    "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/01/Dumbbell-Goblet-Squat.gif",
+    "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/dumbbell-goblet-squat-muscles-worked-300x300.png",
     "MuscleId": 5
   },
   {
-    "Name": "Lunge",
-    "Sets": "12 to 15",
-    "Description": "A lower body exercise where you step forward with one leg and lower your hips until both knees are bent at about a 90-degree angle.",
-    "GifUrl": "https://example.com/gifs/lunge.gif",
-    "FocusAreaUrl": "https://example.com/focus/legs.png",
-    "MuscleId": 5
-  }
+      "Name": "CURTSY LUNGE",
+      "reps": "8 to 12",
+      "Description": "1. Position yourself with your feet spaced hip-width apart, and keep your hands in front of your chest to help maintain balance.\n2. Take a step diagonally behind you with your left foot, crossing it behind your right leg as if you were curtsying.\n3. Bend both knees, lowering your body until your right thigh is parallel to the floor, and your left knee nearly touches the floor.\n4. Push through your right heel to drive yourself back up to the starting position. Keep your torso upright and your chest lifted throughout the movement.\n5. Continue alternating sides for the desired number of repetitions.\n\nMASTER THE CURTSY LUNGE\nMastering the curtsy lunge involves paying attention to your form and gradually increasing the challenge as you become more proficient. As you lower your body, focus on pressing through the heel of your front foot to engage the muscles in your quads and glutes.\n\nLike any exercise, consistent practice is key to mastering the curtsy lunge. Once you’ve mastered the basic curtsy lunge, you can increase the challenge by holding dumbbells or adding resistance bands.\n\nTIPS FOR PROPER FORM:\n- Keep your chest lifted and your shoulders relaxed throughout the movement.\n- Engage your core muscles to stabilize your spine and pelvis.\n- Keep your back straight, and avoid leaning forward or rounding your spine.\n- Maintain a slow and controlled movement pattern to maximize the effectiveness of the exercise and reduce the risk of injury.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/curtsy-lunge.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pistol-squat-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "LEG PRESS",
+      "reps": "8 to 12",
+      "Description": "1. Adjust the seat position: Sit on the seat with your back against the backrest and your feet resting flat on the platform. Your knees should be bent at a 90-degree angle.\n2. Adjust the weight: Add weight plates to the machine according to your desired intensity level. Start with a weight that you can comfortably handle and gradually increase it as you progress.\n3. Foot placement: Position your feet hip-width apart on the platform, with toes pointing forward or slightly outward. Ensure your feet are placed firmly and securely on the platform.\n4. Preparation: Grip the handles or side supports of the machine for stability. Take a deep breath and brace your core muscles.\n5. Execution: Push against the platform with your feet and extend your legs, driving the platform away from your body. Keep your back against the seat throughout the movement and avoid locking your knees at the top of the movement.\n6. Lowering the weight: Slowly bend your knees and lower the weight back down, allowing your knees to reach a 90-degree angle or slightly beyond without letting the weight touch down completely.\n7. Repeat: Complete the desired number of repetitions, maintaining control and proper form throughout the exercise.\n\nRemember to start with lighter weights and gradually increase the load as you become more comfortable and confident with the exercise.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-Press.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-press-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "LEG CURL",
+      "reps": "8 to 12",
+      "Description": "The leg curl is an isolation exercise that targets the muscles of the back of the thigh, specifically the hamstrings. It is an effective exercise for developing strength, size, and muscular endurance in the hamstrings. It is commonly performed using a leg curl machine found in gyms or fitness centers.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Leg-Curl.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/leg-curl-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "DEADLIFT",
+      "reps": "8 to 12",
+      "Description": "1. Begin by standing with your feet shoulder-width apart, with your toes pointed straight ahead. The barbell should be on the ground in front of you.\n2. Bend down and grasp the bar with your hands slightly wider than shoulder-width apart, using an overhand or mixed grip (one hand overhand, one hand underhand).\n3. Bend your knees and lower your hips, keeping your back straight and your chest up. Keep your head and neck in a neutral position, and focus on looking forward.\n4. Take a deep breath and brace your core muscles. This will help to stabilize your spine and protect your lower back.\n5. Keep the bar close to your body as you lift, and use your legs, glutes, and back muscles to power the lift.\n6. Once you have lifted the bar to a standing position, pause for a moment, then lower it back down to the ground, keeping your back straight and your core engaged.\n\nIt is important to maintain proper form throughout the lift, as improper technique can lead to injury. Some key points to keep in mind include:\n- Keep your back straight and your chest up throughout the lift.\n- Keep the bar close to your body, and use your legs and glutes to power the lift.\n- Brace your core muscles to stabilize your spine and protect your lower back.\n- Avoid rounding your back or allowing your shoulders to hunch forward.\n- Use a weight that allows you to perform the exercise with proper form and technique.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Deadlift.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/deadlift-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "LEG EXTENSION",
+      "reps": "8 to 12",
+      "Description": "1. Set the leg extension machine to your appropriate height and adjust the backrest and footpad to align with your body.\n2. Sit on the machine with your back against the backrest and your feet firmly placed against the footpad. Make sure your knees are aligned with the pivot point of the machine.\n3. Position your legs under the padded lever or roller of the machine. The pad should rest against the front of your ankles, just above your feet.\n4. Grasp the handles provided on the machine for stability and support throughout the exercise. Keep your upper body relaxed and maintain good posture.\n\nExecution of the exercise:\n1. Exhale and contract your quadriceps to extend your legs. Straighten your knees and lift the weighted lever or roller by pushing your feet forward.\n2. Continue the movement until your legs are fully extended, but avoid locking your knees at the top of the movement.\n3. Pause briefly in the extended position, focusing on squeezing your quadriceps.\n4. Inhale and slowly lower the weight by bending your knees and returning to the starting position, controlling the descent.\n5. Repeat the exercise for the desired number of repetitions.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/leg-extension-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "DUMBBELL BULGARIAN SPLIT SQUAT",
+      "reps": "8 to 12",
+      "Description": "1. Begin by standing in a split stance with one foot positioned forward and the other foot positioned behind you, resting on a bench or elevated platform. Ensure the forward foot is a comfortable distance away from the bench to prevent the knee of the forward leg from extending beyond the toes when you lunge down.\n2. Hold a dumbbell in each hand, allowing your arms to hang by your sides.\n3. Keep your chest up, shoulders back, and core engaged throughout the exercise to maintain stability.\n4. Initiate the movement by bending your knees and lowering your body down, keeping the majority of your weight on the front leg.\n5. Descend until your front thigh is parallel to the ground, or as low as your flexibility allows, while maintaining proper form and balance.\n6. Pause for a brief moment at the bottom of the movement, then push through the heel of your front foot to drive yourself back up to the starting position.\n7. Repeat the movement for the desired number of repetitions, then switch the position of your legs and repeat with the opposite leg forward.\n8. Focus on maintaining a stable and balanced position throughout the exercise. Keep your upper body upright and avoid excessive forward leaning or rounding of the back.\n9. Engage your core muscles to help stabilize your body and maintain proper form.\n10. Ensure that your front knee tracks in line with your toes and doesn’t cave inward or extend too far forward.\n\nTIPS:\nStart with lighter dumbbells or bodyweight to get comfortable with the movement and gradually increase the resistance as your strength and stability improve.\n Keep a controlled and smooth tempo throughout the exercise, avoiding any sudden or jerky movements.\n As always, listen to your body and stop the exercise if you experience any pain or discomfort.\n Consult with a fitness professional if you have any concerns or questions.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Dumbbell-Bulgarian-Split-Squat.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-press-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "LEVER SIDE HIP ADDUCTION",
+      "reps": "8 to 12",
+      "Description": "The Lever hip adduction is an effective isolation exercise for the inner hips which builds strength and muscle in the adductors responsible for rotation of the hip joint.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Lever-Side-Hip-Adduction.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/adduction-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "ROMANIAN DEADLIFT",
+      "reps": "8 to 12",
+      "Description": "1. Feet shoulder-width apart: The first step in performing a Romanian deadlift is to make sure your feet are positioned shoulder-width apart. This stance provides a stable base for the lift, allowing you to engage your muscles and maintain proper form throughout the exercise.\n2. Hinge at hips with slight knee bend: Once you have established your foot position, it’s time to hinge at the hips. Begin by standing tall with your shoulders back and your core engaged. From this position, slowly bend forward at the hips while maintaining a slight bend in your knees. This movement should feel like you are pushing your hips back, rather than simply bending forward. As you hinge forward, it’s important to maintain a neutral spine. This means keeping your back straight and avoiding any rounding or arching in your upper or lower back. Keep your gaze forward or slightly down, and avoid looking up or craning your neck.\n3. Overhand grip on barbell with hands shoulder-width apart: Take an overhand grip on the bar with your hands positioned shoulder-width apart. Ensure that the barbell is positioned close to your shins and is in contact with your body throughout the lift. This will help you maintain proper form and engage the correct muscles. If the barbell is too far away from your body, you risk straining your lower back and not targeting the intended muscle groups.\n4. Straighten hips and knees to lift bar: Keeping your back straight and your core engaged, lift the bar by straightening your hips and knees. It’s essential to lift the bar with a controlled movement, avoiding any jerking or sudden movements. This will help you maintain proper form and reduce the risk of injury. As you reach the top of the movement, squeeze your glutes and exhale. Reverse the movement and return the bar to the starting position by pushing your hips back and bending your knees slightly.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Romanian-Deadlift.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-romanian-deadlift-1-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "BULGARIAN SPLIT SQUAT JUMP",
+      "reps": "8 to 12",
+      "Description": "1. Stand in front of the bench or step with your feet shoulder-width apart.\n2. Place your left foot behind you on the bench or step, keeping your right foot flat on the ground.\n3. Lower your body by bending your right knee and hip, keeping your left foot elevated behind you.\n4. Jump explosively off your right foot, crouching until your leg is at a 90-degree angle.\n5. Lower your body back to a 90-degree position, then repeat the jump for the desired number of reps.\nSwitch legs and repeat the exercise on the other side.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/03/Bulgarian-Jump-Squat.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2015/11/Leg-press-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "DEPTH JUMP TO HURDLE HOP",
+      "reps": "8 to 12",
+      "Description": "1. Set up the Hurdles: Arrange a series of hurdles at different heights in a straight line, leaving enough space between them for you to land and hop between each one.\n2. Depth Jump: Stand on top of the plyometric box or platform with your feet hip-width apart. Start by stepping off the box and quickly dropping down to the ground, allowing your knees to slightly bend to absorb the impact. As soon as your feet make contact with the ground, immediately spring up explosively, using your arms for momentum. The depth jump is intended to be a quick and powerful jump, so make sure you’re not spending much time on the ground.\n3. Hurdle Hop: After the depth jump, immediately transition into the hurdle hop. As you ascend from the depth jump, aim to clear the first hurdle with a high knee lift. Land on the other side of the hurdle and quickly prepare for the next hop.\n4. Repeat: Continue performing the depth jump to hurdle hop sequence for the desired number of repetitions or for a set time period.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/Depth-Jump-to-Hurdle-Hop.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/09/Power-Lunge-Muscles-Worked-300x300.webp",
+      "MuscleId": 5
+    },
+    {
+      "Name": "DUMBBELL GOOD MORNING",
+      "reps": "8 to 12",
+      "Description": "1. Stand with your feet shoulder-width apart. You can either use one dumbbell in both hands or hold one in each hand, depending on your preference and the available equipment.\n2. Keep your back straight and chest up. Engage your core muscles to stabilize your spine.\n3. Begin the movement by hinging at your hips and bending forward while keeping your back straight. Your hips should move backward as your upper body moves forward.\n4. Lower your torso until you feel a stretch in your hamstrings but stop when your back is parallel to the ground or just slightly above it. Ensure you maintain the natural arch in your lower back.\n5. Reverse the motion by driving your hips forward and returning to the upright position. Squeeze your glutes at the top of the movement to fully engage your hip extensors.\n6. Perform the desired number of repetitions.\n\nNote: It’s worth noting that weighted Good Mornings can be a challenging exercise, and they may not be suitable for everyone. Weighted Good Mornings can be safe when performed with proper technique, appropriate precautions, and within your fitness level. Always prioritize safety and proper form to minimize the risk of injury. If you’re unsure about your ability to perform this exercise safely, seek guidance from a fitness expert or trainer.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2023/10/Dumbbell-Good-Morning.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/muscle-worked-in-the-good-morning-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "BARBELL HIP THRUSTS",
+      "reps": "8 to 12",
+      "Description": "1. Sit on the floor with your back against a bench, and position a barbell across your hips.\n2. Plant your feet on the ground, with your knees bent and your heels about hip-width apart.\n3. Roll the barbell up your legs until it is directly above your hips.\n4. Tighten your core and glutes, and drive your hips up towards the ceiling until your body forms a straight line from your knees to your shoulders.\n5. Pause at the top of the movement, then lower your hips back down to the starting position.\n6. Repeat for your desired number of repetitions.\n\nTips:\n1. Start with a lighter weight: Begin with a lighter weight to ensure that you can maintain good form throughout the exercise.\n2. Position yourself correctly: Sit with your back against the bench and ensure that the barbell is positioned comfortably on your pelvic bone. Ensure that your head and neck remain in a neutral position and that your shoulders remain down and back throughout the exercise.\n3. Keep your feet firmly on the ground: Keep your feet shoulder-width apart and ensure that your toes are pointing straight ahead.\n4. Engage your core and glutes: Before you lift your hips, engage your core and glutes to ensure that you’re using the correct muscles during the exercise.\n5. Lift your hips smoothly: Lift your hips in a smooth and controlled motion, making sure that you’re not arching your back or straining your neck.\n6. Squeeze your glutes: At the top of the movement, squeeze your glutes to ensure that you’re targeting them effectively.\n7. Lower your hips slowly: Lower your hips back down to the ground in a slow and controlled motion, keeping your core and glutes engaged throughout.\n\nFor Beginners: When choosing the right weight for your fitness level, it’s important to start with a lighter weight and gradually increase over time as you get stronger. A good starting weight for beginners is usually around 40-50% of your one-rep max. As you become more experienced and confident with the exercise, you can increase the weight to around 80-90% of your one-rep max.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Hip-Thrust.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Glute-bridge-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "CABLE HIP ADDUCTION",
+      "reps": "8 to 12",
+      "Description": "The cable hip adduction is an effective isolation exercise for the inner hips which builds strength and muscle in the adductors responsible for rotation of the hip joint.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Cable-Hips-Adduction.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/adduction-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "LANDMINE SQUAT TO PRESS",
+      "reps": "8 to 12",
+      "Description": "It is an advanced functional exercise that increases strength, endurance and performance. Landmine press help improve coordination, muscular endurance, and balance. They help you gain both upper and lower body strength by working the core muscles, quadriceps, glutes, and shoulders.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/Landmine-Press.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/04/ladmine-press-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "SMITH MACHINE GOOD MORNING",
+      "reps": "8 to 12",
+      "Description": "1. Stand facing the Smith machine with your feet shoulder-width apart and the barbell resting on your shoulders.\n2. Keep your chest up and your core engaged.\n3. Slowly bend at the hips, pushing your glutes back and lowering your torso toward the floor.\n4. Lower yourself until your torso is parallel to the floor.\n5. Pause briefly at the bottom of the movement, then slowly raise your torso back up to the starting position.\n6. Repeat for the desired number of repetitions.\n\nTIPS AND PRECAUTIONS:\n1. It’s important to note that the good morning exercise, including the Smith machine variation, places a significant load on the lower back and hamstrings. Therefore, it’s crucial to start with lighter weights and focus on proper form before increasing the load.\n2. Start with a light weight to get used to the movement and to ensure proper form.\n3. Focus on the hinge at the hips, keeping your back straight.\n4. Avoid using excessive weight, especially if you’re new to the exercise.\n5. Consult a healthcare professional if you have any pre-existing conditions or concerns about performing this exercise.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Smith-Machine-Good-Morning.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/muscle-worked-in-the-good-morning-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "CALF RAISE",
+      "reps": "8 to 12",
+      "Description": "Since the target muscle group of this exercise designed to isolate is the calf muscles, it can maximize muscle development by focusing more on the muscles in this area.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Calf-Raise.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/calf-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "LEVER SEATED CALF RAISE",
+      "reps": "8 to 12",
+      "Description": "Place forefeet on machines foot plates with heels extending off. Position lower thighs under machine pads.\nPush from the balls of your feet, raising your heels as high as you can. Pause, then slowly return to the starting position.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Lever-Seated-Calf-Raise.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/calf-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "SINGLE LEG CALF RAISE",
+      "reps": "8 to 12",
+      "Description": "Since the target muscle group of this exercise designed to isolate is the calf muscles, it can maximize muscle development by focusing more on the muscles in this area.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Single-Leg-Calf-Raises.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/calf-muscle-worked-300x300.png",
+      "MuscleId": 5
+    },
+    {
+      "Name": "HACK SQUAT CALF RAISE",
+      "reps": "8 to 12",
+      "Description": "Since the target muscle group of this exercise designed to isolate is the calf muscles, it can maximize muscle development by focusing more on the muscles in this area.",
+      "GifUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Hack-Squat-Calf-Raise.gif",
+      "FocusAreaUrl": "https://fitnessprogramer.com/wp-content/uploads/2021/05/calf-muscle-worked-300x300.png",
+      "MuscleId": 5
+    }
 ]

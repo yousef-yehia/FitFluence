@@ -9,8 +9,13 @@ namespace Core.Interfaces
 {
     public interface IUserDailyFoodsRepository
     {
-        Task AddFoodSelectionAsync(string userId, Food food);
-        UserDailyFoods GetFoodSelections(string userId);
-        Task<double> GetTotalCaloriesAsync(string userId);
+        public Task AddFoodSelectionAsync(string userId, UserDailyFood food);
+        public List<UserDailyFood> GetFoodSelections(string userId);
+        public double GetTotalCalories(List<UserDailyFood> userDailyFoods);
+        public double GetTotalCarbohydrates(List<UserDailyFood> userDailyFoods);
+        public double GetTotalFats(List<UserDailyFood> userDailyFoods);
+        public double GetTotalProtiens(List<UserDailyFood> userDailyFoods);
+        public double GetTotalFibers(List<UserDailyFood> userDailyFoods);
+
     }
 }

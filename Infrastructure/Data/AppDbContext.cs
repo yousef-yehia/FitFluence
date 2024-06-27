@@ -1,5 +1,6 @@
 ﻿using Core.Interfaces;
 using Core.Models;
+using Core.UtilityModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace Infrastructure.Data
         public DbSet<Coach> Coachs { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<CoachAndClient> CoachsAndClients { get; set; }
+        public DbSet<FoodRating> FoodRatings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,7 +49,7 @@ namespace Infrastructure.Data
                 .HasForeignKey(ug => ug.GoalId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Configure the many-to-many relationship between user and favourite foods
+            // Configure the many-to-many relationship between user and foods to favouriteFoods
             modelBuilder.Entity<FavouriteFood>()
                  .HasKey(uf => new { uf.AppUserId, uf.FoodId });
 
@@ -63,6 +65,22 @@ namespace Infrastructure.Data
                 .HasForeignKey(uf => uf.FoodId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // Configure the many-to-many relationship between user and foods to FoodsRating
+            modelBuilder.Entity<FoodRating>()
+                 .HasKey(uf => new { uf.AppUserId, uf.FoodId });
+
+            modelBuilder.Entity<FoodRating>()
+                .HasOne(r => r.AppUser)
+                .WithMany(u => u.Ratings)
+                .HasForeignKey(r => r.AppUserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<FoodRating>()
+                .HasOne(r => r.Food)
+                .WithMany(f => f.Ratings)
+                .HasForeignKey(r => r.FoodId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             // Configure the one-to-many relationship between muscle and exercises
             modelBuilder.Entity<Muscle>()
                 .HasMany(m => m.Exercises)
@@ -74,6 +92,7 @@ namespace Infrastructure.Data
                 .HasOne(m => m.AppUser)
                 .WithMany(e => e.WorkoutPlans)
                 .HasForeignKey(e => e.AppUserId);
+            
 
             // Configure the many-to-many relationship between workoutPlan and exercise
             modelBuilder.Entity<WorkoutPlanExercise>()

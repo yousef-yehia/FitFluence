@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Core.UtilityModels;
+using Microsoft.AspNetCore.Identity;
 namespace Core.Models
 {
     public class AppUser : IdentityUser
@@ -15,6 +16,7 @@ namespace Core.Models
         public Coach? Coach { get; set; }
         public List<UserGoals> UserGoals { get; set; }
         public List<FavouriteFood> FavouriteFoods  { get; set; }
+        public List<FoodRating> Ratings { get; set; }
         public List<WorkoutPlan> WorkoutPlans { get; set; }
         public List<WorkoutHistory> WorkoutHistories { get; set; }
     }

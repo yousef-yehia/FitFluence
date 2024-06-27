@@ -1,5 +1,6 @@
 ﻿using Api.ApiResponses;
 using Api.DTO.FoodDto;
+using Api.DTO.UserDailyFoodDto;
 using Api.Extensions;
 using AutoMapper;
 using Core.Interfaces;
@@ -32,19 +33,21 @@ namespace Api.Controllers
 
         [HttpPost("addFood")]
         [Authorize]
-        public async Task<ActionResult<ApiResponse>> AddFoodSelection(int id)
+        public async Task<ActionResult<ApiResponse>> AddFoodSelection(UserDailyFoodRequestDto foodRequestDto)
         {
             try
             {
                 var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
-                var food = await _foodRepository.GetAsync(f => f.Id == id);
+                var food = await _foodRepository.GetAsync(f => f.Id == foodRequestDto.FoodId);
 
                 if (food == null)
                 {
                     return NotFound(_response.NotFoundResponse("food not found"));
                 }
+                var foodToAdd = _mapper.Map<UserDailyFood>(food);
+                foodToAdd.Weight = foodRequestDto.Weight;
 
-                await _userDailyFoodsRepository.AddFoodSelectionAsync(user.Id, food);
+                await _userDailyFoodsRepository.AddFoodSelectionAsync(user.Id, foodToAdd);
 
                 return Ok(_response.OkResponse("food added"));
             }
@@ -62,28 +65,34 @@ namespace Api.Controllers
             var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
 
             var userFoods = _userDailyFoodsRepository.GetFoodSelections(user.Id);
-
-            var foods = _mapper.Map<List<FoodReturnDto>>(userFoods.Foods);
+            var totalCalories = _userDailyFoodsRepository.GetTotalCalories(userFoods);
+            var totalProtiens = _userDailyFoodsRepository.GetTotalProtiens(userFoods);
+            var totalFats = _userDailyFoodsRepository.GetTotalFats(userFoods);
+            var totalCarbohydrates = _userDailyFoodsRepository.GetTotalCarbohydrates(userFoods);
+            var totalfibers = _userDailyFoodsRepository.GetTotalFibers(userFoods);
 
             var userfoodsToReturn = new UserDailyFoodDto
             {
-                Foods = foods,
-                CaloriesSum = userFoods.Calories,
-                ProtienSum = userFoods.Protien,
+                Foods = userFoods,
+                CaloriesSum = totalCalories,
+                ProtiensSum = totalProtiens,
+                CarbohydratesSum = totalCarbohydrates,
+                FatsSum= totalFats,
+                FibersSum = totalfibers,
             };
 
 
             return Ok(_response.OkResponse(userfoodsToReturn));
         }
 
-        [HttpGet("GetUserDailyFoodsCalories")]
-        [Authorize]
-        public async Task<IActionResult> GetTotalCalories()
-        {
-            var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+        //[HttpGet("GetUserDailyFoodsCalories")]
+        //[Authorize]
+        //public async Task<IActionResult> GetTotalCalories()
+        //{
+        //    var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
 
-            var totalCalories = await _userDailyFoodsRepository.GetTotalCaloriesAsync(user.Id);
-            return Ok(totalCalories);
-        }
+        //    var totalCalories = await _userDailyFoodsRepository.GetTotalCaloriesAsync(user.Id);
+        //    return Ok(totalCalories);
+        //}
     }
 }

@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240627150628_AddAvgRatingFood")]
+    partial class AddAvgRatingFood
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -262,24 +265,6 @@ namespace Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Foods");
-                });
-
-            modelBuilder.Entity("Core.Models.FoodRating", b =>
-                {
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("FoodId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rate")
-                        .HasColumnType("int");
-
-                    b.HasKey("AppUserId", "FoodId");
-
-                    b.HasIndex("FoodId");
-
-                    b.ToTable("FoodRatings");
                 });
 
             modelBuilder.Entity("Core.Models.Goal", b =>
@@ -645,25 +630,6 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("Food");
                 });
 
-            modelBuilder.Entity("Core.Models.FoodRating", b =>
-                {
-                    b.HasOne("Core.Models.AppUser", "AppUser")
-                        .WithMany("Ratings")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Core.Models.Food", "Food")
-                        .WithMany("Ratings")
-                        .HasForeignKey("FoodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("Food");
-                });
-
             modelBuilder.Entity("Core.Models.UserGoals", b =>
                 {
                     b.HasOne("Core.Models.AppUser", "AppUser")
@@ -802,8 +768,6 @@ namespace Infrastructure.Data.Migrations
 
                     b.Navigation("FavouriteFoods");
 
-                    b.Navigation("Ratings");
-
                     b.Navigation("UserGoals");
 
                     b.Navigation("WorkoutHistories");
@@ -830,8 +794,6 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Models.Food", b =>
                 {
-                    b.Navigation("Ratings");
-
                     b.Navigation("UserFoods");
                 });
 

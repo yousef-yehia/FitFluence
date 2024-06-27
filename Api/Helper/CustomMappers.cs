@@ -32,7 +32,7 @@ namespace Api.Helper
                 Name = e.Name,
                 GifUrl = e.GifUrl,
                 //Sets = e.Sets,
-                MuscleName = e.Muscle.Name,
+                //MuscleName = e.Muscle.Name,
                 Description = e.Description,
                 FocusAreaUrl = e.FocusAreaUrl,
             }).ToList();

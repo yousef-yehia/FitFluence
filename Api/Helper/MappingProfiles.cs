@@ -54,7 +54,8 @@ namespace Api.Helper
             CreateMap<CreateFoodDto, Food>().ReverseMap();
             CreateMap<CreateFoodDto, Food>().ReverseMap();
 
-            CreateMap<UserDailyFoods, UserDailyFoodDto>().ReverseMap();
+            //CreateMap<UserDailyFoods, UserDailyFoodDto>().ReverseMap();
+            CreateMap<UserDailyFood, Food>().ReverseMap();
 
             CreateMap<ExerciseReturnDto, Exercise>().ReverseMap();
             CreateMap<CreateExerciseDto, Exercise>().ReverseMap();

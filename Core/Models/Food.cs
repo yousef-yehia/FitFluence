@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Core.UtilityModels;
 
 namespace Core.Models
 {
@@ -15,7 +16,9 @@ namespace Core.Models
         public double Protein { get; set; }
         public double Fiber { get; set; }
         public string ImageURL { get; set; }
+        public double? AvgRating { get; set; }
         public List<FavouriteFood> UserFoods { get; set; }
+        public List<FoodRating> Ratings { get; set; }
         //public void Update(string? name, string? serving, double calories = 0, double fat = 0, double carbohydrates = 0, double protein = 0, double fiber = 0 )
         //{
         //    Name = !string.IsNullOrEmpty(name) ? name : Name;
