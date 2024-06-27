@@ -14,6 +14,7 @@ namespace Infrastructure.Data
     {
         public static async Task SeedDataAsync(AppDbContext _dbContext)
         {
+            //seed foods
             if (!_dbContext.Foods.Any())
             {
                 var FoodsData = File.ReadAllText("../Infrastructure/Data/SeedData/Food1.json");
@@ -22,6 +23,7 @@ namespace Infrastructure.Data
                 if (_dbContext.ChangeTracker.HasChanges()) await _dbContext.SaveChangesAsync();
 
             }
+            //seed muscles
             if (!_dbContext.Muscles.Any())
             {
                 var musclesData = File.ReadAllText("../Infrastructure/Data/SeedData/Muscles.json");
@@ -29,6 +31,7 @@ namespace Infrastructure.Data
                 _dbContext.Muscles.AddRange(muscles);
                 if (_dbContext.ChangeTracker.HasChanges()) await _dbContext.SaveChangesAsync();
             }
+            //seed exercises
             if (!_dbContext.Exercises.Any())
             {
                 var exerciseData = File.ReadAllText("../Infrastructure/Data/SeedData/Exercises.json");
@@ -37,8 +40,8 @@ namespace Infrastructure.Data
                 if (_dbContext.ChangeTracker.HasChanges()) await _dbContext.SaveChangesAsync();
 
             } 
-
-            if(_dbContext.Foods.Any(f=> f.AvgRating == null))
+            //seed avg ratings from kaggleRatings
+            if(_dbContext.Foods.Any(f => f.AvgRating == null))
             {
                 var ratingsData = File.ReadAllText("../Infrastructure/Data/SeedData/Ratings.json");
                 List<KaggleRating> ratings = JsonSerializer.Deserialize<List<KaggleRating>>(ratingsData);

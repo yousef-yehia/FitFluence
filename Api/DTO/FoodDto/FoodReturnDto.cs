@@ -13,6 +13,7 @@
         public double Protein { get; set; }
         public double Fiber { get; set; }
         public string ImageUrl { get; set; }
+        public double? AvgRating { get; set; }
 
     }
 }

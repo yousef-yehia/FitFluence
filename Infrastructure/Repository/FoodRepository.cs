@@ -1,5 +1,7 @@
-﻿using Core.Interfaces;
+﻿using System.Text.Json;
+using Core.Interfaces;
 using Core.Models;
+using Core.UtilityModels;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -70,6 +72,36 @@ namespace Infrastructure.Repository
             }
 
             return foodsToList.ToList();
+        }
+
+        public async Task AddFoodRate(string appUserId, int foodId, int rate)
+        {
+            await _appDbContext.FoodRatings.AddAsync(new FoodRating
+            {
+                AppUserId = appUserId,
+                FoodId = foodId,
+                Rate = rate
+            });
+            await UpdateFoodRate(foodId, rate);
+        }
+
+        public async Task UpdateFoodRate(int foodId, int rate)
+        {
+            var ratingsData = File.ReadAllText("../Infrastructure/Data/SeedData/Ratings.json");
+            List<KaggleRating> ratings = JsonSerializer.Deserialize<List<KaggleRating>>(ratingsData);
+
+            ratings.Add(new KaggleRating {UserId = 999, FoodId = foodId, Rate = rate });
+
+            var avgRatings = ratings
+                .Where(r => r.FoodId == foodId)
+                .Select(r => r.Rate)
+                .Average();
+
+            var food = await _appDbContext.Foods.FirstOrDefaultAsync(f => f.Id == foodId);
+            food.AvgRating = avgRatings;
+            
+            await UpdateAsync(food);
+
         }
     }
 }

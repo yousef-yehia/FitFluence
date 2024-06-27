@@ -56,7 +56,7 @@ namespace Api.Controllers
                 ImageUrl = user.ImageUrl,
                 Email = user.Email,
                 UserId = user.Id,
-                Token = _tokenService.CreateToken(user),
+                Token = "",
                 Age = user.Age,
                 Gender = user.Gender,
                 Height = user.Height,
@@ -68,8 +68,6 @@ namespace Api.Controllers
             var response = _response.OkResponse(userToReturn);
             return Ok(response);
         }
-        [HttpGet]
-
 
         [HttpPost("registerClient")]
         public async Task<ActionResult<ApiResponse>> RegisterClient(ClientRegisterRequestDto model)
@@ -307,7 +305,7 @@ namespace Api.Controllers
             return Ok(result);
         }
 
-        [HttpDelete]
+        [HttpDelete("deleteuser")]
         public async Task<ActionResult<ApiResponse>> DeleteUser(string username)
         {
             try

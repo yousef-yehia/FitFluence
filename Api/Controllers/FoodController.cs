@@ -6,6 +6,9 @@ using Core.Models;
 using Api.Helper;
 using Api.ApiResponses;
 using Api.DTO.FoodDto;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Api.Extensions;
 
 
 namespace Api.Controllers
@@ -14,24 +17,22 @@ namespace Api.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
+        private readonly UserManager<AppUser> _userManager;
         private readonly IFoodRepository _foodRepository;
         private readonly IMapper _mapper;
         protected ApiResponse _response;
 
 
-        public FoodController(ApiResponse response, IMapper mapper, IFoodRepository foodRepository)
+        public FoodController(ApiResponse response, IMapper mapper, IFoodRepository foodRepository, UserManager<AppUser> userManager)
         {
 
             _response = response;
             _mapper = mapper;
             _foodRepository = foodRepository;
+            _userManager = userManager;
         }
 
         [HttpGet("GetAllFoods", Name = "GetAllFoods")]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [ResponseCache(Duration = 10)]
         public async Task<ActionResult<ApiResponse>> GetAllFoods(string? search = null, string? order = null, int pageSize = 0, int pageNumber = 1)
         {
@@ -78,13 +79,35 @@ namespace Api.Controllers
 
         }
 
-        [HttpPost("CreateFood", Name = "CreateFood")]
-        //[Authorize(Roles = "admin")]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [HttpGet("GetFoodsFromListOfIds", Name = "GetFoodsFromListOfIds")]
+        public async Task<ActionResult<ApiResponse>> GetFoodsFromListOfIds([FromQuery] List<int> ids)
+        {
+            try 
+            {
+                List<Food> foods = new List<Food>();
+                foreach(int id in ids)
+                {
+                    foods.Add(await _foodRepository.GetAsync(f => f.Id == id));
+                }
 
-        public async Task<ActionResult<ApiResponse>> CreateFood([FromBody] CreateFoodDto createFoodDto)
+                if (foods == null)
+                {
+                    return NotFound(_response.NotFoundResponse("Food not found"));
+                }
+                return Ok(_response.OkResponse(_mapper.Map<List<FoodReturnDto>>(foods)));
+
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+
+        }
+
+        [HttpPost("CreateFood", Name = "CreateFood")]
+        [Authorize(Roles = "admin,coach")]
+
+        public async Task<ActionResult<ApiResponse>> CreateFood(CreateFoodDto createFoodDto)
         {
             try 
             {
@@ -112,11 +135,41 @@ namespace Api.Controllers
 
         }
 
+        [HttpPost("GiveFoodRate", Name = "GiveFoodRate")]
+        [Authorize]
+        public async Task<ActionResult<ApiResponse>> GiveFoodRate(int foodId, int rating)
+        {
+            try 
+            {
+                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
+                if (foodId == 0)
+                {
+                    return BadRequest(_response.BadRequestResponse("Food is required"));
+                }  
+                if (rating > 10)
+                {
+                    return BadRequest(_response.BadRequestResponse("rate can not be bigger than 10"));
+                }
+
+                if(! await _foodRepository.DoesExistAsync(f=> f.Id == foodId))
+                {
+                    return BadRequest(_response.BadRequestResponse("Food Doesnot exists"));
+                }
+
+                await _foodRepository.AddFoodRate(user.Id, foodId, rating);    
+
+                return Ok(_response.OkResponse("Food Rated Success"));
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+
+        }
+
         [HttpDelete("DeleteFood {id:int}", Name = "DeleteFood")]
-        //[Authorize(Roles = "admin")]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize(Roles = "admin")]
 
         public async Task<ActionResult<ApiResponse>> DeleteFood(int id)
         {
@@ -138,21 +191,19 @@ namespace Api.Controllers
             }
         }
 
-        [HttpDelete("DeleteAllFood", Name = "DeleteAllFood")]
+        //[HttpDelete("DeleteAllFood", Name = "DeleteAllFood")]
         //[Authorize(Roles = "admin")]
-        public async Task<ActionResult<ApiResponse>> DeleteAllFood()
-        {
+        //public async Task<ActionResult<ApiResponse>> DeleteAllFood()
+        //{
 
-            await _foodRepository.DeleteAllFoods();
-            _response.StatusCode = HttpStatusCode.NoContent;
-            _response.IsSuccess = true;
-            return Ok(_response);
-        }
+        //    await _foodRepository.DeleteAllFoods();
+        //    _response.StatusCode = HttpStatusCode.NoContent;
+        //    _response.IsSuccess = true;
+        //    return Ok(_response);
+        //}
 
         [HttpPut("UpdateFood {id:int}", Name = "UpdateFood")]
-        //[Authorize(Roles = "admin")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> UpdateFood(int id, [FromBody] CreateFoodDto foodDto)
         {
             try
