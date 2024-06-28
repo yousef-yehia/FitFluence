@@ -1,7 +1,9 @@
 ﻿using Api.DTO.CoachDto;
 using Api.DTO.ExerciseDto;
+using Api.DTO.FoodDto;
 using Api.DTO.WorkoutHistoryDto;
 using Api.DTO.WorkoutPlanDto;
+using CloudinaryDotNet.Actions;
 using Core.Models;
 
 namespace Api.Helper
@@ -58,6 +60,25 @@ namespace Api.Helper
             }).ToList();
             return coachReturn;
         }
+        public static CoachReturnDto MapAppUserToCoachReturnDto(AppUser user)
+        {
+            var coachReturn = new CoachReturnDto
+            {
+                Age = user.Age,
+                Email = user.Email,
+                Name = user.Name,
+                PhoneNumber = user.PhoneNumber,
+                Gender = user.Gender,
+                CvUrl = user.Coach.CvUrl,
+                FatWeight = user.FatWeight,
+                Height = user.Height,
+                ImageUrl = user.ImageUrl,
+                MuscleWeight = user.MuscleWeight,
+                UserId = user.Id,
+                Weight = user.Weight,
+            };
+            return coachReturn;
+        }
         public static List<ClientReturnDto> MapClientToClientReturnDto(List<Client> clients)
         {
             var clientReturn = clients.Select(u => new ClientReturnDto
@@ -94,6 +115,47 @@ namespace Api.Helper
                 }).ToList()
             }).ToList();
             return workoutPlansReturn;
+        }
+
+        public static List<FoodReturnDto> MapFoodToFoodReturnDto(List<Food> Foods, List<FavouriteFood> favouriteFood)
+        {
+            var workoutPlanExerciseReturn = Foods.Select(we => new FoodReturnDto
+            {
+                Id = we.Id,
+                Name = we.Name,
+                Calories = we.Calories,
+                Protein = we.Protein,
+                Fat = we.Fat,
+                Carbohydrates = we.Carbohydrates,
+                ImageUrl = we.ImageURL,
+                IsFavourite = favouriteFood.Any(f => f.FoodId == we.Id),
+                Description = we.Description,
+                AvgRating = we.AvgRating,
+                Fiber = we.Fiber,
+                Serving = we.Serving,
+                Verified = we.Verified,
+            }).ToList();
+            return workoutPlanExerciseReturn;
+        }
+        public static FoodReturnDto MapFoodToFoodReturnDto(Food food, List<FavouriteFood> favouriteFood)
+        {
+            var workoutPlanExerciseReturn = new FoodReturnDto
+            {
+                Id = food.Id,
+                Name = food.Name,
+                Calories = food.Calories,
+                Protein = food.Protein,
+                Fat = food.Fat,
+                Carbohydrates = food.Carbohydrates,
+                ImageUrl = food.ImageURL,
+                IsFavourite = favouriteFood.Any(f => f.FoodId == food.Id),
+                Description = food.Description,
+                AvgRating = food.AvgRating,
+                Fiber = food.Fiber,
+                Serving = food.Serving,
+                Verified = food.Verified,
+            };
+            return workoutPlanExerciseReturn;
         }
     }
 }

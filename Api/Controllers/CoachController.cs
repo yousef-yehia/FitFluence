@@ -22,20 +22,39 @@ namespace Api.Controllers
         private readonly ICoachRepository _coachRepository;
         private readonly IClientRepository _clientRepository;
         private readonly ApiResponse _response;
+        private readonly IPhotoService _photoService;
         private readonly IMapper _mapper;
 
-        public CoachController(UserManager<AppUser> userManager, ICoachRepository coachRepository, ApiResponse response, IMapper mapper, IClientRepository clientRepository)
+        public CoachController(UserManager<AppUser> userManager, ICoachRepository coachRepository, ApiResponse response, IMapper mapper, IClientRepository clientRepository, IPhotoService photoService)
         {
             _userManager = userManager;
             _coachRepository = coachRepository;
             _response = response;
             _mapper = mapper;
             _clientRepository = clientRepository;
+            _photoService = photoService;
         }
 
         [HttpGet("GetAllCoaches", Name = "GetAllCoaches")]
         [ResponseCache(Duration = 10)]
-        public async Task<ActionResult<ApiResponse>> GetAllCoaches(int pageSize = 0, int pageNumber = 1)
+        public async Task<ActionResult<ApiResponse>> GetAllCoaches()
+        {
+            try
+            {
+                var AppUserList = await _coachRepository.GetAllCoachsAsync(includeProperties: "AppUser");
+                var CoachesReturn = CustomMappers.MapCoachToCoachReturnDto(AppUserList);
+
+                return Ok(_response.OkResponse(CoachesReturn));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
+
+        [HttpGet("GetAllCoachesWithPagination", Name = "GetAllCoachesWithPagination")]
+        [ResponseCache(Duration = 10)]
+        public async Task<ActionResult<ApiResponse>> GetAllCoachesWithPagination(int pageSize = 0, int pageNumber = 1)
         {
             try
             {
@@ -44,6 +63,23 @@ namespace Api.Controllers
                 var paginatedCoaches = Pagination<CoachReturnDto>.Paginate(CoachesReturn, pageNumber, pageSize);
 
                 return Ok(_response.OkResponse(paginatedCoaches));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
+
+        [HttpGet("GetCoach", Name = "GetCoach")]
+        [Authorize]
+        public async Task<ActionResult<ApiResponse>> GetCoach()
+        {
+            try
+            {
+                var coach = await _userManager.FindByEmailFromClaimsPrincipalWithCoach(User);
+                var coachReturn = CustomMappers.MapAppUserToCoachReturnDto(coach);
+
+                return Ok(_response.OkResponse(coachReturn));
             }
             catch (Exception ex)
             {
@@ -101,6 +137,32 @@ namespace Api.Controllers
                 var coachClients = await _coachRepository.GetAllCoachClientsAsync(coachId);
                 var coachClientsReturn = CustomMappers.MapClientToClientReturnDto(coachClients);
                 return Ok(_response.OkResponse(coachClientsReturn));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
+
+        [HttpPost("AddCv", Name = "AddCv")]
+        [Authorize]
+        public async Task<ActionResult<ApiResponse>> AddCv(IFormFile cv)
+        {
+            try
+            {
+                var appUser = await _userManager.FindByEmailFromClaimsPrincipalWithCoach(User);
+                var coachId = appUser.Coach.CoachId;
+                if (coachId == 0)
+                {
+                    return NotFound(_response.NotFoundResponse("Coach is not found"));
+                }
+
+                var coach = await _coachRepository.GetAsync(c=> c.CoachId == coachId);
+                var uploadResult = _photoService.UploadPdfAsync(cv);
+                coach.CvUrl = uploadResult.Result.Url.ToString();
+                await _coachRepository.UpdateAsync(coach);
+                return Ok(_response.OkResponse($"cv uploaded{coach.CvUrl}"));
+
             }
             catch (Exception ex)
             {

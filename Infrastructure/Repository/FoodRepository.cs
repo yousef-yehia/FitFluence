@@ -33,12 +33,12 @@ namespace Infrastructure.Repository
 
             if (!string.IsNullOrEmpty(search))
             {
-                foods = foods.Where(f => f.Name.Contains(search) || f.Serving.Contains(search)).ToList();
+                foods = foods.Where(f => f.Name.ToLower().Contains(search.ToLower()) || f.Description.ToLower().Contains(search.ToLower())).ToList();
             }
 
             if (!string.IsNullOrEmpty(orderBy))
             {
-               switch (orderBy)
+               switch (orderBy.ToLower())
                {
                     case "name":
                         foods = foods.OrderBy(f => f.Name).ToList();
@@ -48,6 +48,9 @@ namespace Infrastructure.Repository
                         break;
                     case "calories":
                         foods = foods.OrderBy(f => f.Calories).ToList();
+                        break;
+                    case "ourfood":
+                        foods = foods.OrderByDescending(f=> f.Id).ToList();
                         break;
                }
             }   
@@ -87,7 +90,7 @@ namespace Infrastructure.Repository
 
         public async Task UpdateFoodRate(int foodId, int rate)
         {
-            var ratingsData = File.ReadAllText("../Infrastructure/Data/SeedData/Ratings.json");
+            var ratingsData = File.ReadAllText("../wwwroot/wwwroot/SeedData/Ratings.json");
             List<KaggleRating> ratings = JsonSerializer.Deserialize<List<KaggleRating>>(ratingsData);
 
             ratings.Add(new KaggleRating {UserId = 999, FoodId = foodId, Rate = rate });

@@ -47,7 +47,7 @@ namespace Infrastructure.Services
                 var uploadParms = new ImageUploadParams
                 {
                     File = new FileDescription(file.FileName, stream),
-                    Transformation = new Transformation().Crop("fill").Gravity("face"),
+                    Transformation = new Transformation().Crop("fill"),
                     Folder = "ExercisePhotos" // Set the folder name here
 
                 };
@@ -64,7 +64,7 @@ namespace Infrastructure.Services
                 var uploadParms = new ImageUploadParams
                 {
                     File = new FileDescription(file.FileName, stream),
-                    Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face"),
+                    Transformation = new Transformation().Crop("fill"),
                     Folder = "MusclePhotos" // Set the folder name here
 
                 };
@@ -73,6 +73,21 @@ namespace Infrastructure.Services
             return uploadResult;
         }
 
+        public async Task<RawUploadResult> UploadPdfAsync(IFormFile file)
+        {
+            var uploadResult = new RawUploadResult();
+            if (file.Length > 0)
+            {
+                using var stream = file.OpenReadStream();
+                var uploadParams = new RawUploadParams
+                {
+                    File = new FileDescription(file.FileName, stream),
+                    Folder = "CoachsCv" // Set the folder name here
+                };
+                uploadResult = await _cloudinary.UploadAsync(uploadParams);
+            }
+            return uploadResult;
+        }
 
 
         public async Task<DeletionResult> DeletePhotoAsync(string publicId)

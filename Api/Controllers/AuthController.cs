@@ -7,6 +7,7 @@ using Api.Helper;
 using AutoMapper;
 using Core.Interfaces;
 using Core.Models;
+using FitFluence.Repository;
 using Infrastructure.Data;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -163,11 +164,11 @@ namespace Api.Controllers
                     Email = model.Email,
                     UserName = model.UserName,
                     PhoneNumber = model.PhoneNumber,
-                    Weight = model.Weight,
-                    FatWeight = model.FatWeight,
-                    MuscleWeight = model.MuscleWeight,
-                    Height = model.Height,
-                    Age = model.Age,
+                    Weight = model.Weight ?? 0,
+                    FatWeight = model.FatWeight ?? 0,
+                    MuscleWeight = model.MuscleWeight ?? 0,
+                    Height = model.Height ?? 0,
+                    Age = model.Age ?? 0,
                     Gender = model.Gender,
                 };
                 newUser.Coach = new Coach
@@ -175,6 +176,17 @@ namespace Api.Controllers
                     AppUser = newUser,
                     AppUserId = newUser.Id,
                 };
+
+                if (model.Cv != null)
+                {
+                    var fileExtension = Path.GetExtension(model.Cv.FileName)?.ToLowerInvariant();
+                    if (fileExtension != ".pdf")
+                    {
+                        return BadRequest(_response.BadRequestResponse("only pdf allowed"));
+                    }
+                    var uploadResult = _photoService.UploadPdfAsync(model.Cv);
+                    newUser.Coach.CvUrl = uploadResult.Result.Url.ToString();
+                }
 
                 var result = await _userManager.CreateAsync(newUser, model.Password);
                 await _userManager.AddToRoleAsync(newUser, Role.roleCoach);

@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\SeedData\Exercises.json" />
+    <Content Remove="wwwroot\SeedData\Food1.json" />
+    <Content Remove="wwwroot\SeedData\Muscles.json" />
+    <Content Remove="wwwroot\SeedData\Ratings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <_ContentIncludedByDefault Remove="appsettings.json" />
   </ItemGroup>
 
@@ -33,7 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <None Include="wwwroot\SeedData\Exercises.json" />
+    <None Include="wwwroot\SeedData\Food1.json" />
+    <None Include="wwwroot\SeedData\Muscles.json" />
+    <None Include="wwwroot\SeedData\Ratings.json" />
   </ItemGroup>
 
 </Project>

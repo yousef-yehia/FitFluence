@@ -9,6 +9,8 @@ using Api.DTO.FoodDto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Api.Extensions;
+using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
 
 
 namespace Api.Controllers
@@ -33,13 +35,16 @@ namespace Api.Controllers
         }
 
         [HttpGet("GetAllFoods", Name = "GetAllFoods")]
+        [Authorize]
         [ResponseCache(Duration = 10)]
         public async Task<ActionResult<ApiResponse>> GetAllFoods(string? search = null, string? order = null, int pageSize = 0, int pageNumber = 1)
         {
             try
             {
+                var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
                 var foods = await _foodRepository.GetAllAsync(search, order);
-                var foodsResponse = _mapper.Map<List<FoodReturnDto>>(foods);
+
+                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(foods, user.FavouriteFoods);
                 var paginatedFoods = Pagination<FoodReturnDto>.Paginate(foodsResponse, pageNumber, pageSize);
 
                 return Ok(_response.OkResponse(paginatedFoods));
@@ -53,6 +58,7 @@ namespace Api.Controllers
 
 
         [HttpGet("GetFood", Name = "GetFood")]
+        [Authorize]
         [ResponseCache(Duration = 10)]
         public async Task<ActionResult<ApiResponse>> GetFood(int id)
         {
@@ -65,11 +71,16 @@ namespace Api.Controllers
 
                 var food = await _foodRepository.GetAsync(f=> f.Id == id);
 
+
                 if (food == null)
                 {
                     return NotFound(_response.NotFoundResponse("Food not found"));
                 }
-                return Ok(_response.OkResponse(_mapper.Map<FoodReturnDto>(food)));
+
+                var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
+                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(food, user.FavouriteFoods);
+
+                return Ok(_response.OkResponse(foodsResponse));
 
             }
             catch (Exception ex) 
@@ -80,11 +91,13 @@ namespace Api.Controllers
         }
 
         [HttpGet("GetFoodsFromListOfIds", Name = "GetFoodsFromListOfIds")]
+        [Authorize]
         public async Task<ActionResult<ApiResponse>> GetFoodsFromListOfIds([FromQuery] List<int> ids)
         {
             try 
             {
                 List<Food> foods = new List<Food>();
+
                 foreach(int id in ids)
                 {
                     foods.Add(await _foodRepository.GetAsync(f => f.Id == id));
@@ -94,7 +107,11 @@ namespace Api.Controllers
                 {
                     return NotFound(_response.NotFoundResponse("Food not found"));
                 }
-                return Ok(_response.OkResponse(_mapper.Map<List<FoodReturnDto>>(foods)));
+
+                var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
+                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(foods, user.FavouriteFoods);
+
+                return Ok(_response.OkResponse(foodsResponse));
 
             }
             catch (Exception ex) 

@@ -1,0 +1,22 @@
+﻿[
+  {
+    "Name": "Chest",
+    "ImageUrl": "https://asset.cloudinary.com/dodfiamvr/77c81e2bb6aaac1291d81eb3b0df3006"
+  },
+  {
+    "Name": "Back",
+    "ImageUrl": "https://asset.cloudinary.com/dodfiamvr/6c493258face32a2afbb4149b9930de1"
+  },
+  {
+    "Name": "Arm",
+    "ImageUrl": "https://asset.cloudinary.com/dodfiamvr/9751a487c28799421086d1e52e4e53ae"
+  },
+  {
+    "Name": "Shoulder",
+    "ImageUrl": "https://asset.cloudinary.com/dodfiamvr/559f5bc8c61ecda700c9209de381f933"
+  },
+  {
+    "Name": "Legs",
+    "ImageUrl": "https://asset.cloudinary.com/dodfiamvr/dcf560fff0117503f5a14e602737e13a"
+  }
+]
