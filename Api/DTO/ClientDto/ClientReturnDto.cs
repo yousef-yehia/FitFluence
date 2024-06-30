@@ -1,4 +1,4 @@
-﻿namespace Api.DTO.CoachDto
+﻿namespace Api.DTO.ClientDto
 {
     public class ClientReturnDto
     {

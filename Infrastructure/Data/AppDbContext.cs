@@ -27,6 +27,8 @@ namespace Infrastructure.Data
         public DbSet<Client> Clients { get; set; }
         public DbSet<CoachAndClient> CoachsAndClients { get; set; }
         public DbSet<FoodRating> FoodRatings { get; set; }
+        public DbSet<DietPlan> DietPlans { get; set; }
+        public DbSet<DietPlanFood> DietPlanFoods { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -161,6 +163,29 @@ namespace Infrastructure.Data
                 .WithMany(f => f.CoachsAndClients)
                 .HasForeignKey(uf => uf.CoachId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+            // Configure the one-to-many relationship between user and DietPlan 
+            modelBuilder.Entity<DietPlan>()
+                .HasOne(dp => dp.AppUser)
+                .WithMany(u => u.DietPlans)
+                .HasForeignKey(dp => dp.AppUserId);
+
+            // Configure the many-to-many relationship between DietPlan and Food
+            modelBuilder.Entity<DietPlanFood>()
+                 .HasKey(dpf => new { dpf.DietPlanId, dpf.FoodId });
+
+            modelBuilder.Entity<DietPlanFood>()
+                .HasOne(dpf => dpf.DietPlan)
+                .WithMany(dp => dp.DietPlanFoods)
+                .HasForeignKey(dpf => dpf.DietPlanId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<DietPlanFood>()
+                .HasOne(dpf => dpf.Food)
+                .WithMany(f => f.DietPlanFoods)
+                .HasForeignKey(dpf => dpf.FoodId)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
 

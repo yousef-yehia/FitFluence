@@ -132,6 +132,9 @@ namespace Api.Controllers
                 {
                     return BadRequest(_response.BadRequestResponse(""));
                 }
+
+                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
                 if (createFoodDto == null)
                 {
                     return BadRequest(_response.BadRequestResponse("Food is required"));
@@ -141,7 +144,14 @@ namespace Api.Controllers
                     return BadRequest(_response.BadRequestResponse("Food already exists"));
                 }
 
-                await _foodRepository.CreateAsync(_mapper.Map<Food>(createFoodDto));    
+                var food = _mapper.Map<Food>(createFoodDto);
+
+                if( _userManager.GetRolesAsync(user).Result.FirstOrDefault() == Core.Models.Role.roleAdmin)
+                {
+                    food.Verified = true;
+                }
+
+                await _foodRepository.CreateAsync(food);    
 
                 return Ok(_response.OkResponse("Food Created Success"));
             }

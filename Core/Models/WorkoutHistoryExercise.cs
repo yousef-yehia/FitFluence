@@ -14,7 +14,8 @@ namespace Core.Models
         public Exercise Exercise { get; set; }
         public string ExerciseName { get; set; }
         public string ExerciseGifUrl { get; set; }
-        public int NumberOfReps { get; set; }
+        public int Sets { get; set; }
+        public int Reps { get; set; }
         public double Weight { get; set; }
     }
 }

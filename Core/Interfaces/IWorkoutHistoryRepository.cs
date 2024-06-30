@@ -10,7 +10,7 @@ namespace Core.Interfaces
     public interface IWorkoutHistoryRepository
     {
         public Task<WorkoutHistory> CreateWorkoutHistoryAsync(string appUserId);
-        public Task AddExerciseToWorkoutHisterAsync(WorkoutHistory workoutHistory, Exercise exercise, int numberOfReps, double weight);
+        public Task AddExerciseToWorkoutHisterAsync(WorkoutHistory workoutHistory, Exercise exercise,int sets, int reps, double weight);
         public Task RemoveExerciseFromWorkoutHistoryAsync(WorkoutHistory workoutHistory, Exercise exercise);
         public Task DeleteWorkoutHistoryAsync(string appUserId);
         public Task<List<WorkoutHistory>> GetAllWorkoutHistoriesAsync(string appUserId);

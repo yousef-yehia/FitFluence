@@ -14,10 +14,11 @@ namespace Core.Models
         public string? ImageUrl { get; set; }
         public Client? Client { get; set; }
         public Coach? Coach { get; set; }
-        public List<UserGoals> UserGoals { get; set; }
-        public List<FavouriteFood> FavouriteFoods  { get; set; }
-        public List<FoodRating> Ratings { get; set; }
-        public List<WorkoutPlan> WorkoutPlans { get; set; }
-        public List<WorkoutHistory> WorkoutHistories { get; set; }
+        public List<UserGoals>? UserGoals { get; set; }
+        public List<FavouriteFood>? FavouriteFoods  { get; set; }
+        public List<FoodRating>? Ratings { get; set; }
+        public List<WorkoutPlan>? WorkoutPlans { get; set; }
+        public List<WorkoutHistory>? WorkoutHistories { get; set; }
+        public List<DietPlan>? DietPlans { get; set; }
     }
 }

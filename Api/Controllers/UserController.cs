@@ -1,5 +1,7 @@
 ﻿using Api.ApiResponses;
 using Api.DTO.AuthDto;
+using Api.DTO.ClientDto;
+using Api.DTO.CoachDto;
 using Api.Extensions;
 using Api.Helper;
 using AutoMapper;
@@ -55,9 +57,10 @@ namespace Api.Controllers
             try
             {
                 var AppUserList = await _userManager.GetUsersInRoleAsync(Role.roleClient);
-                var paginatedUsers = Pagination<AppUser>.Paginate(AppUserList.ToList(), pageNumber, pageSize);
+                var clients = _mapper.Map<List<ClientReturnDto>>(AppUserList.ToList());
+                var paginatedClients = Pagination<ClientReturnDto>.Paginate(clients, pageNumber, pageSize);
 
-                return Ok(_response.OkResponse(paginatedUsers));
+                return Ok(_response.OkResponse(paginatedClients));
             }
             catch (Exception ex)
             {

@@ -34,6 +34,15 @@ namespace Api.Extensions
                 .Include(x => x.Coach)
                 .SingleOrDefaultAsync(x => x.Email == user.FindFirstValue(ClaimTypes.Email));
         }
+        public static async Task<AppUser> FindByEmailFromClaimsPrincipalWithDietPlans(this UserManager<AppUser> userManager,
+            ClaimsPrincipal user)
+        {
+            return await userManager.Users
+                .Include(x => x.DietPlans)
+                .ThenInclude(dp => dp.DietPlanFoods)
+                .ThenInclude(dpf=> dpf.Food)
+                .SingleOrDefaultAsync(x => x.Email == user.FindFirstValue(ClaimTypes.Email));
+        }
 
 
     }

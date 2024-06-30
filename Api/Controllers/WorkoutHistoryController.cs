@@ -1,4 +1,5 @@
 ﻿using Api.ApiResponses;
+using Api.DTO.WorkoutHistoryDto;
 using Api.Extensions;
 using Api.Helper;
 using Core.Interfaces;
@@ -37,7 +38,7 @@ namespace Api.Controllers
         
         [HttpPost("AddExerciseToWorkoutHistory", Name = "AddExerciseToWorkoutHistory")]
         [Authorize]
-        public async Task<ActionResult<ApiResponse>> AddExerciseToWorkoutHistory(int exerciseId, int numberOfReps, double weight)
+        public async Task<ActionResult<ApiResponse>> AddExerciseToWorkoutHistory(AddExerciseToWorkoutHistoryDto model)
         {
             try
             {
@@ -45,11 +46,16 @@ namespace Api.Controllers
 
                 WorkoutHistory workoutHistory =await _workoutHistoryRepository.GetWorkoutHistoryByDateAsync(appUser.Id, DateTime.UtcNow.Date);
 
-                var exercise = await _exerciseRepository.GetExerciseByIdAsync(exerciseId);
+                var exercise = await _exerciseRepository.GetExerciseByIdAsync(model.ExerciseId);
+
+                if (exercise == null)
+                {
+                    return NotFound(_response.NotFoundResponse("The exercise id is wrong"));
+                }
 
                 if (workoutHistory == null)
                 {
-                    if(_workoutHistoryRepository.GetWorkHistoriesCount(appUser) >= 10)
+                    if(_workoutHistoryRepository.GetWorkHistoriesCount(appUser) >= 7)
                     {
                         await _workoutHistoryRepository.DeleteWorkoutHistoryAsync(appUser.Id);
                     }
@@ -62,7 +68,7 @@ namespace Api.Controllers
                     return BadRequest(_response.BadRequestResponse("Exercise already in workout history"));
                 }
 
-                await _workoutHistoryRepository.AddExerciseToWorkoutHisterAsync(workoutHistory, exercise, numberOfReps, weight);
+                await _workoutHistoryRepository.AddExerciseToWorkoutHisterAsync(workoutHistory, exercise, model.Sets, model.Reps, model.Weight);
 
                 return Ok(_response.OkResponse("added exercise to workout history"));
             }

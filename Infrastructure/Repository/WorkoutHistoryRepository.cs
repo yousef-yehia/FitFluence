@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,14 +20,15 @@ namespace Infrastructure.Repository
             _appDbContext = appDbContext;
         }
 
-        public async Task AddExerciseToWorkoutHisterAsync(WorkoutHistory workoutHistory, Exercise exercise, int numberOfReps, double weight)
+        public async Task AddExerciseToWorkoutHisterAsync(WorkoutHistory workoutHistory, Exercise exercise,int sets, int reps, double weight)
         {
             await _appDbContext.WorkoutHistoryExercises.AddAsync(new WorkoutHistoryExercise
             {
                 WorkoutHistoryId = workoutHistory.Id,
                 ExerciseId = exercise.Id,
                 ExerciseName = exercise.Name,
-                NumberOfReps = numberOfReps,
+                Sets = sets,
+                Reps = reps,
                 Weight = weight,
                 ExerciseGifUrl = exercise.GifUrl,
             });
