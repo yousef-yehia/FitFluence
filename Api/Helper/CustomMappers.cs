@@ -121,9 +121,9 @@ namespace Api.Helper
             return workoutPlansReturn;
         }
 
-        public static List<FoodReturnDto> MapFoodToFoodReturnDto(List<Food> Foods, List<FavouriteFood> favouriteFood)
+        public static List<FoodReturnDto> MapFoodToFoodReturnDto(List<Food> Foods, List<FavouriteFood> favouriteFood, List<FoodRating> foodRatings)
         {
-            var workoutPlanExerciseReturn = Foods.Select(we => new FoodReturnDto
+            var foodReturnDto = Foods.Select(we => new FoodReturnDto
             {
                 Id = we.Id,
                 Name = we.Name,
@@ -138,12 +138,13 @@ namespace Api.Helper
                 Fiber = we.Fiber,
                 Serving = we.Serving,
                 Verified = we.Verified,
+                Rate = foodRatings.FirstOrDefault(f => f.FoodId == we.Id)?.Rate 
             }).ToList();
-            return workoutPlanExerciseReturn;
+            return foodReturnDto;
         }
-        public static List<FoodReturnDto> MapFavouriteFoodToFoodReturnDto(List<Food> Foods)
+        public static List<FoodReturnDto> MapFavouriteFoodToFoodReturnDto(List<Food> Foods, List<FoodRating> foodRatings)
         {
-            var workoutPlanExerciseReturn = Foods.Select(we => new FoodReturnDto
+            var foodReturnDto = Foods.Select(we => new FoodReturnDto
             {
                 Id = we.Id,
                 Name = we.Name,
@@ -158,12 +159,13 @@ namespace Api.Helper
                 Fiber = we.Fiber,
                 Serving = we.Serving,
                 Verified = we.Verified,
+                Rate = foodRatings.FirstOrDefault(f => f.FoodId == we.Id)?.Rate
             }).ToList();
-            return workoutPlanExerciseReturn;
+            return foodReturnDto;
         }
-        public static FoodReturnDto MapFoodToFoodReturnDto(Food food, List<FavouriteFood> favouriteFood)
+        public static FoodReturnDto MapFoodToFoodReturnDto(Food food, List<FavouriteFood> favouriteFood, List<FoodRating> foodRatings)
         {
-            var workoutPlanExerciseReturn = new FoodReturnDto
+            var foodReturnDto = new FoodReturnDto
             {
                 Id = food.Id,
                 Name = food.Name,
@@ -178,8 +180,10 @@ namespace Api.Helper
                 Fiber = food.Fiber,
                 Serving = food.Serving,
                 Verified = food.Verified,
+                Rate = foodRatings.FirstOrDefault(f => f.FoodId == food.Id)?.Rate
+
             };
-            return workoutPlanExerciseReturn;
+            return foodReturnDto;
         }
         public static List<DietPlanReturnDto> MapDietPlanToDietPlanReturnDto(List<DietPlan> dietPlans)
         {

@@ -18,6 +18,7 @@ namespace Api.Extensions
         {
             return await userManager.Users
                 .Include(x => x.FavouriteFoods)
+                .Include(x=> x.Ratings)
                 .SingleOrDefaultAsync(x => x.Email == user.FindFirstValue(ClaimTypes.Email));
         }
         public static async Task<AppUser> FindByEmailFromClaimsPrincipalWithWorkoutHistories(this UserManager<AppUser> userManager,

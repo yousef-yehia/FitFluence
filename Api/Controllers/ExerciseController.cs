@@ -111,7 +111,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("CreateExercise", Name = "CreateExercise")]
-        [Authorize]
+        [Authorize(Roles = "admin,coach")]
         public async Task<ActionResult<ApiResponse>> CreateExercise(CreateExerciseDto model)
         {
             try
@@ -139,7 +139,7 @@ namespace Api.Controllers
 
 
         [HttpPut("UpdateExercise", Name = "UpdateExercise")]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin,coach")]
         public async Task<IActionResult> UpdateExercise(int id, [FromBody] CreateExerciseDto model)
         {
             try
@@ -164,11 +164,7 @@ namespace Api.Controllers
 
 
         [HttpDelete("DeleteExercise", Name = "DeleteExercise")]
-        //[Authorize(Roles = "admin")]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-
+        [Authorize(Roles = "admin,coach")]
         public async Task<ActionResult<ApiResponse>> DeleteExercise(int id)
         {
             try

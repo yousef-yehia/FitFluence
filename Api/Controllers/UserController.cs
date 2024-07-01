@@ -34,6 +34,7 @@ namespace Api.Controllers
 
         [HttpGet("GetAllUsers", Name = "GetAllUsers")]
         [ResponseCache(Duration = 10)]
+        [Authorize]
         public async Task<ActionResult<ApiResponse>> GetAllUsers(int pageSize = 0, int pageNumber = 1)
         {
             try
@@ -52,6 +53,7 @@ namespace Api.Controllers
 
         [HttpGet("GetAllClients", Name = "GetAllClients")]
         [ResponseCache(Duration = 10)]
+        [Authorize]
         public async Task<ActionResult<ApiResponse>> GetAllClients(int pageSize = 0, int pageNumber = 1)
         {
             try
@@ -122,23 +124,6 @@ namespace Api.Controllers
 
         }
 
-        //[HttpGet("{photoName}")]
-        //public async Task<ActionResult<ApiResponse>> GetPhoto(string photoName)
-        //{
-        //    var result = await _photoService.GetPhotoAsync(photoName);
-
-        //    if (result == null)
-        //    {
-        //        _response.StatusCode = HttpStatusCode.NotFound;
-        //        _response.IsSuccess = false;
-        //        return NotFound(_response);
-        //    }
-
-        //    _response.Result = result;
-        //    _response.StatusCode = HttpStatusCode.OK;
-        //    return Ok(_response);
-        //}
-
         [HttpGet("GetUser", Name = "GetUser")]
         [ResponseCache(Duration = 10)]
         public async Task<ActionResult<ApiResponse>> GetUser(string id)
@@ -159,6 +144,7 @@ namespace Api.Controllers
 
 
         [HttpDelete("DeleteUser", Name = "DeleteUser")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<ApiResponse>> DeleteUser(string username)
         {
             var user = await _userManager.FindByNameAsync(username);
@@ -175,85 +161,6 @@ namespace Api.Controllers
             {
                 return BadRequest(_response.BadRequestResponse(ex.Message));
             }
-        }
-
-
-        [HttpPut("UpdateClient {id}", Name = "UpdateClient")]
-        //[Authorize(Roles = "admin")]
-        [Authorize]
-        public async Task<IActionResult> UpdateClient(UpdateClientDto updateClientDto)
-        {
-            try
-            {
-                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
-
-
-                if (updateClientDto == null)
-                {
-                    return BadRequest(_response.BadRequestResponse("Null"));
-
-                }
-
-                AppUser newUser = user;
-                newUser.Name = updateClientDto.Name;
-                newUser.UserName = updateClientDto.UserName;
-                newUser.Email = updateClientDto.Email;
-                newUser.NormalizedEmail = updateClientDto.Email.ToUpper();
-
-
-                //var updatedClient = _mapper.Map<Client>(updateClientDto);
-                //updatedClient.AppUserId = user.Id;
-                //updatedClient.AppUser = newUser;
-                //updatedClient.ClientId = clientid;
-                //newUser.Client = updatedClient;
-
-                //await _clientRepository.UpdateAsync(updatedClient);
-
-                await _userRepository.UpdateAsync(newUser);
-                return Ok(_response.OkResponse(newUser));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
-            }
-
-
-        }
-
-        [HttpPut("UpdateCoach {id}", Name = "UpdateCoach")]
-        //[Authorize(Roles = "admin")]
-        [Authorize]
-        public async Task<IActionResult> UpdateCoach(UpdateClientDto updateCoachDto)
-        {
-            try
-            {
-                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
-
-                if (updateCoachDto == null)
-                {
-                    return BadRequest(_response.BadRequestResponse("Null"));
-                }
-
-                AppUser newUser = user;
-                newUser.Name = updateCoachDto.Name;
-                newUser.UserName = updateCoachDto.UserName;
-
-
-                //var updatedCoach = _mapper.Map<Coach>(updateCoachDto);
-                //updatedCoach.AppUserId = user.Id;
-                //updatedCoach.AppUser = newUser;
-                //updatedCoach.CoachId = Coachid;
-                //newUser.Coach = updatedCoach;
-
-                //await _clientRepository.UpdateAsync(updatedClient);
-                await _userRepository.UpdateAsync(newUser);
-                return Ok(_response.OkResponse(newUser));
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
-            }
-
         }
 
     }

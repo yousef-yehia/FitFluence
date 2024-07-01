@@ -71,6 +71,23 @@ namespace Infrastructure.Services
                 uploadResult = await _cloudinary.UploadAsync(uploadParms);
             }
             return uploadResult;
+        }  
+        public async Task<ImageUploadResult> AddFoodPhotoAsync(IFormFile file)
+        {
+            var uploadResult = new ImageUploadResult();
+            if (file.Length > 0)
+            {
+                using var stream = file.OpenReadStream();
+                var uploadParms = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, stream),
+                    Transformation = new Transformation().Crop("fill"),
+                    Folder = "FoodPhotos" // Set the folder name here
+
+                };
+                uploadResult = await _cloudinary.UploadAsync(uploadParms);
+            }
+            return uploadResult;
         }
 
         public async Task<RawUploadResult> UploadPdfAsync(IFormFile file)

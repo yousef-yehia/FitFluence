@@ -71,7 +71,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("GetCoach", Name = "GetCoach")]
-        [Authorize]
+        [Authorize(Roles = "coach")]
         public async Task<ActionResult<ApiResponse>> GetCoach()
         {
             try
@@ -88,7 +88,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("AddClientToCoach", Name = "AddClientToCoach")]
-        [Authorize]
+        [Authorize(Roles = "coach")]
         public async Task<ActionResult<ApiResponse>> AddClientToCoach(string clientAppUserId)
         {
             try
@@ -115,14 +115,14 @@ namespace Api.Controllers
                 return Ok(_response.OkResponse("Client added to coach successfully"));
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return BadRequest(_response.BadRequestResponse(ex.Message));
             }
         }
 
         [HttpGet("GetCoachClients", Name = "GetCoachClients")]
-        [Authorize]
+        [Authorize(Roles = "coach")]
         public async Task<ActionResult<ApiResponse>> GetCoachClients()
         {
             try
@@ -145,7 +145,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("AddCv", Name = "AddCv")]
-        [Authorize]
+        [Authorize(Roles = "coach")]
         public async Task<ActionResult<ApiResponse>> AddCv(IFormFile cv)
         {
             try
@@ -157,7 +157,31 @@ namespace Api.Controllers
                     return NotFound(_response.NotFoundResponse("Coach is not found"));
                 }
 
-                var coach = await _coachRepository.GetAsync(c=> c.CoachId == coachId);
+                var coach = await _coachRepository.GetAsync(c => c.CoachId == coachId);
+                var uploadResult = _photoService.UploadPdfAsync(cv);
+                coach.CvUrl = uploadResult.Result.Url.ToString();
+                await _coachRepository.UpdateAsync(coach);
+                return Ok(_response.OkResponse($"cv uploaded{coach.CvUrl}"));
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
+
+        [HttpPut("UpdateCv", Name = "UpdateCv")]
+        [Authorize(Roles = "coach")]
+        public async Task<ActionResult<ApiResponse>> UpdateCv(IFormFile cv)
+        {
+            try
+            {
+                var appUser = await _userManager.FindByEmailFromClaimsPrincipalWithCoach(User);
+                if (appUser.Coach.CoachId == 0)
+                {
+                    return NotFound(_response.NotFoundResponse("Coach is not found"));
+                }
+                var coach = appUser.Coach;
                 var uploadResult = _photoService.UploadPdfAsync(cv);
                 coach.CvUrl = uploadResult.Result.Url.ToString();
                 await _coachRepository.UpdateAsync(coach);

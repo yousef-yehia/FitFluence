@@ -45,7 +45,8 @@ namespace Api.Controllers
         }
 
         [HttpPost("CreateMuscle", Name = "CreateMuscle")]
-        [ResponseCache(Duration = 10)]
+        [Authorize(Roles = "admin")]
+
         public async Task<ActionResult<ApiResponse>> CreateMuscle(MuscleCreateDto model)
         {
             try

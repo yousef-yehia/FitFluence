@@ -85,10 +85,15 @@ namespace Infrastructure.Repository
                 FoodId = foodId,
                 Rate = rate
             });
-            await UpdateFoodRate(foodId, rate);
+            await UpdateFoodsRate(foodId, rate);
+        }
+        public async Task UpdateFoodRate(FoodRating foodRating)
+        {
+            _appDbContext.FoodRatings.Update(foodRating);
+            await UpdateFoodsRate(foodRating.FoodId, foodRating.Rate);
         }
 
-        public async Task UpdateFoodRate(int foodId, int rate)
+        public async Task UpdateFoodsRate(int foodId, int rate)
         {
             var ratingsData = File.ReadAllText("../wwwroot/wwwroot/SeedData/Ratings.json");
             List<KaggleRating> ratings = JsonSerializer.Deserialize<List<KaggleRating>>(ratingsData);
@@ -106,5 +111,12 @@ namespace Infrastructure.Repository
             await UpdateAsync(food);
 
         }
+
+        public async Task<bool> IsFoodRated(string appUserId, int foodId)
+        {
+            var flag = await _appDbContext.FoodRatings.AnyAsync(f => f.AppUserId == appUserId && f.FoodId == foodId);
+            return flag;
+        }
+
     }
 }

@@ -34,10 +34,6 @@ namespace Api.Controllers
         }
 
         [HttpGet("GetAllGoals", Name ="GetAllGoals")]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [ResponseCache(Duration = 10)]
         public async Task<ActionResult<ApiResponse>> GetGoals()
         {
@@ -57,9 +53,6 @@ namespace Api.Controllers
 
 
         [HttpGet("GetGoal {id:int}", Name = "GetGoal")]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ResponseCache(Duration = 10)]
         public async Task<ActionResult<ApiResponse>> GetGoal(int id)
         {
@@ -78,11 +71,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("CreateGoal", Name ="CreateGoal")]
-        //[Authorize(Roles = "admin")]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<ApiResponse>> CreateGoal([FromBody] CreateGoalDto createGoalDto)
         {
             if (!ModelState.IsValid)
@@ -107,11 +96,7 @@ namespace Api.Controllers
         }
 
         [HttpDelete("DeleteGoal {id:int}", Name = "DeleteGoal")]
-        //[Authorize(Roles = "admin")]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<ApiResponse>> DeleteGoal(int id)
         {
             var goal = await _goalRepository.GetAsync(u => u.Id == id);
@@ -125,9 +110,7 @@ namespace Api.Controllers
         }
 
         [HttpPut("UpdateGoal {id:int}", Name = "UpdateGoal")]
-        //[Authorize(Roles = "admin")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> UpdateGoal(int id, [FromBody] GoalDto goalDto)
         {
             try {
@@ -184,10 +167,6 @@ namespace Api.Controllers
         }
 
         [HttpGet("GetAllUserGoals", Name = "GetAllUserGoals")]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [ResponseCache(Duration = 10)]
         [Authorize]
 

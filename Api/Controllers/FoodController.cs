@@ -21,17 +21,19 @@ namespace Api.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IFoodRepository _foodRepository;
+        private readonly IPhotoService _photoService;
         private readonly IMapper _mapper;
         protected ApiResponse _response;
 
 
-        public FoodController(ApiResponse response, IMapper mapper, IFoodRepository foodRepository, UserManager<AppUser> userManager)
+        public FoodController(ApiResponse response, IMapper mapper, IFoodRepository foodRepository, UserManager<AppUser> userManager, IPhotoService photoService)
         {
 
             _response = response;
             _mapper = mapper;
             _foodRepository = foodRepository;
             _userManager = userManager;
+            _photoService = photoService;
         }
 
         [HttpGet("GetAllFoods", Name = "GetAllFoods")]
@@ -44,7 +46,7 @@ namespace Api.Controllers
                 var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
                 var foods = await _foodRepository.GetAllAsync(search, order);
 
-                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(foods, user.FavouriteFoods);
+                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(foods, user.FavouriteFoods, user.Ratings);
                 var paginatedFoods = Pagination<FoodReturnDto>.Paginate(foodsResponse, pageNumber, pageSize);
 
                 return Ok(_response.OkResponse(paginatedFoods));
@@ -54,8 +56,6 @@ namespace Api.Controllers
                 return BadRequest(_response.BadRequestResponse(ex.Message));
             }
         }
-
-
 
         [HttpGet("GetFood", Name = "GetFood")]
         [Authorize]
@@ -78,7 +78,7 @@ namespace Api.Controllers
                 }
 
                 var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
-                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(food, user.FavouriteFoods);
+                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(food, user.FavouriteFoods, user.Ratings);
 
                 return Ok(_response.OkResponse(foodsResponse));
 
@@ -109,7 +109,7 @@ namespace Api.Controllers
                 }
 
                 var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
-                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(foods, user.FavouriteFoods);
+                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(foods, user.FavouriteFoods, user.Ratings);
 
                 return Ok(_response.OkResponse(foodsResponse));
 
@@ -150,6 +150,8 @@ namespace Api.Controllers
                 {
                     food.Verified = true;
                 }
+                var imageResult = await _photoService.AddFoodPhotoAsync(createFoodDto.Image);
+                food.ImageURL = imageResult.Url.ToString();
 
                 await _foodRepository.CreateAsync(food);    
 
@@ -184,6 +186,11 @@ namespace Api.Controllers
                     return BadRequest(_response.BadRequestResponse("Food Doesnot exists"));
                 }
 
+                if(await _foodRepository.IsFoodRated(user.Id, foodId))
+                {
+                    return BadRequest(_response.BadRequestResponse("Food is already rated"));
+                }
+
                 await _foodRepository.AddFoodRate(user.Id, foodId, rating);    
 
                 return Ok(_response.OkResponse("Food Rated Success"));
@@ -192,12 +199,59 @@ namespace Api.Controllers
             {
                 return BadRequest(_response.BadRequestResponse(ex.Message));
             }
+        }
 
+        [HttpPut("UpdateFoodRate", Name = "UpdateFoodRate")]
+        [Authorize]
+        public async Task<ActionResult<ApiResponse>> UpdateFoodRate(int foodId, int rating)
+        {
+            try 
+            {
+                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
+                if (foodId == 0)
+                {
+                    return BadRequest(_response.BadRequestResponse("Food is required"));
+                }  
+                if (rating > 10)
+                {
+                    return BadRequest(_response.BadRequestResponse("rate can not be bigger than 10"));
+                }
+
+                if(!await _foodRepository.DoesExistAsync(f=> f.Id == foodId))
+                {
+                    return BadRequest(_response.BadRequestResponse("Food Doesnot exists"));
+                }
+
+                if(!await _foodRepository.DoesExistAsync(f=> f.Id == foodId))
+                {
+                    return BadRequest(_response.BadRequestResponse("Food Doesnot exists"));
+                }
+
+                if(!await _foodRepository.IsFoodRated(user.Id, foodId))
+                {
+                    return BadRequest(_response.BadRequestResponse("Food isnot rated"));
+                }
+
+                FoodRating foodRating = new FoodRating
+                {
+                    AppUserId = user.Id,
+                    FoodId = foodId,
+                    Rate = rating
+                };
+
+                await _foodRepository.UpdateFoodRate(foodRating);    
+
+                return Ok(_response.OkResponse("Food Rated Success"));
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
         }
 
         [HttpDelete("DeleteFood {id:int}", Name = "DeleteFood")]
         [Authorize(Roles = "admin")]
-
         public async Task<ActionResult<ApiResponse>> DeleteFood(int id)
         {
             try

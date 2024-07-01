@@ -140,6 +140,71 @@ namespace Api.Controllers
                 return (_response.BadRequestResponse(ex.Message));
             }
         }
+        //[HttpPost("registerAdmin")]
+        //public async Task<ActionResult<ApiResponse>> RegisterAdmin(ClientRegisterRequestDto model)
+        //{
+        //    try
+        //    {
+        //        if (CheckEmailExistsAsync(model.Email).Result.Value)
+        //        {
+
+        //            return BadRequest(_response.BadRequestResponse("Email address is in use"));
+        //        }
+                
+        //        if (CheckUserNameExistsAsync(model.UserName).Result.Value)
+        //        {
+
+        //            return BadRequest(_response.BadRequestResponse("Username is in use"));
+        //        }
+
+        //        //var fileExtension = Path.GetExtension(model.Photo.FileName)?.ToLowerInvariant();
+
+        //        //Check if the file extension is jpg or png
+        //        //if (fileExtension != ".jpg" && fileExtension != ".png" && fileExtension != ".jpeg")
+        //        //{
+        //        //    return BadRequest(_response.BadRequestResponse("only jpg and png and jpeg allowed"));
+        //        //}
+
+
+        //        //var uploadResult = await _photoService.AddPhotoAsync(model.Photo);
+
+        //        var newUser = new AppUser
+        //        {
+        //            Name = model.Name,
+        //            Email = model.Email,
+        //            UserName = model.UserName,
+        //            PhoneNumber = model.PhoneNumber,
+        //            Weight = model.Weight,
+        //            FatWeight = model.FatWeight,
+        //            MuscleWeight = model.MuscleWeight,
+        //            Height = model.Height,
+        //            Age = model.Age,
+        //            Gender = model.Gender,
+        //        };               
+        //        //newUser.ImageUrl = uploadResult.Url.ToString();
+
+        //        var result = await _userManager.CreateAsync(newUser, model.Password);
+        //        await _userManager.AddToRoleAsync(newUser, Role.roleAdmin);
+
+        //        if (!result.Succeeded) return BadRequest(_response.BadRequestResponse(""));
+
+        //        await _authService.SendVerificationEmailAsync(newUser);
+
+        //        var userToReturn = new RegisterResponseDto
+        //        {
+        //            UserName = model.UserName,
+        //            ImageUrl = newUser.ImageUrl,
+        //            Token = _tokenService.CreateToken(newUser)
+        //        };
+
+        //        var response = _response.OkResponse(userToReturn);
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return (_response.BadRequestResponse(ex.Message));
+        //    }
+        //}
 
         [HttpPost("registerCoach")]
         public async Task<ActionResult<ApiResponse>> RegisterCoach(CoachRegisterRequestDto model)
@@ -307,17 +372,18 @@ namespace Api.Controllers
         //}
 
 
-        [HttpPost("addrole")]
-        public async Task<IActionResult> AddRoleAsync([FromBody] AddRoleModel model)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-            var user = await _userManager.FindByIdAsync(model.UserId);
-            var result = await _userManager.AddToRoleAsync(user, model.Role);
-            return Ok(result);
-        }
+        //[HttpPost("addrole")]
+        //public async Task<IActionResult> AddRoleAsync([FromBody] AddRoleModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(ModelState);
+        //    var user = await _userManager.FindByIdAsync(model.UserId);
+        //    var result = await _userManager.AddToRoleAsync(user, model.Role);
+        //    return Ok(result);
+        //}
 
         [HttpDelete("deleteuser")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<ApiResponse>> DeleteUser(string username)
         {
             try

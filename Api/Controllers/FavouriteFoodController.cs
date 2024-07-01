@@ -33,7 +33,7 @@ namespace Api.Controllers
 
         [HttpGet("GetAllUserFoods", Name = "GetAllUserFoods")]
         [Authorize]
-        [ResponseCache(Duration = 10)]
+        [ResponseCache(Duration = 7)]
 
         public async Task<ActionResult<ApiResponse>> GetAllUserFoods(int pageSize = 0, int pageNumber = 1)
         {
@@ -41,7 +41,7 @@ namespace Api.Controllers
             {
                 var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
                 var foods = await _favouriteFoodRepository.GetAllFavouriteFoodsAsync(user);
-                var foodsResponse = CustomMappers.MapFavouriteFoodToFoodReturnDto(foods);
+                var foodsResponse = CustomMappers.MapFavouriteFoodToFoodReturnDto(foods , user.Ratings);
                 var result = Pagination<FoodReturnDto>.Paginate(foodsResponse, pageNumber, pageSize); 
                 return Ok(_response.OkResponse(result));
             }
