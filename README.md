@@ -1,7 +1,7 @@
-#Fitness Application API
+# Fitness Application API
 The Fitness Application API provides endpoints to manage users, exercises, and food items. It supports user management, exercise tracking, and food management functionalities.
 
-##Table of Contents
+## Table of Contents
 1. Features
 2. API Endpoints
 3. Authentication
