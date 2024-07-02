@@ -11,6 +11,10 @@
         public double Height { get; set; }
         public string Gender { get; set; }
         public int Age { get; set; }
+        public string? MainGoal { get; set; }
+        public string? ActivityLevel { get; set; }
+        public double? GoalWeight { get; set; }
+        public double? RecommendedCalories { get; set; }
         public string Token { get; set; }
 
     }

@@ -24,6 +24,7 @@ namespace Api.Controllers
         private readonly IAuthRepository _authService;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
         private readonly IPhotoService _photoService;
@@ -34,7 +35,8 @@ namespace Api.Controllers
             SignInManager<AppUser> signInManager,
             IMapper mapper,
             ITokenService tokenService,
-            IPhotoService photoService)
+            IPhotoService photoService,
+            IUserRepository userRepository)
         {
             _response = new ApiResponse();
             _userManager = userManager;
@@ -43,6 +45,7 @@ namespace Api.Controllers
             _mapper = mapper;
             _tokenService = tokenService;
             _photoService = photoService;
+            _userRepository = userRepository;
         }
 
         [Authorize]
@@ -51,17 +54,22 @@ namespace Api.Controllers
         {
             var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
 
-            var userToReturn = new LoginResponseDto
+            var userToReturn = new UserReturnDto
             {
                 UserName = user.UserName,
                 ImageUrl = user.ImageUrl,
                 Email = user.Email,
                 UserId = user.Id,
-                Token = "",
                 Age = user.Age,
                 Gender = user.Gender,
                 Height = user.Height,
                 Weight = user.Weight,
+                ActivityLevel = user.ActivityLevel,
+                GoalWeight = user.GoalWeight,
+                MainGoal = user.MainGoal,
+                RecommendedCalories = user.RecommendedCalories,
+                FatWeight = user.FatWeight,
+                MuscleWeight = user.MuscleWeight,
                 Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault()
 
             };
@@ -110,12 +118,17 @@ namespace Api.Controllers
                     Height = model.Height,
                     Age = model.Age,
                     Gender = model.Gender,
+                    MainGoal = model.MainGoal,
+                    ActivityLevel = model.ActivityLevel,
+                    GoalWeight = model.GoalWeight,
                 };
                 newUser.Client = new Client
                 {
                     AppUser = newUser,
                     AppUserId = newUser.Id,
-                };                
+                }; 
+
+                newUser.RecommendedCalories = _userRepository.CalculateRecommendedCalories(newUser);
                 //newUser.ImageUrl = uploadResult.Url.ToString();
 
                 var result = await _userManager.CreateAsync(newUser, model.Password);
@@ -235,12 +248,17 @@ namespace Api.Controllers
                     Height = model.Height ?? 0,
                     Age = model.Age ?? 0,
                     Gender = model.Gender,
+                    MainGoal = model.MainGoal,
+                    ActivityLevel = model.ActivityLevel,
+                    GoalWeight = model.GoalWeight,
                 };
                 newUser.Coach = new Coach
                 {
                     AppUser = newUser,
                     AppUserId = newUser.Id,
                 };
+
+                newUser.RecommendedCalories = _userRepository.CalculateRecommendedCalories(newUser);
 
                 if (model.Cv != null)
                 {
@@ -341,7 +359,11 @@ namespace Api.Controllers
                 Gender = user.Gender,
                 Height = user.Height,
                 Weight = user.Weight,
-                Role =  _userManager.GetRolesAsync(user).Result.FirstOrDefault()
+                Role =  _userManager.GetRolesAsync(user).Result.FirstOrDefault(),
+                GoalWeight = user.GoalWeight,
+                ActivityLevel = user.ActivityLevel,
+                MainGoal = user.MainGoal,
+                RecommendedCalories = user.RecommendedCalories,
             };
 
             var response = _response.OkResponse(userToReturn);

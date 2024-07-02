@@ -98,6 +98,9 @@ namespace Api.Helper
                 MuscleWeight = u.AppUser.MuscleWeight,
                 UserId = u.AppUser.Id,
                 Weight = u.AppUser.Weight,
+                GoalWeight = u.AppUser.GoalWeight,
+                ActivityLevel = u.AppUser.ActivityLevel,
+                MainGoal = u.AppUser.MainGoal,
             }).ToList();
             return clientReturn;
         }

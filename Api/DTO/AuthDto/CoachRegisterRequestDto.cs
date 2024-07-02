@@ -13,6 +13,10 @@
         public int? Age { get; set; }
         public double? MuscleWeight { get; set; }
         public double? FatWeight { get; set; }
+        public string? MainGoal { get; set; }
+        public string? ActivityLevel { get; set; }
+        public double GoalWeight { get; set; }
+        public double MonthlyPrice { get; set; }
         public IFormFile Cv { get; set; }
     }
 }

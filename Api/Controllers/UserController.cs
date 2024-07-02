@@ -1,4 +1,5 @@
-﻿using Api.ApiResponses;
+﻿using System.Linq;
+using Api.ApiResponses;
 using Api.DTO.AuthDto;
 using Api.DTO.ClientDto;
 using Api.DTO.CoachDto;
@@ -58,8 +59,11 @@ namespace Api.Controllers
         {
             try
             {
-                var AppUserList = await _userManager.GetUsersInRoleAsync(Role.roleClient);
-                var clients = _mapper.Map<List<ClientReturnDto>>(AppUserList.ToList());
+                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
+                var appUserList = await _userManager.GetUsersInRoleAsync(Role.roleClient);
+                appUserList.Remove(user);
+                var clients = _mapper.Map<List<ClientReturnDto>>(appUserList.ToList());
                 var paginatedClients = Pagination<ClientReturnDto>.Paginate(clients, pageNumber, pageSize);
 
                 return Ok(_response.OkResponse(paginatedClients));
@@ -96,7 +100,7 @@ namespace Api.Controllers
             return Ok(_response.OkResponse(result.Url.ToString()));
         }
 
-        [HttpPost("UpdateUser", Name = "UpdateUser")]
+        [HttpPut("UpdateUser", Name = "UpdateUser")]
         [Authorize]
         public async Task<ActionResult<ApiResponse>> UpdateUser(UpdateUserDto model)
         {
@@ -107,11 +111,15 @@ namespace Api.Controllers
                 if (model.ImageUrl != null) user.ImageUrl = model.ImageUrl;
                 if (model.Age != null) user.Age = model.Age.Value;
                 if (model.Name != null) user.Name = model.Name;
-                if (model.ImageUrl != null) user.ImageUrl = model.ImageUrl;
                 if (model.Height != null) user.Height = model.Height.Value;
                 if (model.Weight != null) user.Weight = model.Weight.Value;
                 if (model.FatWeight != null) user.FatWeight = model.FatWeight.Value;
                 if (model.MuscleWeight != null) user.MuscleWeight = model.MuscleWeight.Value;
+                if (model.MainGoal != null) user.MainGoal = model.MainGoal;
+                if (model.ActivityLevel != null) user.ActivityLevel = model.ActivityLevel;
+                if (model.GoalWeight != null) user.GoalWeight = model.GoalWeight.Value;
+
+                if (model.ActivityLevel != null || model.MainGoal != null || model.Weight != null || model.Height != null || model.Age != null){ user.RecommendedCalories = _userRepository.CalculateRecommendedCalories(user); }
 
                 await _userManager.UpdateAsync(user);
 

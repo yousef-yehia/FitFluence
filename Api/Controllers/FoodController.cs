@@ -46,7 +46,7 @@ namespace Api.Controllers
                 var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
                 var foods = await _foodRepository.GetAllAsync(search, order);
 
-                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(foods, user.FavouriteFoods, user.Ratings);
+                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(foods, user.FavouriteFoods, user.FoodRatings);
                 var paginatedFoods = Pagination<FoodReturnDto>.Paginate(foodsResponse, pageNumber, pageSize);
 
                 return Ok(_response.OkResponse(paginatedFoods));
@@ -78,7 +78,7 @@ namespace Api.Controllers
                 }
 
                 var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
-                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(food, user.FavouriteFoods, user.Ratings);
+                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(food, user.FavouriteFoods, user.FoodRatings);
 
                 return Ok(_response.OkResponse(foodsResponse));
 
@@ -109,7 +109,7 @@ namespace Api.Controllers
                 }
 
                 var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
-                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(foods, user.FavouriteFoods, user.Ratings);
+                var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(foods, user.FavouriteFoods, user.FoodRatings);
 
                 return Ok(_response.OkResponse(foodsResponse));
 

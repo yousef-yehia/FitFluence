@@ -51,6 +51,7 @@ namespace FitFluence.Repository
         public async Task<List<Coach>> GetAllCoachsAsync(Expression<Func<Coach, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<Coach> usersQuery = _appDbContext.Coachs.AsQueryable();
+
             if (filter != null)
             {
                 usersQuery.Where(filter);

@@ -73,7 +73,7 @@ namespace Infrastructure.Data
 
             modelBuilder.Entity<FoodRating>()
                 .HasOne(r => r.AppUser)
-                .WithMany(u => u.Ratings)
+                .WithMany(u => u.FoodRatings)
                 .HasForeignKey(r => r.AppUserId)
                 .OnDelete(DeleteBehavior.Cascade);
 

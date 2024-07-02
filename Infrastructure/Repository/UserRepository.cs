@@ -102,6 +102,53 @@ namespace Infrastructure.Repository
         {
             _appDbContext.Entry(entity).State = EntityState.Detached;
         }
+
+        public double CalculateRecommendedCalories(AppUser user)
+        {
+            double RC;
+
+            if (user.Gender == "Male")
+            {
+                RC = 88.362 + (13.397 * user.Weight) + (4.799 * user.Height) - (5.677 * user.Age);
+            }
+            else
+            {
+                RC = 447.593 + (9.247 * user.Weight) + (3.098 * user.Height) - (4.330 * user.Age);
+            }
+
+            switch (user.ActivityLevel)
+            {
+                case "Not Very Active":
+                    RC *= 1.2;
+                    break;
+                case "Lightly Active":
+                    RC *= 1.375;
+                    break;
+                case "Active":
+                    RC *= 1.55;
+                    break;
+                case "Very Active":
+                    RC *= 1.725;
+                    break;
+                default:
+                    throw new ArgumentException("Invalid activity level");
+            }
+
+            switch (user.MainGoal)
+            {
+                case "Maintain Weight":
+                    RC *= 1.0;
+                    break;
+                case "Lose Weight":
+                    RC *= 0.8;
+                    break;
+                case "Gain Weight":
+                    RC *= 1.2;
+                    break;
+            }
+
+            return RC;
+        }
     }
 }
 
