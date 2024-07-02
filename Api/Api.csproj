@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\SeedData\ActivityLevel.json" />
+    <Content Remove="wwwroot\SeedData\Disease.json" />
     <Content Remove="wwwroot\SeedData\Exercises.json" />
     <Content Remove="wwwroot\SeedData\Food1.json" />
+    <Content Remove="wwwroot\SeedData\Goal.json" />
     <Content Remove="wwwroot\SeedData\Muscles.json" />
     <Content Remove="wwwroot\SeedData\Ratings.json" />
   </ItemGroup>
@@ -40,8 +43,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\SeedData\ActivityLevel.json" />
+    <None Include="wwwroot\SeedData\Disease.json" />
     <None Include="wwwroot\SeedData\Exercises.json" />
     <None Include="wwwroot\SeedData\Food1.json" />
+    <None Include="wwwroot\SeedData\Goal.json" />
     <None Include="wwwroot\SeedData\Muscles.json" />
     <None Include="wwwroot\SeedData\Ratings.json" />
   </ItemGroup>

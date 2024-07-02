@@ -21,11 +21,12 @@ namespace Api.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly ICoachRepository _coachRepository;
         private readonly IClientRepository _clientRepository;
+        private readonly IWorkoutHistoryRepository _workoutHistoryRepository;
         private readonly ApiResponse _response;
         private readonly IPhotoService _photoService;
         private readonly IMapper _mapper;
 
-        public CoachController(UserManager<AppUser> userManager, ICoachRepository coachRepository, ApiResponse response, IMapper mapper, IClientRepository clientRepository, IPhotoService photoService)
+        public CoachController(UserManager<AppUser> userManager, ICoachRepository coachRepository, ApiResponse response, IMapper mapper, IClientRepository clientRepository, IPhotoService photoService, IWorkoutHistoryRepository workoutHistoryRepository)
         {
             _userManager = userManager;
             _coachRepository = coachRepository;
@@ -33,6 +34,7 @@ namespace Api.Controllers
             _mapper = mapper;
             _clientRepository = clientRepository;
             _photoService = photoService;
+            _workoutHistoryRepository = workoutHistoryRepository;
         }
 
         [HttpGet("GetAllCoaches", Name = "GetAllCoaches")]
@@ -114,6 +116,43 @@ namespace Api.Controllers
                 await _coachRepository.AddClientToCoachAsync(clientId, coachId);
                 return Ok(_response.OkResponse("Client added to coach successfully"));
 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
+
+        [HttpGet("GetUserWorkoutHistory", Name = "GetUserWorkoutHistory")]
+        [Authorize(Roles = "coach")]
+        public async Task<ActionResult<ApiResponse>> GetUserWorkoutHistory(string userName)
+        {
+            try
+            {
+                var appUserCoach = await _userManager.FindByEmailFromClaimsPrincipalWithCoach(User);
+
+                var appUser = await _userManager.FindByNameAsync(userName);
+
+                var clientId = await _clientRepository.GetClientIdFromAppUserIdAsync(appUser.Id);
+
+                if (clientId == 0)
+                {
+                    return NotFound(_response.NotFoundResponse("Client is not found"));
+                }
+
+                if (!await _coachRepository.ClientExistInCoachClientsAsync(appUserCoach.Coach.CoachId, clientId))
+                {
+                    return BadRequest(_response.BadRequestResponse("this isn't your client"));
+                }
+                List<WorkoutHistory> userWorkoutHistory = await _workoutHistoryRepository.GetAllWorkoutHistoriesAsync(appUser.Id);
+
+                if(userWorkoutHistory == null)
+                {
+                    return Ok(_response.OkResponse("No workout history found for this user"));
+                }
+
+                var result = CustomMappers.MapWorkoutHistoryToWorkoutHistoryReturnDto(userWorkoutHistory);
+                return Ok(_response.OkResponse(result));
             }
             catch (Exception ex)
             {

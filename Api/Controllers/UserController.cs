@@ -116,7 +116,7 @@ namespace Api.Controllers
                 if (model.FatWeight != null) user.FatWeight = model.FatWeight.Value;
                 if (model.MuscleWeight != null) user.MuscleWeight = model.MuscleWeight.Value;
                 if (model.MainGoal != null) user.MainGoal = model.MainGoal;
-                if (model.ActivityLevel != null) user.ActivityLevel = model.ActivityLevel;
+                if (model.ActivityLevel != null) user.ActivityLevelName = model.ActivityLevel;
                 if (model.GoalWeight != null) user.GoalWeight = model.GoalWeight.Value;
 
                 if (model.ActivityLevel != null || model.MainGoal != null || model.Weight != null || model.Height != null || model.Age != null){ user.RecommendedCalories = _userRepository.CalculateRecommendedCalories(user); }
@@ -156,6 +156,26 @@ namespace Api.Controllers
         public async Task<ActionResult<ApiResponse>> DeleteUser(string username)
         {
             var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+            {
+                return NotFound(_response.NotFoundResponse("username doesnt exist"));
+            }
+            try
+            {
+                await _userManager.DeleteAsync(user);
+                return Ok(_response.OkResponse("Deleted"));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
+
+        [HttpDelete("DeleteMyAccount", Name = "DeleteMyAccount")]
+        [Authorize]
+        public async Task<ActionResult<ApiResponse>> DeleteMyAccount()
+        {
+            var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
             if (user == null)
             {
                 return NotFound(_response.NotFoundResponse("username doesnt exist"));

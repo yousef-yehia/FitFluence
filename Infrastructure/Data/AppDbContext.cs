@@ -16,7 +16,7 @@ namespace Infrastructure.Data
         public DbSet<Goal> Goals { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<FavouriteFood> FavouriteFoods { get; set; }
-        public DbSet<UserGoals> UserGoals { get; set; }
+        public DbSet<ActivityLevel> ActivityLevels { get; set; }
         public DbSet<Muscle> Muscles { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<WorkoutPlan> WorkoutPlans { get; set; }
@@ -29,27 +29,24 @@ namespace Infrastructure.Data
         public DbSet<FoodRating> FoodRatings { get; set; }
         public DbSet<DietPlan> DietPlans { get; set; }
         public DbSet<DietPlanFood> DietPlanFoods { get; set; }
+        public DbSet<Disease> Diseases { get; set; }
+        public DbSet<UserDisease> UserDiseases { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure the many-to-many relationship between user and goals
-            modelBuilder.Entity<UserGoals>()
-                .HasKey(ug => new { ug.AppUserId, ug.GoalId });
+            // Configure the one-to-many relationship between user and goal
+            modelBuilder.Entity<Goal>()
+                .HasMany(g=> g.AppUsers)
+                .WithOne(u=> u.Goal)
+                .HasForeignKey(u => u.MainGoal);
 
-            modelBuilder.Entity<UserGoals>()
-                .HasOne(ug => ug.AppUser)
-                .WithMany(u => u.UserGoals)
-                .HasForeignKey(ug => ug.AppUserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-
-            modelBuilder.Entity<UserGoals>()
-                .HasOne(ug => ug.Goal)
-                .WithMany(g => g.UserGoals)
-                .HasForeignKey(ug => ug.GoalId)
-                .OnDelete(DeleteBehavior.Cascade);
+            // Configure the one-to-many relationship between user and ActivityLevel
+            modelBuilder.Entity<ActivityLevel>()
+                .HasMany(g=> g.AppUsers)
+                .WithOne(u=> u.ActivityLevel)
+                .HasForeignKey(u => u.ActivityLevelName);
 
             // Configure the many-to-many relationship between user and foods to favouriteFoods
             modelBuilder.Entity<FavouriteFood>()
@@ -65,6 +62,22 @@ namespace Infrastructure.Data
                 .HasOne(uf => uf.Food)
                 .WithMany(f => f.UserFoods)
                 .HasForeignKey(uf => uf.FoodId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Configure the many-to-many relationship between user and disease to userDiseases
+            modelBuilder.Entity<UserDisease>()
+                 .HasKey(uf => new { uf.AppUserId, uf.DiseaseName });
+
+            modelBuilder.Entity<UserDisease>()
+                .HasOne(uf => uf.AppUser)
+                .WithMany(u => u.UserDiseases)
+                .HasForeignKey(uf => uf.AppUserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserDisease>()
+                .HasOne(uf => uf.Disease)
+                .WithMany(f => f.UserDiseases)
+                .HasForeignKey(uf => uf.DiseaseName)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Configure the many-to-many relationship between user and foods to FoodsRating
@@ -156,7 +169,7 @@ namespace Infrastructure.Data
                 .HasOne(uf => uf.Client)
                 .WithMany(u => u.CoachsAndClients)
                 .HasForeignKey(uf => uf.ClientId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<CoachAndClient>()
                 .HasOne(uf => uf.Coach)

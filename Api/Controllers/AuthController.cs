@@ -64,13 +64,14 @@ namespace Api.Controllers
                 Gender = user.Gender,
                 Height = user.Height,
                 Weight = user.Weight,
-                ActivityLevel = user.ActivityLevel,
+                ActivityLevel = user.ActivityLevelName,
                 GoalWeight = user.GoalWeight,
                 MainGoal = user.MainGoal,
                 RecommendedCalories = user.RecommendedCalories,
                 FatWeight = user.FatWeight,
                 MuscleWeight = user.MuscleWeight,
-                Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault()
+                Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault(),
+                UserDisease = await _userRepository.GetUserDiseases(user.Id) ?? null,
 
             };
 
@@ -119,7 +120,7 @@ namespace Api.Controllers
                     Age = model.Age,
                     Gender = model.Gender,
                     MainGoal = model.MainGoal,
-                    ActivityLevel = model.ActivityLevel,
+                    ActivityLevelName = model.ActivityLevel,
                     GoalWeight = model.GoalWeight,
                 };
                 newUser.Client = new Client
@@ -132,9 +133,12 @@ namespace Api.Controllers
                 //newUser.ImageUrl = uploadResult.Url.ToString();
 
                 var result = await _userManager.CreateAsync(newUser, model.Password);
+
                 await _userManager.AddToRoleAsync(newUser, Role.roleClient);
 
-                if (!result.Succeeded) return BadRequest(_response.BadRequestResponse(""));
+                await _userRepository.AddUserDisease(newUser.Id, model.Dieases);
+
+                if (!result.Succeeded) return BadRequest(_response.BadRequestResponse("error happend while register"));
 
                 await _authService.SendVerificationEmailAsync(newUser);
 
@@ -242,14 +246,14 @@ namespace Api.Controllers
                     Email = model.Email,
                     UserName = model.UserName,
                     PhoneNumber = model.PhoneNumber,
-                    Weight = model.Weight ?? 0,
-                    FatWeight = model.FatWeight ?? 0,
-                    MuscleWeight = model.MuscleWeight ?? 0,
-                    Height = model.Height ?? 0,
+                    Weight = model.Weight ,
+                    FatWeight = model.FatWeight,
+                    MuscleWeight = model.MuscleWeight,
+                    Height = model.Height,
                     Age = model.Age ?? 0,
                     Gender = model.Gender,
                     MainGoal = model.MainGoal,
-                    ActivityLevel = model.ActivityLevel,
+                    ActivityLevelName = model.ActivityLevel,
                     GoalWeight = model.GoalWeight,
                 };
                 newUser.Coach = new Coach
@@ -272,9 +276,12 @@ namespace Api.Controllers
                 }
 
                 var result = await _userManager.CreateAsync(newUser, model.Password);
+
                 await _userManager.AddToRoleAsync(newUser, Role.roleCoach);
 
-                if (!result.Succeeded) return BadRequest(_response.BadRequestResponse(""));
+                await _userRepository.AddUserDisease(newUser.Id, model.Dieases);
+
+                if (!result.Succeeded) return BadRequest(_response.BadRequestResponse("error happend while register"));
 
                 var userToReturn = new RegisterResponseDto
                 {
@@ -359,11 +366,12 @@ namespace Api.Controllers
                 Gender = user.Gender,
                 Height = user.Height,
                 Weight = user.Weight,
-                Role =  _userManager.GetRolesAsync(user).Result.FirstOrDefault(),
+                Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault(),
                 GoalWeight = user.GoalWeight,
-                ActivityLevel = user.ActivityLevel,
+                ActivityLevel = user.ActivityLevelName,
                 MainGoal = user.MainGoal,
                 RecommendedCalories = user.RecommendedCalories,
+                UserDisease = await _userRepository.GetUserDiseases(user.Id),
             };
 
             var response = _response.OkResponse(userToReturn);
@@ -393,39 +401,6 @@ namespace Api.Controllers
 
         //}
 
-
-        //[HttpPost("addrole")]
-        //public async Task<IActionResult> AddRoleAsync([FromBody] AddRoleModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-        //    var user = await _userManager.FindByIdAsync(model.UserId);
-        //    var result = await _userManager.AddToRoleAsync(user, model.Role);
-        //    return Ok(result);
-        //}
-
-        [HttpDelete("deleteuser")]
-        [Authorize(Roles = "admin")]
-        public async Task<ActionResult<ApiResponse>> DeleteUser(string username)
-        {
-            try
-            {
-                var user = await _userManager.FindByNameAsync(username);
-
-                if (user == null)
-                {
-                    return BadRequest(_response.NotFoundResponse("no usr found"));
-                }
-
-                await _userManager.DeleteAsync(user);
-                return Ok(_response.OkResponse("user deleted"));
-            }
-            catch (Exception ex) 
-            {
-                return BadRequest(_response.BadRequestResponse(ex.Message));
-            }
-
-        }
 
         [HttpGet("emailexists")]
         public async Task<ActionResult<bool>> CheckEmailExistsAsync([FromQuery] string email)

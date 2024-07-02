@@ -99,7 +99,7 @@ namespace Api.Helper
                 UserId = u.AppUser.Id,
                 Weight = u.AppUser.Weight,
                 GoalWeight = u.AppUser.GoalWeight,
-                ActivityLevel = u.AppUser.ActivityLevel,
+                ActivityLevel = u.AppUser.ActivityLevelName,
                 MainGoal = u.AppUser.MainGoal,
             }).ToList();
             return clientReturn;

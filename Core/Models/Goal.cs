@@ -4,11 +4,9 @@ namespace Core.Models
 {
     public class Goal
     {
-        public int Id { get; set; }
-
-        [Required]
+        [Key]
         public string Name { get; set; }
-        public List<UserGoals> UserGoals { get; set; }
+        public ICollection<AppUser> AppUsers  { get; set; }
 
     }
 }

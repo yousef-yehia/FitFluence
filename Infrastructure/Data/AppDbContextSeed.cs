@@ -40,6 +40,28 @@ namespace Infrastructure.Data
                 if (_dbContext.ChangeTracker.HasChanges()) await _dbContext.SaveChangesAsync();
 
             } 
+            if (!_dbContext.ActivityLevels.Any())
+            {
+                var activityLevelsData = File.ReadAllText("../wwwroot/wwwroot/SeedData/ActivityLevel.json");
+                var activityLevel = JsonSerializer.Deserialize<List<ActivityLevel>>(activityLevelsData);
+                _dbContext.ActivityLevels.AddRange(activityLevel);
+                if (_dbContext.ChangeTracker.HasChanges()) await _dbContext.SaveChangesAsync();
+
+            } 
+            if (!_dbContext.Goals.Any())
+            {
+                var goalData = File.ReadAllText("../wwwroot/wwwroot/SeedData/Goal.json");
+                var goals = JsonSerializer.Deserialize<List<Goal>>(goalData);
+                _dbContext.Goals.AddRange(goals);
+                if (_dbContext.ChangeTracker.HasChanges()) await _dbContext.SaveChangesAsync();
+            } 
+            if (!_dbContext.Diseases.Any())
+            {
+                var diseaseData = File.ReadAllText("../wwwroot/wwwroot/SeedData/Disease.json");
+                var disease = JsonSerializer.Deserialize<List<Disease>>(diseaseData);
+                _dbContext.Diseases.AddRange(disease);
+                if (_dbContext.ChangeTracker.HasChanges()) await _dbContext.SaveChangesAsync();
+            } 
             //seed avg ratings from kaggleRatings
             //if(_dbContext.Foods.Any(f => f.AvgRating == null))
             //{

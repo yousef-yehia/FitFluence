@@ -10,7 +10,6 @@ using Infrastructure.Data.Seed;
 using Infrastructure.Helper;
 using Infrastructure.Repository;
 using Infrastructure.Services;
-using Infrastructures.Repository;
 using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -75,7 +74,7 @@ namespace Api.Extensions
             services.AddSingleton<IEmailService, EmailService>();
             services.AddSingleton<IPhotoService, PhotoService>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IGoalRepository, GoalRepository>();
+            //services.AddScoped<IGoalRepository, GoalRepository>();
             services.AddScoped<IFoodRepository, FoodRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IFavouriteFoodRepository, FavouriteFoodRepository>();

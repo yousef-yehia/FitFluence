@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240702174148_AddUserGoalAndActiveLevel")]
-    partial class AddUserGoalAndActiveLevel
+    [Migration("20240702183659_AddTableGoalAndActiveLevel")]
+    partial class AddTableGoalAndActiveLevel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,16 @@ namespace Infrastructure.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Core.Models.ActivityLevel", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Name");
+
+                    b.ToTable("ActivityLevels");
+                });
+
             modelBuilder.Entity("Core.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -33,8 +43,8 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("ActivityLevel")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ActivityLevelName")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -69,7 +79,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("MainGoal")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<double?>("MuscleWeight")
                         .HasColumnType("float");
@@ -109,6 +119,10 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ActivityLevelName");
+
+                    b.HasIndex("MainGoal");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -345,17 +359,10 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Models.Goal", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.ToTable("Goals");
                 });
@@ -379,21 +386,6 @@ namespace Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Muscles");
-                });
-
-            modelBuilder.Entity("Core.Models.UserGoals", b =>
-                {
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("GoalId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AppUserId", "GoalId");
-
-                    b.HasIndex("GoalId");
-
-                    b.ToTable("UserGoals");
                 });
 
             modelBuilder.Entity("Core.Models.WorkoutHistory", b =>
@@ -638,6 +630,21 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Core.Models.AppUser", b =>
+                {
+                    b.HasOne("Core.Models.ActivityLevel", "ActivityLevel")
+                        .WithMany("AppUsers")
+                        .HasForeignKey("ActivityLevelName");
+
+                    b.HasOne("Core.Models.Goal", "Goal")
+                        .WithMany("AppUsers")
+                        .HasForeignKey("MainGoal");
+
+                    b.Navigation("ActivityLevel");
+
+                    b.Navigation("Goal");
+                });
+
             modelBuilder.Entity("Core.Models.Client", b =>
                 {
                     b.HasOne("Core.Models.AppUser", "AppUser")
@@ -758,25 +765,6 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("Food");
                 });
 
-            modelBuilder.Entity("Core.Models.UserGoals", b =>
-                {
-                    b.HasOne("Core.Models.AppUser", "AppUser")
-                        .WithMany("UserGoals")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Core.Models.Goal", "Goal")
-                        .WithMany("UserGoals")
-                        .HasForeignKey("GoalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("Goal");
-                });
-
             modelBuilder.Entity("Core.Models.WorkoutHistory", b =>
                 {
                     b.HasOne("Core.Models.AppUser", "AppUser")
@@ -888,6 +876,11 @@ namespace Infrastructure.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Core.Models.ActivityLevel", b =>
+                {
+                    b.Navigation("AppUsers");
+                });
+
             modelBuilder.Entity("Core.Models.AppUser", b =>
                 {
                     b.Navigation("Client");
@@ -899,8 +892,6 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("FavouriteFoods");
 
                     b.Navigation("FoodRatings");
-
-                    b.Navigation("UserGoals");
 
                     b.Navigation("WorkoutHistories");
 
@@ -940,7 +931,7 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Models.Goal", b =>
                 {
-                    b.Navigation("UserGoals");
+                    b.Navigation("AppUsers");
                 });
 
             modelBuilder.Entity("Core.Models.Muscle", b =>

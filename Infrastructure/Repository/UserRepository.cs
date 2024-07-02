@@ -10,6 +10,7 @@ using AutoMapper;
 using Core.Interfaces;
 using Core.Models;
 using Infrastructure.Data;
+using Microsoft.Identity.Client;
 
 namespace Infrastructure.Repository
 {
@@ -103,9 +104,29 @@ namespace Infrastructure.Repository
             _appDbContext.Entry(entity).State = EntityState.Detached;
         }
 
-        public double CalculateRecommendedCalories(AppUser user)
+        public async Task AddUserDisease(string userId, List<string> diseaseNames )
         {
-            double RC;
+            foreach (string disease in diseaseNames)
+            {
+                _appDbContext.UserDiseases.Add(new UserDisease { AppUserId = userId, DiseaseName = disease });
+            }
+            await _appDbContext.SaveChangesAsync();
+        }
+        public async Task<List<string>> GetUserDiseases(string userId)
+        {
+            var userDiseases = await _appDbContext.UserDiseases.Where(x => x.AppUserId == userId).Select(x => x.DiseaseName).ToListAsync();
+            return userDiseases;
+        }
+
+
+        public double? CalculateRecommendedCalories(AppUser user)
+        {
+            double? RC = null;
+
+            if (user.Weight == 0 || user.Height == 0 || user.Weight == null || user.Height == null || user.Age == 0 || user.ActivityLevel == null || user.MainGoal == null || user.Gender == null)
+            {
+                return RC;
+            }
 
             if (user.Gender == "Male")
             {
@@ -116,7 +137,7 @@ namespace Infrastructure.Repository
                 RC = 447.593 + (9.247 * user.Weight) + (3.098 * user.Height) - (4.330 * user.Age);
             }
 
-            switch (user.ActivityLevel)
+            switch (user.ActivityLevelName)
             {
                 case "Not Very Active":
                     RC *= 1.2;

@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240702184947_MakeWeightAndHeightNullable")]
+    partial class MakeWeightAndHeightNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,16 +240,6 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("DietPlanFoods");
                 });
 
-            modelBuilder.Entity("Core.Models.Disease", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Name");
-
-                    b.ToTable("Diseases");
-                });
-
             modelBuilder.Entity("Core.Models.Exercise", b =>
                 {
                     b.Property<int>("Id")
@@ -393,21 +386,6 @@ namespace Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Muscles");
-                });
-
-            modelBuilder.Entity("Core.Models.UserDisease", b =>
-                {
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("DiseaseName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("AppUserId", "DiseaseName");
-
-                    b.HasIndex("DiseaseName");
-
-                    b.ToTable("UserDiseases");
                 });
 
             modelBuilder.Entity("Core.Models.WorkoutHistory", b =>
@@ -694,7 +672,7 @@ namespace Infrastructure.Data.Migrations
                     b.HasOne("Core.Models.Client", "Client")
                         .WithMany("CoachsAndClients")
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Core.Models.Coach", "Coach")
@@ -785,25 +763,6 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Food");
-                });
-
-            modelBuilder.Entity("Core.Models.UserDisease", b =>
-                {
-                    b.HasOne("Core.Models.AppUser", "AppUser")
-                        .WithMany("UserDiseases")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Core.Models.Disease", "Disease")
-                        .WithMany("UserDiseases")
-                        .HasForeignKey("DiseaseName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("Disease");
                 });
 
             modelBuilder.Entity("Core.Models.WorkoutHistory", b =>
@@ -934,8 +893,6 @@ namespace Infrastructure.Data.Migrations
 
                     b.Navigation("FoodRatings");
 
-                    b.Navigation("UserDiseases");
-
                     b.Navigation("WorkoutHistories");
 
                     b.Navigation("WorkoutPlans");
@@ -954,11 +911,6 @@ namespace Infrastructure.Data.Migrations
             modelBuilder.Entity("Core.Models.DietPlan", b =>
                 {
                     b.Navigation("DietPlanFoods");
-                });
-
-            modelBuilder.Entity("Core.Models.Disease", b =>
-                {
-                    b.Navigation("UserDiseases");
                 });
 
             modelBuilder.Entity("Core.Models.Exercise", b =>

@@ -13,7 +13,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using Infrastructure.Services;
-using Infrastructures.Repository;
 using Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
