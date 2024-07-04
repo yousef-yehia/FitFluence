@@ -85,14 +85,14 @@ namespace Api.Controllers
             return Ok(_response.OkResponse(userfoodsToReturn));
         }
 
-        //[HttpGet("GetUserDailyFoodsCalories")]
-        //[Authorize]
-        //public async Task<IActionResult> GetTotalCalories()
-        //{
-        //    var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+        [HttpGet("GetUserDailyFoodsCalories")]
+        [Authorize]
+        public async Task<IActionResult> GetTotalCalories()
+        {
+            var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
 
-        //    var totalCalories = await _userDailyFoodsRepository.GetTotalCaloriesAsync(user.Id);
-        //    return Ok(totalCalories);
-        //}
+            var totalCalories = await _userDailyFoodsRepository.GetTotalCaloriesByUserIdAsync(user.Id);
+            return Ok(totalCalories);
+        }
     }
 }

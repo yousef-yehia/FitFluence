@@ -14,12 +14,10 @@ namespace Infrastructure.Repository
     {
         private readonly IMemoryCache _cache;
         private const string UserFoodKeyPrefix = "UserFood_";
-        private readonly AppDbContext _context;
 
-        public UserDailyFoodsRepository(IMemoryCache cache, AppDbContext context)
+        public UserDailyFoodsRepository(IMemoryCache cache)
         {
             _cache = cache;
-            _context = context;
         }
         private TimeSpan GetTimeUntilMidnight()
         {
@@ -52,15 +50,15 @@ namespace Infrastructure.Repository
             return userFoods;
         }
 
-        //public async Task<double> GetTotalCaloriesAsync(string userId)
-        //{
-        //    var cacheKey = $"{UserFoodKeyPrefix}{userId}";
-        //    if (_cache.TryGetValue(cacheKey, out List<Food> userFoods))
-        //    {
-        //        return await Task.Run(() => userFoods.Sum(food => food.Calories));
-        //    }
-        //    return await Task.FromResult(0d);
-        //}
+        public async Task<double> GetTotalCaloriesByUserIdAsync(string userId)
+        {
+            var cacheKey = $"{UserFoodKeyPrefix}{userId}";
+            if (_cache.TryGetValue(cacheKey, out List<Food> userFoods))
+            {
+                return await Task.Run(() => userFoods.Sum(food => food.Calories));
+            }
+            return await Task.FromResult(0d);
+        }
 
         public double GetTotalCalories(List<UserDailyFood> userDailyFoods)
         {

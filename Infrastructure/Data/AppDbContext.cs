@@ -185,8 +185,8 @@ namespace Infrastructure.Data
                 .HasForeignKey(dp => dp.AppUserId);
 
             // Configure the many-to-many relationship between DietPlan and Food
-            modelBuilder.Entity<DietPlanFood>()
-                 .HasKey(dpf => new { dpf.DietPlanId, dpf.FoodId });
+            //modelBuilder.Entity<DietPlanFood>()
+            //     .HasKey(dpf => new { dpf.DietPlanId, dpf.FoodId });
 
             modelBuilder.Entity<DietPlanFood>()
                 .HasOne(dpf => dpf.DietPlan)

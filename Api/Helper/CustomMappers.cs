@@ -195,10 +195,13 @@ namespace Api.Helper
                 Id = w.Id,
                 Name = w.Name,
                 DateCreated = w.DateCreated,
+                
                 DietPlanFoods = w.DietPlanFoods.Select(we => new DietPlanFoodReturnDto
                 {
+                    DietPlanFoodId = we.Id,
                     FoodId = we.FoodId,
                     FoodName= we.Food.Name,
+                    FoodDescription = we.Food.Description,
                     FoodImageUrl = we.Food.ImageURL,
                     FoodWeight = we.Weight,
                 }).ToList()

@@ -18,7 +18,7 @@
         public double GoalWeight { get; set; }
         public double MonthlyPrice { get; set; }
         public IFormFile Cv { get; set; }
-        public List<string> Dieases { get; set; }
+        public List<string> Diseases { get; set; }
 
     }
 }

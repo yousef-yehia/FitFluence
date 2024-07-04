@@ -16,7 +16,7 @@
         public string? MainGoal { get; set; }
         public string? ActivityLevel { get; set; }
         public double GoalWeight { get; set; }
-        public List<string> Dieases { get; set;}
+        public List<string> Diseases { get; set;}
 
     }
 }

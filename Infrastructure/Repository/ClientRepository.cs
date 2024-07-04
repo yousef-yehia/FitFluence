@@ -73,9 +73,9 @@ namespace FitFluence.Repository
             return await usersQuery.FirstOrDefaultAsync();
         }
 
-        public async Task<int> GetClientIdFromAppUserIdAsync(string appUserId)
+        public async Task<int> GetClientIdFromAppUserNameAsync(string appUserName)
         {
-            var appUser = await _appDbContext.Users.Include(u=>u.Client).FirstOrDefaultAsync(u=>u.Id==appUserId);
+            var appUser = await _appDbContext.Users.Include(u=>u.Client).FirstOrDefaultAsync(u=>u.UserName==appUserName);
             return appUser.Client.ClientId;
         }
 

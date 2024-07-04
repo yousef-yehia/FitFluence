@@ -11,6 +11,7 @@ namespace Core.Interfaces
     {
         public Task AddFoodSelectionAsync(string userId, UserDailyFood food);
         public List<UserDailyFood> GetFoodSelections(string userId);
+        public Task<double> GetTotalCaloriesByUserIdAsync(string userId);
         public double GetTotalCalories(List<UserDailyFood> userDailyFoods);
         public double GetTotalCarbohydrates(List<UserDailyFood> userDailyFoods);
         public double GetTotalFats(List<UserDailyFood> userDailyFoods);

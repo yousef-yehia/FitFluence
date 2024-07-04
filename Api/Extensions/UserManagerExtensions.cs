@@ -35,7 +35,7 @@ namespace Api.Extensions
                 .Include(x => x.Coach)
                 .SingleOrDefaultAsync(x => x.Email == user.FindFirstValue(ClaimTypes.Email));
         }
-        public static async Task<AppUser> FindByEmailFromClaimsPrincipalWithDietPlans(this UserManager<AppUser> userManager,
+        public static async Task<AppUser> FindByEmailFromClaimsPrincipalWithDietPlansWithFoods(this UserManager<AppUser> userManager,
             ClaimsPrincipal user)
         {
             return await userManager.Users
@@ -43,7 +43,14 @@ namespace Api.Extensions
                 .ThenInclude(dp => dp.DietPlanFoods)
                 .ThenInclude(dpf=> dpf.Food)
                 .SingleOrDefaultAsync(x => x.Email == user.FindFirstValue(ClaimTypes.Email));
-        }
+        }          
+        public static async Task<AppUser> FindByEmailFromClaimsPrincipalWithDietPlans(this UserManager<AppUser> userManager,
+            ClaimsPrincipal user)
+        {
+            return await userManager.Users
+                .Include(x => x.DietPlans)
+                .SingleOrDefaultAsync(x => x.Email == user.FindFirstValue(ClaimTypes.Email));
+        }   
 
 
     }

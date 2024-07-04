@@ -7,6 +7,7 @@ using Api.DTO.WorkoutPlanDto;
 using Api.DTO.AuthDto;
 using Api.DTO.MuscleDto;
 using Api.DTO.ClientDto;
+using Api.DTO.DietPlanDto;
 
 
 namespace Api.Helper
@@ -68,6 +69,8 @@ namespace Api.Helper
             CreateMap<UpdateClientDto, Client>().ReverseMap();
             CreateMap<UpdateCoachDto, Coach>().ReverseMap();
             CreateMap<ClientReturnDto, AppUser>().ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId)).ReverseMap();
+
+            CreateMap<DietPlan, DietPlanReturnWithoutFoodsDto>().ReverseMap();
         }      
     }
 }

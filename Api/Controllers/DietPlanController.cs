@@ -1,4 +1,5 @@
 ﻿using Api.ApiResponses;
+using Api.DTO.DietPlanDto;
 using Api.Extensions;
 using Api.Helper;
 using AutoMapper;
@@ -34,11 +35,22 @@ namespace Api.Controllers
         [Authorize]
         public async Task<ActionResult<ApiResponse>> GetAllUserDietPlans()
         {
-            var user = await _userManager.FindByEmailFromClaimsPrincipalWithDietPlans(User);
+            var user = await _userManager.FindByEmailFromClaimsPrincipalWithDietPlansWithFoods(User);
 
             var dietPlans = user.DietPlans;
             var dietPlanResponses = CustomMappers.MapDietPlanToDietPlanReturnDto(dietPlans);
-            return Ok(dietPlanResponses);
+            return Ok(_response.OkResponse(dietPlanResponses));
+        }
+
+        [HttpGet("GetAllUserDietPlansWithoutFoods", Name = "GetAllUserDietPlansWithoutFoods")]
+        [Authorize]
+        public async Task<ActionResult<ApiResponse>> GetAllUserDietPlansWithoutFoods()
+        {
+            var user = await _userManager.FindByEmailFromClaimsPrincipalWithDietPlans(User);
+
+            var dietPlans = user.DietPlans;
+            var dietPlanResponses = _mapper.Map<List<DietPlanReturnWithoutFoodsDto>>(dietPlans);
+            return Ok(_response.OkResponse(dietPlanResponses));
         }
 
         [HttpPost("CreateDietPlan", Name = "CreateDietPlan")]
@@ -108,7 +120,7 @@ namespace Api.Controllers
 
         [HttpDelete("RemoveFoodFromDietPlan", Name = "RemoveFoodFromDietPlan")]
         [Authorize]
-        public async Task<ActionResult<ApiResponse>> RemoveFoodFromDietPlan(int foodId, int dietPlanId)
+        public async Task<ActionResult<ApiResponse>> RemoveFoodFromDietPlan(int dietPlanFoodId)
         {
             try
             {
@@ -116,17 +128,15 @@ namespace Api.Controllers
                 {
                     return BadRequest(ModelState);
                 }
+                var dietPlanFood = await _dietPlanRepository.GetDietPlanFoodAsync(dietPlanFoodId);
 
-                if (!await _dietPlanRepository.DoesExistAsync(d => d.Id == dietPlanId))
+                if (dietPlanFood == null)
                 {
-                    return BadRequest(_response.BadRequestResponse("Diet plan does not exist"));
-                }
-                if (!await _foodRepository.DoesExistAsync(f => f.Id == foodId))
-                {
-                    return BadRequest(_response.BadRequestResponse("Food does not exist"));
+                    return BadRequest(_response.BadRequestResponse("Diet plan Food does not exist"));
                 }
 
-                await _dietPlanRepository.RemoveFoodFromDietPlanAsync(foodId, dietPlanId);
+
+                await _dietPlanRepository.RemoveFoodFromDietPlanAsync(dietPlanFood);
 
                 return Ok(_response.OkResponse("Food removed from diet plan"));
             }

@@ -40,8 +40,14 @@ namespace Api.Controllers
         {
             try
             {
-                var AppUserList = await _userRepository.GetAllUsersAsync();
-                var paginatedUsers = Pagination<AppUser>.Paginate(AppUserList, pageNumber, pageSize);
+                var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
+                var appUserList = await _userRepository.GetAllUsersAsync();
+
+                appUserList.Remove(user);
+                appUserList.RemoveAll(u => u.UserName == "admin");
+
+                var paginatedUsers = Pagination<AppUser>.Paginate(appUserList, pageNumber, pageSize);
 
                 return Ok(_response.OkResponse(paginatedUsers));
             }
@@ -60,13 +66,38 @@ namespace Api.Controllers
             try
             {
                 var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+                var appUserList = _userManager.GetUsersInRoleAsync(Role.roleClient).Result.ToList();
+                appUserList.RemoveAll(u => u.UserName == "admin");
 
-                var appUserList = await _userManager.GetUsersInRoleAsync(Role.roleClient);
-                appUserList.Remove(user);
+                if (_userManager.GetRolesAsync(user).Result.ToList().FirstOrDefault() == Role.roleClient)
+                {
+                    appUserList.Remove(user);
+                }
                 var clients = _mapper.Map<List<ClientReturnDto>>(appUserList.ToList());
                 var paginatedClients = Pagination<ClientReturnDto>.Paginate(clients, pageNumber, pageSize);
 
                 return Ok(_response.OkResponse(paginatedClients));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
+
+        [HttpGet("GetAllClientsUserName", Name = "GetAllClientsUserName")]
+        [ResponseCache(Duration = 10)]
+        public async Task<ActionResult<ApiResponse>> GetAllClientsUserName()
+        {
+            try
+            {
+                var appUserList = await _userManager.GetUsersInRoleAsync(Role.roleClient);
+
+                var clients = appUserList.Select(u => u.UserName).ToList();
+
+                clients.RemoveAll(u => u == "admin");
+
+
+                return Ok(_response.OkResponse(clients));
             }
             catch (Exception ex)
             {

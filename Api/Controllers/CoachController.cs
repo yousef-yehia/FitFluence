@@ -91,7 +91,7 @@ namespace Api.Controllers
 
         [HttpPost("AddClientToCoach", Name = "AddClientToCoach")]
         [Authorize(Roles = "coach")]
-        public async Task<ActionResult<ApiResponse>> AddClientToCoach(string clientAppUserId)
+        public async Task<ActionResult<ApiResponse>> AddClientToCoach(string clientUserName)
         {
             try
             {
@@ -101,7 +101,8 @@ namespace Api.Controllers
                 {
                     return NotFound(_response.NotFoundResponse("Coach is not found"));
                 }
-                var clientId = await _clientRepository.GetClientIdFromAppUserIdAsync(clientAppUserId);
+
+                var clientId = await _clientRepository.GetClientIdFromAppUserNameAsync(clientUserName);
 
                 if (clientId == 0)
                 {
@@ -133,7 +134,7 @@ namespace Api.Controllers
 
                 var appUser = await _userManager.FindByNameAsync(userName);
 
-                var clientId = await _clientRepository.GetClientIdFromAppUserIdAsync(appUser.Id);
+                var clientId = await _clientRepository.GetClientIdFromAppUserNameAsync(userName);
 
                 if (clientId == 0)
                 {
@@ -144,6 +145,7 @@ namespace Api.Controllers
                 {
                     return BadRequest(_response.BadRequestResponse("this isn't your client"));
                 }
+
                 List<WorkoutHistory> userWorkoutHistory = await _workoutHistoryRepository.GetAllWorkoutHistoriesAsync(appUser.Id);
 
                 if(userWorkoutHistory == null)

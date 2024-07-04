@@ -136,7 +136,7 @@ namespace Api.Controllers
 
                 await _userManager.AddToRoleAsync(newUser, Role.roleClient);
 
-                await _userRepository.AddUserDisease(newUser.Id, model.Dieases);
+                await _userRepository.AddUserDisease(newUser.Id, model.Diseases);
 
                 if (!result.Succeeded) return BadRequest(_response.BadRequestResponse("error happend while register"));
 
@@ -279,7 +279,7 @@ namespace Api.Controllers
 
                 await _userManager.AddToRoleAsync(newUser, Role.roleCoach);
 
-                await _userRepository.AddUserDisease(newUser.Id, model.Dieases);
+                await _userRepository.AddUserDisease(newUser.Id, model.Diseases);
 
                 if (!result.Succeeded) return BadRequest(_response.BadRequestResponse("error happend while register"));
 

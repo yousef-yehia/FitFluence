@@ -29,9 +29,8 @@ namespace Infrastructure.Repository
             await SaveAsync();
         }
 
-        public async Task RemoveFoodFromDietPlanAsync(int foodId, int dietPlanId)
+        public async Task RemoveFoodFromDietPlanAsync(DietPlanFood dietPlanFood)
         {
-           var dietPlanFood = await GetDietPlanFoodAsync(foodId, dietPlanId);
            _appDbContext.DietPlanFoods.Remove(dietPlanFood);
             await SaveAsync();
         }
@@ -41,9 +40,13 @@ namespace Infrastructure.Repository
             _appDbContext.DietPlans.Update(dietPlan);
             await SaveAsync();
         }
-        private async Task<DietPlanFood> GetDietPlanFoodAsync(int foodId, int dietPlanId)
+        public async Task<DietPlanFood> GetDietPlanFoodAsync(int dietPlanFoodId)
         {
-            return await _appDbContext.DietPlanFoods.FirstOrDefaultAsync(dpf=> dpf.DietPlanId == dietPlanId && dpf.FoodId == foodId);
+            return await _appDbContext.DietPlanFoods.FirstOrDefaultAsync(dpf=> dpf.Id == dietPlanFoodId);
         }
+        //public async Task<bool> DoesFoodExistsInTheDietPlan(int dietPlanFoodId)
+        //{
+        //    return await _appDbContext.DietPlanFoods.AnyAsync(dpf => dpf.Id == dietPlanFoodId);
+        //}
     }
 }

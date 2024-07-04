@@ -5,13 +5,9 @@ namespace Api.ApiResponses
 
     public class ApiResponse
     {
-        public ApiResponse()
-        {
-            ErrorMessages = new List<string>();
-        }
         public HttpStatusCode StatusCode { get; set; }
         public bool IsSuccess { get; set; } = true;
-        public List<string> ErrorMessages { get; set; }
+        public string? ErrorMessage { get; set; }
         public object Result { get; set; }
 
 
@@ -21,7 +17,7 @@ namespace Api.ApiResponses
             {
                 StatusCode = HttpStatusCode.BadRequest,
                 IsSuccess = false,
-                ErrorMessages = new List<string> { message }
+                ErrorMessage =  message 
             };
         }
         public ApiResponse OkResponse(object result)
@@ -39,7 +35,7 @@ namespace Api.ApiResponses
             {
                 StatusCode = HttpStatusCode.NotFound,
                 IsSuccess = false,
-                ErrorMessages = new List<string> { message }
+                ErrorMessage =  message 
             };
         }
         public ApiResponse UnauthorizedResponse(string message)
@@ -48,7 +44,7 @@ namespace Api.ApiResponses
             {
                 StatusCode = HttpStatusCode.Unauthorized,
                 IsSuccess = false,
-                ErrorMessages = new List<string> { message }
+                ErrorMessage = message 
             };
         }
     }

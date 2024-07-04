@@ -2,6 +2,7 @@
 {
     public class DietPlanFood
     {
+        public int Id { get; set; }
         public int DietPlanId { get; set; }
         public DietPlan DietPlan { get; set; }
         public int FoodId { get; set; }
