@@ -109,7 +109,7 @@ namespace Infrastructure.Data
                 .HasForeignKey(e => e.AppUserId);
             
 
-            // Configure the many-to-many relationship between workoutPlan and exercise
+            // Configure the many-to-many relationship between workoutPlan and exercise to workoutPlanExercise
             modelBuilder.Entity<WorkoutPlanExercise>()
                  .HasKey(uf => new { uf.WorkoutPlanId, uf.ExerciseId });
 
@@ -147,21 +147,21 @@ namespace Infrastructure.Data
                 .HasForeignKey(uf => uf.ExerciseId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            // Configure the one-to-one relationship between user and coach and client
+            // Configure the one-to-one relationship between user and coach 
             modelBuilder.Entity<AppUser>()
                 .HasOne(u => u.Client)
                 .WithOne(c => c.AppUser)
                 .HasForeignKey<Client>(c => c.AppUserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-
+            // Configure the one-to-one relationship between user and client
             modelBuilder.Entity<AppUser>()
                 .HasOne(u => u.Coach)
                 .WithOne(c => c.AppUser)
                 .HasForeignKey<Coach>(c => c.AppUserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Configure the many-to-many relationship between Coach and Clients
+            // Configure the many-to-many relationship between Coach and Clients to coachClients
             modelBuilder.Entity<CoachAndClient>()
                  .HasKey(uf => new { uf.ClientId, uf.CoachId });
 
@@ -184,7 +184,8 @@ namespace Infrastructure.Data
                 .WithMany(u => u.DietPlans)
                 .HasForeignKey(dp => dp.AppUserId);
 
-            // Configure the many-to-many relationship between DietPlan and Food
+            // Configure the many-to-many relationship between DietPlan and Food to dietPLanFoods
+
             //modelBuilder.Entity<DietPlanFood>()
             //     .HasKey(dpf => new { dpf.DietPlanId, dpf.FoodId });
 

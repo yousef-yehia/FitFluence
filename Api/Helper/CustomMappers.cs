@@ -103,6 +103,25 @@ namespace Api.Helper
                 MainGoal = u.AppUser.MainGoal,
             }).ToList();
             return clientReturn;
+        } 
+        public static List<ChatClientReturnDto> MapClientToChatClientReturnDto(List<Client> clients)
+        {
+            var clientReturn = clients.Select(u => new ChatClientReturnDto
+            {
+                Id = u.AppUserId,
+                Email = u.AppUser.Email,
+                User_name = u.AppUser.UserName,
+                Image = u.AppUser.ImageUrl,
+                Activity_level = u.AppUser.ActivityLevelName,
+                MainGoal = u.AppUser.MainGoal,
+                About = "",
+                Created_At = "",
+                Last_Active = "",
+                Is_online = false,
+                Push_token = "",
+                Role = "client"
+            }).ToList();
+            return clientReturn;
         }
 
         public static List<WorkoutHistoryReturnDto> MapWorkoutHistoryToWorkoutHistoryReturnDto(List<WorkoutHistory> workOutHostories)

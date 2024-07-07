@@ -22,11 +22,12 @@ namespace Api.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IFoodRepository _foodRepository;
         private readonly IPhotoService _photoService;
+        private readonly IFoodRecommendationService _foodRecommendationService;
         private readonly IMapper _mapper;
         protected ApiResponse _response;
 
 
-        public FoodController(ApiResponse response, IMapper mapper, IFoodRepository foodRepository, UserManager<AppUser> userManager, IPhotoService photoService)
+        public FoodController(ApiResponse response, IMapper mapper, IFoodRepository foodRepository, UserManager<AppUser> userManager, IPhotoService photoService, IFoodRecommendationService foodRecommendationService)
         {
 
             _response = response;
@@ -34,6 +35,7 @@ namespace Api.Controllers
             _foodRepository = foodRepository;
             _userManager = userManager;
             _photoService = photoService;
+            _foodRecommendationService = foodRecommendationService;
         }
 
         [HttpGet("GetAllFoods", Name = "GetAllFoods")]
@@ -90,25 +92,30 @@ namespace Api.Controllers
 
         }
 
-        [HttpGet("GetFoodsFromListOfIds", Name = "GetFoodsFromListOfIds")]
+        [HttpGet("GetFoodRecommendations", Name = "GetFoodRecommendations")]
         [Authorize]
-        public async Task<ActionResult<ApiResponse>> GetFoodsFromListOfIds([FromQuery] List<int> ids)
+        public async Task<ActionResult<ApiResponse>> GetFoodRecommendations(string foodName)
         {
             try 
             {
-                List<Food> foods = new List<Food>();
+                var foodId = await _foodRepository.GetFoodIdByName(foodName);
 
-                foreach(int id in ids)
+                if (foodId == 0)
                 {
-                    foods.Add(await _foodRepository.GetAsync(f => f.Id == id));
+                    return BadRequest(_response.BadRequestResponse("Food name is wrong please provide a correct name"));
                 }
+
+                var foodsId = await _foodRecommendationService.GetRecommendationsAsync(foodId);
+
+                var foods = await _foodRepository.GetFoodsByListOfIdsAsync(foodsId);
 
                 if (foods == null)
                 {
-                    return NotFound(_response.NotFoundResponse("Food not found"));
+                    return NotFound(_response.NotFoundResponse("No Foods are found"));
                 }
 
                 var user = await _userManager.FindByEmailFromClaimsPrincipalWithFoods(User);
+
                 var foodsResponse = CustomMappers.MapFoodToFoodReturnDto(foods, user.FavouriteFoods, user.FoodRatings);
 
                 return Ok(_response.OkResponse(foodsResponse));

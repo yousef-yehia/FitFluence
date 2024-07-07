@@ -59,24 +59,6 @@ namespace Infrastructure.Repository
 
         }
 
-        public async Task<List<Food>> SearchAsync(string name, int pageSize = 0, int pageNumber=1 )
-        {
-            var foods = await GetAllAsync();
-
-            var foodsToList = foods.Where(f=> f.Name == name || f.Serving == name).AsQueryable();
-
-            if (pageSize > 0)
-            {
-                if (pageSize > 100)
-                {
-                    pageSize = 100;
-                }
-                foodsToList = foodsToList.Skip(pageSize * (pageNumber - 1)).Take(pageSize);
-            }
-
-            return foodsToList.ToList();
-        }
-
         public async Task AddFoodRate(string appUserId, int foodId, int rate)
         {
             await _appDbContext.FoodRatings.AddAsync(new FoodRating
@@ -118,5 +100,22 @@ namespace Infrastructure.Repository
             return flag;
         }
 
+        public async Task<List<Food>> GetFoodsByListOfIdsAsync(List<int> foodsId)
+        {
+            List<Food> foods = new List<Food>();
+
+            foreach (int id in foodsId)
+            {
+                foods.Add(await GetAsync(f => f.Id == id));
+            }
+            return foods;
+        }
+        public async Task<int> GetFoodIdByName(string name)
+        {
+            var foods = await _appDbContext.Foods.ToListAsync();
+            return foods.Where(f => f.Name.Trim().Contains(name.Trim(), StringComparison.CurrentCultureIgnoreCase))
+                        .Select(f => f.Id)
+                        .FirstOrDefault();
+        }
     }
 }

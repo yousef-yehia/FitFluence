@@ -91,7 +91,8 @@ namespace Api.Controllers
         {
             var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
 
-            var totalCalories = await _userDailyFoodsRepository.GetTotalCaloriesByUserIdAsync(user.Id);
+            var userFoods = _userDailyFoodsRepository.GetFoodSelections(user.Id);
+            var totalCalories = _userDailyFoodsRepository.GetTotalCalories(userFoods);
             return Ok(totalCalories);
         }
     }

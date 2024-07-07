@@ -53,7 +53,7 @@ namespace Infrastructure.Repository
         public async Task<double> GetTotalCaloriesByUserIdAsync(string userId)
         {
             var cacheKey = $"{UserFoodKeyPrefix}{userId}";
-            if (_cache.TryGetValue(cacheKey, out List<Food> userFoods))
+            if (_cache.TryGetValue(cacheKey, out List<UserDailyFood> userFoods))
             {
                 return await Task.Run(() => userFoods.Sum(food => food.Calories));
             }

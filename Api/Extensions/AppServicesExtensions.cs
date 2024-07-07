@@ -74,6 +74,7 @@ namespace Api.Extensions
             services.AddSingleton<IEmailService, EmailService>();
             services.AddSingleton<IPhotoService, PhotoService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IFoodRecommendationService, FoodRecommendationService>();
             //services.AddScoped<IGoalRepository, GoalRepository>();
             services.AddScoped<IFoodRepository, FoodRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
@@ -87,6 +88,7 @@ namespace Api.Extensions
             services.AddScoped<ICoachRepository, CoachRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IDietPlanRepository, DietPlanRepository>();
+            services.AddScoped<IFitbitTokenService, FitbitTokenService>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddScoped<ApiResponse>();

@@ -176,7 +176,7 @@ namespace Api.Controllers
                 }
 
                 var coachClients = await _coachRepository.GetAllCoachClientsAsync(coachId);
-                var coachClientsReturn = CustomMappers.MapClientToClientReturnDto(coachClients);
+                var coachClientsReturn = CustomMappers.MapClientToChatClientReturnDto(coachClients);
                 return Ok(_response.OkResponse(coachClientsReturn));
             }
             catch (Exception ex)
@@ -227,6 +227,41 @@ namespace Api.Controllers
                 coach.CvUrl = uploadResult.Result.Url.ToString();
                 await _coachRepository.UpdateAsync(coach);
                 return Ok(_response.OkResponse($"cv uploaded{coach.CvUrl}"));
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(_response.BadRequestResponse(ex.Message));
+            }
+        }
+
+        [HttpDelete("RemoveClientFromCoach", Name = "RemoveClientFromCoach")]
+        [Authorize(Roles = "coach")]
+        public async Task<ActionResult<ApiResponse>> RemoveClientFromCoach(string clientUserName)
+        {
+            try
+            {
+                var appUser = await _userManager.FindByEmailFromClaimsPrincipalWithCoach(User);
+                var coachId = appUser.Coach.CoachId;
+                if (coachId == 0)
+                {
+                    return NotFound(_response.NotFoundResponse("Coach is not found"));
+                }
+
+                var clientId = await _clientRepository.GetClientIdFromAppUserNameAsync(clientUserName);
+
+                if (clientId == 0)
+                {
+                    return NotFound(_response.NotFoundResponse("Client is not found"));
+                }
+
+                if (! await _coachRepository.ClientExistInCoachClientsAsync(coachId, clientId))
+                {
+                    return BadRequest(_response.BadRequestResponse("Client DOesnot exists in coach"));
+                }
+
+                await _coachRepository.RemoveClientFromCoachAsync(clientId, coachId);
+                return Ok(_response.OkResponse("Client removed from coach successfully"));
 
             }
             catch (Exception ex)

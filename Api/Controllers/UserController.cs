@@ -141,7 +141,7 @@ namespace Api.Controllers
 
                 if (model.ImageUrl != null) user.ImageUrl = model.ImageUrl;
                 if (model.Age != null) user.Age = model.Age.Value;
-                if (model.Name != null) user.Name = model.Name;
+                if (model.FullName != null) user.Name = model.FullName;
                 if (model.Height != null) user.Height = model.Height.Value;
                 if (model.Weight != null) user.Weight = model.Weight.Value;
                 if (model.FatWeight != null) user.FatWeight = model.FatWeight.Value;
@@ -150,11 +150,21 @@ namespace Api.Controllers
                 if (model.ActivityLevel != null) user.ActivityLevelName = model.ActivityLevel;
                 if (model.GoalWeight != null) user.GoalWeight = model.GoalWeight.Value;
 
-                if (model.ActivityLevel != null || model.MainGoal != null || model.Weight != null || model.Height != null || model.Age != null){ user.RecommendedCalories = _userRepository.CalculateRecommendedCalories(user); }
+                if (model.ActivityLevel != null || model.MainGoal != null || model.Weight != null || model.Height != null || model.Age != null)
+                { user.RecommendedCalories = _userRepository.CalculateRecommendedCalories(user); }
+
+                if (model.NewPassword != null)
+                {
+                    if(!await _userManager.CheckPasswordAsync(user, model.CurrentPassword))
+                    {
+                        return BadRequest(_response.BadRequestResponse("Password Is Wrong"));
+                    }
+                    await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                }
 
                 await _userManager.UpdateAsync(user);
 
-                return Ok(_response.OkResponse("User Updated Successfully"));
+                return Ok(_response.OkResponse(user));
             }
             catch (Exception ex)
             {

@@ -54,25 +54,29 @@ namespace Api.Controllers
         {
             var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
 
-            var userToReturn = new UserReturnDto
+            var authHeader = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+            var token = authHeader.Substring("Bearer ".Length).Trim();
+
+            var userToReturn = new LoginResponseDto
             {
+                FullName = user.Name,
                 UserName = user.UserName,
                 ImageUrl = user.ImageUrl,
                 Email = user.Email,
                 UserId = user.Id,
+                Token = token,
                 Age = user.Age,
                 Gender = user.Gender,
                 Height = user.Height,
                 Weight = user.Weight,
-                ActivityLevel = user.ActivityLevelName,
+                Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault(),
                 GoalWeight = user.GoalWeight,
+                ActivityLevel = user.ActivityLevelName,
                 MainGoal = user.MainGoal,
                 RecommendedCalories = user.RecommendedCalories,
+                UserDisease = await _userRepository.GetUserDiseases(user.Id),
                 FatWeight = user.FatWeight,
                 MuscleWeight = user.MuscleWeight,
-                Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault(),
-                UserDisease = await _userRepository.GetUserDiseases(user.Id) ?? null,
-
             };
 
             var response = _response.OkResponse(userToReturn);
@@ -136,7 +140,10 @@ namespace Api.Controllers
 
                 await _userManager.AddToRoleAsync(newUser, Role.roleClient);
 
-                await _userRepository.AddUserDisease(newUser.Id, model.Diseases);
+                if(model.Diseases != null)
+                {
+                    await _userRepository.AddUserDisease(newUser.Id, model.Diseases);
+                }
 
                 if (!result.Succeeded) return BadRequest(_response.BadRequestResponse("error happend while register"));
 
@@ -338,7 +345,6 @@ namespace Api.Controllers
             {
                 return BadRequest();
             }
-
             var result = await _userManager.ResetPasswordAsync(user, model.ChangePasswordTokken, model.NewPassword);
 
             return Ok(result);
@@ -357,6 +363,7 @@ namespace Api.Controllers
 
             var userToReturn = new LoginResponseDto
             {
+                FullName = user.Name,
                 UserName = user.UserName,
                 ImageUrl = user.ImageUrl,
                 Email = user.Email,
@@ -372,6 +379,8 @@ namespace Api.Controllers
                 MainGoal = user.MainGoal,
                 RecommendedCalories = user.RecommendedCalories,
                 UserDisease = await _userRepository.GetUserDiseases(user.Id),
+                MuscleWeight = user.MuscleWeight,
+                FatWeight = user.FatWeight,
             };
 
             var response = _response.OkResponse(userToReturn);

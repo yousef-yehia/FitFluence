@@ -22,6 +22,11 @@ namespace FitFluence.Repository
             await _appDbContext.CoachsAndClients.AddAsync(new CoachAndClient { CoachId = coachId, ClientId = clientId });
             await _appDbContext.SaveChangesAsync();
         }
+        public async Task RemoveClientFromCoachAsync(int clientId, int coachId)
+        {
+            _appDbContext.CoachsAndClients.Remove(new CoachAndClient { CoachId = coachId, ClientId = clientId });
+            await _appDbContext.SaveChangesAsync();
+        }
 
         public async Task<bool> ClientExistInCoachClientsAsync(int coachId, int clientId)
         {

@@ -2,6 +2,7 @@
 {
     public class LoginResponseDto
     {
+        public string FullName { get; set; }
         public string UserName { get; set; }
         public string UserId { get; set; }
         public string Email { get; set; }
@@ -14,6 +15,8 @@
         public string? MainGoal { get; set; }
         public string? ActivityLevel { get; set; }
         public double? GoalWeight { get; set; }
+        public double? MuscleWeight { get; set; }
+        public double? FatWeight { get; set; }
         public double? RecommendedCalories { get; set; }
         public List<string>? UserDisease { get; set; }
         public string Token { get; set; }

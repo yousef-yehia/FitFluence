@@ -14,5 +14,7 @@ namespace Core.Interfaces
         public Task AddClientToCoachAsync(int coachId, int clientId);
         public Task<bool> ClientExistInCoachClientsAsync(int coachId, int clientId);
         public Task<List<Client>> GetAllCoachClientsAsync(int coachId);
+        public Task RemoveClientFromCoachAsync(int clientId, int coachId);
+
     }
 }

@@ -32,6 +32,7 @@ namespace Infrastructure.Services
             {
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.GivenName, user.Name),
+                new Claim(ClaimTypes.NameIdentifier, user.Id)  // Adding user ID as a claim
             };
 
             foreach (var role in userRoles)
