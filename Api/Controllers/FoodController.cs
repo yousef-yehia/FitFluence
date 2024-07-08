@@ -173,7 +173,7 @@ namespace Api.Controllers
 
         [HttpPost("GiveFoodRate", Name = "GiveFoodRate")]
         [Authorize]
-        public async Task<ActionResult<ApiResponse>> GiveFoodRate(int foodId, int rating)
+        public async Task<ActionResult<ApiResponse>> GiveFoodRate(int foodId, double rating)
         {
             try 
             {
@@ -257,7 +257,7 @@ namespace Api.Controllers
             }
         }
 
-        [HttpDelete("DeleteFood {id:int}", Name = "DeleteFood")]
+        [HttpDelete("DeleteFood", Name = "DeleteFood")]
         [Authorize(Roles = "admin")]
         public async Task<ActionResult<ApiResponse>> DeleteFood(int id)
         {

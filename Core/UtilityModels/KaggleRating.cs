@@ -11,6 +11,6 @@ namespace Core.UtilityModels
     {
         public int UserId { get; set; }
         public int FoodId { get; set; }
-        public int Rate { get; set; }
+        public double Rate { get; set; }
     }
 }

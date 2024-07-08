@@ -123,7 +123,7 @@ namespace Infrastructure.Repository
         {
             double? RC = null;
 
-            if (user.Weight == 0 || user.Height == 0 || user.Weight == null || user.Height == null || user.Age == 0 || user.ActivityLevel == null || user.MainGoal == null || user.Gender == null)
+            if (user.Weight == 0 || user.Height == 0 || user.Weight == null || user.Height == null || user.Age == 0 || user.ActivityLevelName == null || user.MainGoal == null || user.Gender == null)
             {
                 return RC;
             }

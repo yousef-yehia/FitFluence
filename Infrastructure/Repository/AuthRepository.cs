@@ -39,9 +39,9 @@ namespace FitFluence.Repository
             try
             {
                 var confirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
-                var verificationLink = $"https://localhost:7125/api/auth/verify?userId={(appUser.Id)}&token={HttpUtility.UrlEncode(confirmationToken)}";
+                var verificationLink = $"http://fitfluence1.runasp.net/api/auth/verify?userId={(appUser.Id)}&token={HttpUtility.UrlEncode(confirmationToken)}";
                 var emailContent = $"Please click <a href='{verificationLink}'>here</a> to verify your email address.";
-                await _emailService.SendAsync("vicious@gmail.com", appUser.Email, "Please confirm your email", emailContent);
+                await _emailService.SendAsync("FitFluence@gmail.com", appUser.Email, "Please confirm your email", emailContent);
 
                 return true;
 

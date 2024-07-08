@@ -59,7 +59,7 @@ namespace Infrastructure.Repository
 
         }
 
-        public async Task AddFoodRate(string appUserId, int foodId, int rate)
+        public async Task AddFoodRate(string appUserId, int foodId, double rate)
         {
             await _appDbContext.FoodRatings.AddAsync(new FoodRating
             {
@@ -75,7 +75,7 @@ namespace Infrastructure.Repository
             await UpdateFoodsRate(foodRating.FoodId, foodRating.Rate);
         }
 
-        public async Task UpdateFoodsRate(int foodId, int rate)
+        public async Task UpdateFoodsRate(int foodId, double rate)
         {
             var ratingsData = File.ReadAllText("../wwwroot/wwwroot/SeedData/Ratings.json");
             List<KaggleRating> ratings = JsonSerializer.Deserialize<List<KaggleRating>>(ratingsData);

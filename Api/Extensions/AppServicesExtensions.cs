@@ -148,6 +148,11 @@ namespace Api.Extensions
             //    options.AppSecret = config["Facebook:Secret"];
             //});
 
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            });
+
             services.AddCors();
 
             return services;

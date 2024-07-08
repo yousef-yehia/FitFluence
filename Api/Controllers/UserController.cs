@@ -66,14 +66,19 @@ namespace Api.Controllers
             try
             {
                 var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+
                 var appUserList = _userManager.GetUsersInRoleAsync(Role.roleClient).Result.ToList();
+
                 appUserList.RemoveAll(u => u.UserName == "admin");
+                //appUserList.RemoveAll(u => u.EmailConfirmed == false);
 
                 if (_userManager.GetRolesAsync(user).Result.ToList().FirstOrDefault() == Role.roleClient)
                 {
                     appUserList.Remove(user);
                 }
+
                 var clients = _mapper.Map<List<ClientReturnDto>>(appUserList.ToList());
+
                 var paginatedClients = Pagination<ClientReturnDto>.Paginate(clients, pageNumber, pageSize);
 
                 return Ok(_response.OkResponse(paginatedClients));

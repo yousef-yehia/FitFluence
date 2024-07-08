@@ -153,7 +153,7 @@ namespace Api.Controllers
                 {
                     UserName = model.UserName,
                     ImageUrl = newUser.ImageUrl,
-                    Token = _tokenService.CreateToken(newUser)
+                    Token = ""
                 };
 
                 var response = _response.OkResponse(userToReturn);
@@ -286,8 +286,12 @@ namespace Api.Controllers
 
                 await _userManager.AddToRoleAsync(newUser, Role.roleCoach);
 
-                await _userRepository.AddUserDisease(newUser.Id, model.Diseases);
+                await _authService.SendVerificationEmailAsync(newUser);
 
+                if (model.Diseases != null)
+                {
+                    await _userRepository.AddUserDisease(newUser.Id, model.Diseases);
+                }
                 if (!result.Succeeded) return BadRequest(_response.BadRequestResponse("error happend while register"));
 
                 var userToReturn = new RegisterResponseDto
@@ -308,7 +312,6 @@ namespace Api.Controllers
 
 
         [HttpGet("verify")]
-        [Authorize]
         public async Task<IActionResult> VerifyEmail(string userId, string token)
         {
             // Find the user based on the verification token
@@ -322,6 +325,15 @@ namespace Api.Controllers
             // Verify the user by updating the verification status
 
             return Ok("Email verified successfully.");
+        }
+
+        [HttpGet("SendEmailVerification", Name = "SendEmailVerification")]
+        public async Task<IActionResult> SendEmailVerification(string email)
+        {
+            var newUser = await _userManager.FindByEmailAsync(email);
+            await _authService.SendVerificationEmailAsync(newUser);
+
+            return Ok("Email sent successfully.");
         }
 
         [HttpGet("ForgetPassword", Name = "ForgetPassword")]
@@ -354,6 +366,11 @@ namespace Api.Controllers
         public async Task<ActionResult<ApiResponse>> Login([FromBody] LogInRequestDto model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
+
+            //if (user.EmailConfirmed == false)
+            //{
+            //    return BadRequest(_response.BadRequestResponse("Please verify your email address"));
+            //}
 
             if (user == null) return Unauthorized(_response.UnauthorizedResponse("The Email is Wrong"));
 
